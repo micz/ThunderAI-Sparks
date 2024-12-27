@@ -21,5 +21,21 @@
         "32": "images/icon-32px.png",
         "16": "images/icon-16px.png"
     },
-    "default_locale": "en"
+    "default_locale": "en",
+    "experiment_apis": {
+        "Calendar": {
+            "schema": "api/Calendar/schema.json",
+            "parent": {
+                "scopes": [
+                "addon_parent"
+                ],
+                "paths": [
+                [
+                    "Calendar"
+                ]
+                ],
+                "script": "api/Calendar/implementation.js"
+            }
+        }
+    }
 }
