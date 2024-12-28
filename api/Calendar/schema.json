@@ -1,5 +1,18 @@
 [
     {
-      "namespace": "Calendar"
+      "namespace": "Calendar",
+      "functions": [
+      {
+        "name": "openCalendarDialog",
+        "type": "function",
+        "async": true,
+        "description": "Opens the calendar dialog, populating it with the given data",
+        "parameters": [{
+          "type": "object",
+          "name": "cal_data",
+          "description": "Calendar event data"
+        }]
+      }
+      ] 
     }
 ]  
