@@ -29,10 +29,16 @@
 
   var CalEditingSandbox = {require: exports.require, exports: {}};
 
-  Services.scriptloader.loadSubScript(
-    "chrome://calendar/content/calendar-item-editing.js",
-    CalEditingSandbox
-  );
+  let window = Services.wm.getMostRecentWindow("mail:3pane");
+  if (!window) {
+    throw new Error("No active Thunderbird window found");
+  }
+
+  CalEditingSandbox.window = window;
+  CalEditingSandbox.document = window.document;
+
+  Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-views-utils.js",CalEditingSandbox);
+  Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-item-editing.js",CalEditingSandbox);
 
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
@@ -40,8 +46,16 @@
         CalendarTools: {
           async openCalendarDialog(cal_data) {
             // implementation
-            console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", cal_data);
-            CalEditingSandbox.createEventWithDialog(cal_data);
+            console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
+            CalEditingSandbox.createEventWithDialog(
+              null, //cal_data.calendar,
+              cal_data.startDate,
+              cal_data.endDate,
+              cal_data.summary,
+              null, //cal_data.event,
+              cal_data.forceAllDay,
+              null, //cal_data.attendees
+            );
             return;
           }
         }

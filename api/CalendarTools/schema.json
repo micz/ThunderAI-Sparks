@@ -10,8 +10,22 @@
         "parameters": [
           {
           "name": "cal_data",
-          "type": "string",
-          "description": "Calendar event data"
+          "type": "object",
+          "description": "Calendar event data",
+          "properties": {
+              "startDate": {
+                "type": "string"
+              },
+              "endDate": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              },
+              "forceAllDay" : {
+                "type": "boolean"
+              }
+            }
           }
         ]
       }

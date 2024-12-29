@@ -22,5 +22,10 @@ browser.browserAction.onClicked.addListener(() => {
 
 
   async function testThunderAISparks(){
-    await browser.CalendarTools.openCalendarDialog("test");
+    await browser.CalendarTools.openCalendarDialog({
+      startDate: '2025-01-04 18:30',
+      endDate: '2025-01-04 19:30',
+      summary: "ThunderAI Sparks",
+      forceAllDay: false
+    });
   }
