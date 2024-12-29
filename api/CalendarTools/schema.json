@@ -1,6 +1,6 @@
 [
     {
-      "namespace": "Calendar",
+      "namespace": "CalendarTools",
       "functions": [
       {
         "name": "openCalendarDialog",

@@ -13,6 +13,11 @@
     },
     "permissions": [
     ],
+    "browser_action": {
+        "default_title": "ThunderAI Sparks",
+        "default_icon": "images/icon-32px.png",
+        "allowed_spaces": []
+    },
     "background": {
         "page": "mztas-background.html"
     },
@@ -23,18 +28,12 @@
     },
     "default_locale": "en",
     "experiment_apis": {
-        "Calendar": {
-            "schema": "api/Calendar/schema.json",
+        "CalendarTools": {
+            "schema": "api/CalendarTools/schema.json",
             "parent": {
-                "scopes": [
-                "addon_parent"
-                ],
-                "paths": [
-                [
-                    "Calendar"
-                ]
-                ],
-                "script": "api/Calendar/implementation.js"
+                "scopes": ["addon_parent"],
+                "paths": [["CalendarTools"]],
+                "script": "api/CalendarTools/implementation.js"
             }
         }
     }

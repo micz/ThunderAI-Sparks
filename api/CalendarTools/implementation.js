@@ -3,10 +3,10 @@
 
   var { ExtensionCommon } = ChromeUtils.import("resource://gre/modules/ExtensionCommon.jsm");
 
-  var Calendar = class extends ExtensionCommon.ExtensionAPI {
+  var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
       return {
-        Calendar: {
+        CalendarTools: {
           async openCalendarDialog(cal_data) {
             // implementation
           }
@@ -18,6 +18,6 @@
 
   // Export the API by assigning it to the exports parameter of the anonymous
   // closure function, which is the global this.
-  exports.Calendar = Calendar;
+  exports.CalendarTools = CalendarTools;
 
 })(this)
