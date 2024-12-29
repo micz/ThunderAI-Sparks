@@ -7,11 +7,13 @@
         "type": "function",
         "async": true,
         "description": "Opens the calendar dialog, populating it with the given data",
-        "parameters": [{
-          "type": "object",
+        "parameters": [
+          {
           "name": "cal_data",
+          "type": "string",
           "description": "Calendar event data"
-        }]
+          }
+        ]
       }
       ] 
     }

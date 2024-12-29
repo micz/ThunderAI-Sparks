@@ -16,3 +16,11 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+browser.browserAction.onClicked.addListener(() => {
+    testThunderAISparks();
+  });
+
+
+  async function testThunderAISparks(){
+    await browser.CalendarTools.openCalendarDialog("test");
+  }
