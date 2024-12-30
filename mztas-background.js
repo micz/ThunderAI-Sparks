@@ -20,6 +20,10 @@ browser.browserAction.onClicked.addListener(() => {
     testThunderAISparks();
   });
 
+browser.messageDisplayAction.onClicked.addListener(() => {
+    testThunderAISparks();
+  });
+
 
   async function testThunderAISparks(){
     await browser.CalendarTools.openCalendarDialog({
