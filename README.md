@@ -1,12 +1,23 @@
 # ![ThunderAI-Sparks icon](images/icon-32px.png "ThunderAI-Sparks") ThunderAI-Sparks
 ThunderAI Sparks is an experimental add-on for Thunderbird, designed to add advanced features to ThunderAI.
 
-To use it, you first need to install [ThunderAI](https://github.com/micz/ThunderAI).
+> [!IMPORTANT]
+> To use it, you first need to install [ThunderAI](https://github.com/micz/ThunderAI).
+
+
+<br>
+
+
+## Features
+- [_Work in progress_] Aumatically add a calendar event from a mail message [[#182](https://github.com/micz/ThunderAI/issues/182)].
+- [_Work in progress_] Add a toolbar button to open the ChatGPT Web Page [[#186](https://github.com/micz/ThunderAI/issues/186)]
+
 
 <br>
 
 ## Changelog
 ThunderAI-Sparks's changes are logged [here](CHANGELOG.md).
+
 
 <br>
 
