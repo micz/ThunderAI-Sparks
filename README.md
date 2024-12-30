@@ -23,4 +23,4 @@ Are you using this addon in your Thunderbird?
 
 ## Attributions
 
-Thank to [Philipp](https://github.com/kewish/)
+Thank to [Philipp](https://github.com/kewisch/) for the help with the experimental calendar API.
