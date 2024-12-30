@@ -4,6 +4,8 @@ ThunderAI Sparks is an experimental add-on for Thunderbird, designed to add adva
 > [!IMPORTANT]
 > To use it, you first need to install [ThunderAI](https://github.com/micz/ThunderAI).
 
+> [!NOTE]
+> If you need to open an issue, use the ThunderAI repository, with the "Sparks" label: https://github.com/micz/ThunderAI/labels/Sparks
 
 <br>
 
