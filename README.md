@@ -24,7 +24,7 @@ ThunderAI-Sparks's changes are logged [here](CHANGELOG.md).
 <br>
 
 ## Privacy and Permissions
-This is addon will ask for [full permission](https://support.mozilla.org/it/kb/richiesta-autorizzazione-estensioni-thunderbird#w_avere-accesso-completo-e-illimitato-a-thunderbird-e-al-computer-dellutente), because it's using [Thunderbird expermimental API](https://developer.thunderbird.net/add-ons/mailextensions/experiments) to open the new calendar event.
+This is addon will ask for [full permission](https://support.mozilla.org/en-US/kb/permission-request-messages-thunderbird-extensions#w_have-full-unrestricted-access-to-thunderbird-and-your-computer), because it's using [Thunderbird expermimental API](https://developer.thunderbird.net/add-ons/mailextensions/experiments) to open the new calendar event.
 
 <br>
 
