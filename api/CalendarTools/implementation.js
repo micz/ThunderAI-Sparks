@@ -27,24 +27,24 @@
   var { ExtensionError } = ExtensionUtils;
   var { cal } = ChromeUtils.importESModule("resource:///modules/calendar/calUtils.sys.mjs");
 
-  var CalEditingSandbox = {require: exports.require, exports: {}};
+  // var CalEditingSandbox = {require: exports.require, exports: {}};
 
-  var window = Services.wm.getMostRecentWindow("mail:3pane");
-  if (!window) {
-    throw new Error("No active Thunderbird window found");
-  }
+  // var window = Services.wm.getMostRecentWindow("mail:3pane");
+  // if (!window) {
+  //   throw new Error("No active Thunderbird window found");
+  // }
 
-  CalEditingSandbox.openDialog = function (url, name, features, args) {
-      return window.openDialog(url, name, features, args);
-    };
+  // CalEditingSandbox.openDialog = function (url, name, features, args) {
+  //     return window.openDialog(url, name, features, args);
+  //   };
 
-  CalEditingSandbox.window = window;
-  CalEditingSandbox.document = window.document;
+  // CalEditingSandbox.window = window;
+  // CalEditingSandbox.document = window.document;
 
-  Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-views-utils.js",CalEditingSandbox);
-  Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-item-editing.js",CalEditingSandbox);
+  // Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-views-utils.js",CalEditingSandbox);
+  // Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-item-editing.js",CalEditingSandbox);
 
-  window.openEventDialog = CalEditingSandbox.openEventDialog;
+  // window.openEventDialog = CalEditingSandbox.openEventDialog;
 
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
@@ -54,10 +54,15 @@
             // implementation
             console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
 
-            let calendars = cal.manager.getCalendars().filter(calendar => !calendar.getProperty("disabled"));
+            // let calendars = cal.manager.getCalendars().filter(calendar => !calendar.getProperty("disabled"));
 
-            CalEditingSandbox.createEventWithDialog(
-              calendars[0], //cal_data.calendar,
+            let window = Services.wm.getMostRecentWindow("mail:3pane");
+            if (!window) {
+              throw new Error("No active Thunderbird window found");
+            }
+
+            window.createEventWithDialog(
+              window.getSelectedCalendar(), //calendars[0], //cal_data.calendar,
               cal.createDateTime(cal_data.startDate),
               cal.createDateTime(cal_data.endDate),
               cal_data.summary,
