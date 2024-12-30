@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// ============== FOR TESTING ==============
 browser.browserAction.onClicked.addListener(() => {
     testThunderAISparks();
   });
@@ -33,3 +34,20 @@ browser.messageDisplayAction.onClicked.addListener(() => {
       forceAllDay: false
     });
   }
+// =========================================
+
+// Listen for messages
+browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  console.log("Message received:", message);
+  console.log("Sender info:", sender);
+
+  sendResponse({ response: "Message received successfully!" });
+
+  switch (message.action) {
+    case "openCalendarDialog":
+      browser.CalendarTools.openCalendarDialog(message.data);
+      break;
+  }
+  
+  return true;
+});
