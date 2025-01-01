@@ -12,6 +12,7 @@
         }
     },
     "permissions": [
+        "storage"
     ],
     "browser_action": {
         "default_title": "ThunderAI Sparks",
