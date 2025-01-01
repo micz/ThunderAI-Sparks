@@ -15,13 +15,9 @@
         "storage"
     ],
     "browser_action": {
-        "default_title": "ThunderAI Sparks",
-        "default_icon": "images/icon-32px.png",
+        "default_title": "ThunderAI",
+        "default_icon": "images/thunderai-icon-32px.png",
         "allowed_spaces": []
-    },
-    "message_display_action": {
-        "default_title": "ThunderAI Sparks",
-        "default_icon": "images/icon-32px.png"
     },
     "background": {
         "page": "mztas-background.html"
