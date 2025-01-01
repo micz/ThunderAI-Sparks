@@ -24,9 +24,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     let do_debug = await tasPrefs.getPref("do_debug");
     tasPrefs.logger = new tasLogger("mztas-options", do_debug);
 
-    let destfoldertype_select = document.getElementById("dest_folder_type");
-    destfoldertype_select.addEventListener("change", showDestFolderOptions);
-
     tasPrefs.restoreOptions();
     i18n.updateDocument();
     document.querySelectorAll(".option-input").forEach(element => {
