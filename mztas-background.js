@@ -17,18 +17,18 @@
  */
 
 // ============== FOR TESTING ==============
-browser.browserAction.onClicked.addListener(() => {
-    testThunderAISparks();
-  });
+// browser.browserAction.onClicked.addListener(() => {
+//     testThunderAISparks();
+//   });
 
-async function testThunderAISparks(){
-  await browser.CalendarTools.openCalendarDialog({
-    startDate: '20250104T183000Z',
-    endDate: '20250104T193000Z',
-    summary: "ThunderAI Sparks",
-    forceAllDay: false
-  });
-}
+// async function testThunderAISparks(){
+//   await browser.CalendarTools.openCalendarDialog({
+//     startDate: '20250104T183000Z',
+//     endDate: '20250104T193000Z',
+//     summary: "ThunderAI Sparks",
+//     forceAllDay: false
+//   });
+// }
 // =========================================
 
 // Listen for messages

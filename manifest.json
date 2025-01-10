@@ -14,11 +14,6 @@
     "permissions": [
         "storage"
     ],
-    "browser_action": {
-        "default_title": "ThunderAI",
-        "default_icon": "images/thunderai-icon-32px.png",
-        "allowed_spaces": []
-    },
     "background": {
         "page": "mztas-background.html"
     },
