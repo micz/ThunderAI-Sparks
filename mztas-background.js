@@ -36,12 +36,22 @@ browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
   console.log("Message received:", message);
   console.log("Sender info:", sender);
 
-  sendResponse({ response: "Message received successfully!" });
-
   switch (message.action) {
     case "openCalendarDialog":
       browser.CalendarTools.openCalendarDialog(message.data);
       break;
+  }
+  
+  return true;
+});
+
+browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) => {
+  console.log("Message received:", message);
+  console.log("Sender info:", sender);
+
+  switch (message.action) {
+    case "checkPresence":
+      return Promise.resolve("ok");
   }
   
   return true;
