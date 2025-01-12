@@ -31,27 +31,20 @@
 // }
 // =========================================
 
-// Listen for messages
-browser.runtime.onMessage.addListener((message, sender, sendResponse) => {
-  console.log("Message received:", message);
-  console.log("Sender info:", sender);
-
-  switch (message.action) {
-    case "openCalendarDialog":
-      browser.CalendarTools.openCalendarDialog(message.data);
-      break;
-  }
-  
-  return true;
-});
-
+// Listen for messages from ThunderAI
 browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) => {
-  console.log("Message received:", message);
-  console.log("Sender info:", sender);
+  console.log(">>>>>>>>>>> Message received:", message);
+  console.log(">>>>>>>>>>> Sender info:", sender);
 
   switch (message.action) {
     case "checkPresence":
       return Promise.resolve("ok");
+      break;
+
+    case "openCalendarEventDialog":
+      console.log(">>>>>>>>>>> openCalendarEventDialog: ", message.data);
+      //browser.CalendarTools.openCalendarDialog(message.data);
+      break;
   }
   
   return true;
