@@ -52,7 +52,7 @@
         CalendarTools: {
           async openCalendarDialog(cal_data) {
             // implementation
-            console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
+            // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
 
             // let calendars = cal.manager.getCalendars().filter(calendar => !calendar.getProperty("disabled"));
 
