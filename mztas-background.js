@@ -16,6 +16,9 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { extractJsonObject } from "./js/mztas-utils.js";
+import { tasLogger } from "./js/mztas-logger.js";
+
 // ============== FOR TESTING ==============
 // browser.browserAction.onClicked.addListener(() => {
 //     testThunderAISparks();
@@ -31,10 +34,13 @@
 // }
 // =========================================
 
+let prefs_init = await browser.storage.sync.get({do_debug: false});
+let tasLog = new tasLogger("mztas-background",prefs_init.do_debug);
+
 // Listen for messages from ThunderAI
 browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) => {
-  console.log(">>>>>>>>>>> Message received:", message);
-  console.log(">>>>>>>>>>> Sender info:", sender);
+  tasLog.log("Message received:", message);
+  tasLog.log("Sender info:", sender);
 
   switch (message.action) {
     case "checkPresence":
@@ -42,8 +48,10 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
       break;
 
     case "openCalendarEventDialog":
-      console.log(">>>>>>>>>>> openCalendarEventDialog: ", message.data);
-      //browser.CalendarTools.openCalendarDialog(message.data);
+      tasLog.log("openCalendarEventDialog: ", message.calendar_event_data);
+      let jsonObj = extractJsonObject(message.calendar_event_data);
+      tasLog.log("openCalendarEventDialog jsonObj: ", JSON.stringify(jsonObj));
+      browser.CalendarTools.openCalendarDialog(jsonObj);
       break;
   }
   
