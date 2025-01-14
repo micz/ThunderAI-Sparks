@@ -16,7 +16,8 @@
         "storage"
     ],
     "background": {
-        "page": "mztas-background.html"
+        "scripts": ["mztas-background.js"],
+        "type": "module"
     },
     "options_ui":{
         "page": "options/mztas-options.html"
