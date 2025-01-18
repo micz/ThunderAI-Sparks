@@ -51,7 +51,13 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
       tasLog.log("openCalendarEventDialog: ", message.calendar_event_data);
       let jsonObj = extractJsonObject(message.calendar_event_data);
       tasLog.log("openCalendarEventDialog jsonObj: ", JSON.stringify(jsonObj));
-      browser.CalendarTools.openCalendarDialog(jsonObj);
+      try{
+        browser.CalendarTools.openCalendarDialog(jsonObj);
+      }catch(err){
+        tasLog.error("openCalendarEventDialog error: ", err);
+        return Promise.resolve("error");
+      }
+      return Promise.resolve("ok");
       break;
   }
   
