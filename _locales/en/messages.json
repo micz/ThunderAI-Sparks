@@ -16,11 +16,11 @@
     "description": ""
   },
   "prefsInfoDesc_1": {
-    "message": " ",
+    "message": "ThunderAI Sparks is an experimental add-on for Thunderbird, designed to add advanced features to ThunderAI. To use this add-on you need to install ThunderAI.",
     "description": ""
   },
   "prefsInfoDesc_2": {
-    "message": " ",
+    "message": "Get ThunderAI from the Thunderbird Add-ons page!",
     "description": ""
   },
   "prefsInfoDesc_3": {
@@ -28,7 +28,7 @@
     "description": ""
   },
   "TranslateText": {
-    "message": "Do you want to help translate this addon?",
+    "message": "Do you want to help translate ThunderAI and ThunderAI Sparks?",
     "description": ""
   },
   "TranslateLink": {
