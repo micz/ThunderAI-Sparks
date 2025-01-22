@@ -54,10 +54,11 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
       return _openCalendarDialog(jsonObj);
 
       async function _openCalendarDialog(jsonObj) {
-        if(await browser.CalendarTools.openCalendarDialog(jsonObj)){
+        let _result = await browser.CalendarTools.openCalendarDialog(jsonObj);
+        if(_result.result){
           return "ok";
         } else {
-          return "error";
+          return {result: "error", error: _result.error};
         }
       }
       break;

@@ -72,9 +72,9 @@
               );
             } catch (e) {
               console.error("[ThunderAI Sparks] openCalendarDialog error: ", e);
-              return false;
+              return {result: false, error: e};
             }
-            return true;
+            return {result: true};
           }
         }
       }
