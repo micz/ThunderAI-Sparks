@@ -60,17 +60,21 @@
             if (!window) {
               throw new Error("No active Thunderbird window found");
             }
-
-            window.createEventWithDialog(
-              window.getSelectedCalendar(), //calendars[0], //cal_data.calendar,
-              cal.createDateTime(cal_data.startDate),
-              cal.createDateTime(cal_data.endDate),
-              cal_data.summary,
-              null, //cal_data.event,
-              cal_data.forceAllDay,
-              [], //cal_data.attendees
-            );
-            return;
+            try {
+              window.createEventWithDialog(
+                window.getSelectedCalendar(), //calendars[0], //cal_data.calendar,
+                cal.createDateTime(cal_data.startDate),
+                cal.createDateTime(cal_data.endDate),
+                cal_data.summary,
+                null, //cal_data.event,
+                cal_data.forceAllDay,
+                [], //cal_data.attendees
+              );
+            } catch (e) {
+              console.error("[ThunderAI Sparks] openCalendarDialog error: ", e);
+              return false;
+            }
+            return true;
           }
         }
       }
