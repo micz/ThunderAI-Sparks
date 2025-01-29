@@ -56,7 +56,13 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
 
     case "openCalendarEventDialog":
       tasLog.log("openCalendarEventDialog: ", message.calendar_event_data);
-      let jsonObj = extractJsonObject(message.calendar_event_data);
+      let jsonObj = {};
+      try{
+        jsonObj = extractJsonObject(message.calendar_event_data);
+      }catch(e){
+        console.error("[ThunderAI Sparks] openCalendarDialog error: ", e);
+        return {result: "error", error: e};
+      }
       tasLog.log("openCalendarEventDialog jsonObj: ", JSON.stringify(jsonObj));
       return _openCalendarDialog(jsonObj);
 

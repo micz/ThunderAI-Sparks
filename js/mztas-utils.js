@@ -25,7 +25,8 @@ export function extractJsonObject(inputString) {
         // console.log(">>>>>>>>>> Extracted JSON object:", jsonObject);
         return jsonObject;
       } else {
-        throw new Error("[ThunderAI-Sparks] No JSON object found in the input string.");
+        console.error("[ThunderAI-Sparks] No JSON object found in the input string.");
+        return null;
       }
     } catch (error) {
       console.error("[ThunderAI-Sparks] Error extracting JSON object:", error);
