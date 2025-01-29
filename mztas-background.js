@@ -34,6 +34,13 @@ import { tasLogger } from "./js/mztas-logger.js";
 // }
 // =========================================
 
+// Force ThunderAI to reload menus when installed the first time
+browser.runtime.onInstalled.addListener(({reason}) => {
+  if (reason == "install") {
+    browser.runtime.sendMessage('thunderai@micz.it',{action: "reload_menus"})
+  }
+});
+
 let prefs_init = await browser.storage.sync.get({do_debug: false});
 let tasLog = new tasLogger("mztas-background",prefs_init.do_debug);
 
