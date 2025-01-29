@@ -71,7 +71,7 @@
                 [], //cal_data.attendees
               );
             } catch (e) {
-              console.error("[ThunderAI Sparks] openCalendarDialog error: ", e);
+              console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", e);
               return {result: false, error: e};
             }
             return {result: true};
