@@ -11,7 +11,7 @@ ThunderAI Sparks is an add-on for Thunderbird, designed to add advanced features
 
 
 ## Features
-- [_Work in progress_] Aumatically add a calendar event from a mail message [[#182](https://github.com/micz/ThunderAI/issues/182)].
+- Aumatically add a calendar event from a mail message [[#182](https://github.com/micz/ThunderAI/issues/182)].
 
 
 <br>
