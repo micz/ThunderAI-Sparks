@@ -1,5 +1,5 @@
 # ![ThunderAI-Sparks icon](images/icon-32px.png "ThunderAI-Sparks") ThunderAI-Sparks
-ThunderAI Sparks is an experimental add-on for Thunderbird, designed to add advanced features to ThunderAI.
+ThunderAI Sparks is an add-on for Thunderbird, designed to add advanced features to ThunderAI.
 
 > [!IMPORTANT]
 > To use this add-on, you first need to install [ThunderAI](https://github.com/micz/ThunderAI).
