@@ -1,1 +1,38 @@
-{}
+{
+    "prefs_OptionText_do_debug_info": {
+        "message": "Aktiviraj sustav za otklanjanje pogrešaka"
+    },
+    "prefsInfoTitle": {
+        "message": "Važne informacije"
+    },
+    "prefsDonation_1": {
+        "message": "Sviđa li vam se ovaj dodatak?"
+    },
+    "TranslateLink": {
+        "message": "Saznajte kako!"
+    },
+    "backToOptionsText": {
+        "message": "Mogućnosti"
+    },
+    "TranslateText": {
+        "message": "Želite li pomoći u prevođenju ThunderAI i ThunderAI Sparks?"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Napomene"
+    },
+    "extensionDescription": {
+        "message": "ThunderAI Sparks je eksperimentalni dodatak za Thunderbird, dizajniran za dodavanje naprednih značajki ThunderAI-ju."
+    },
+    "prefsDonation_2": {
+        "message": "Razmislite o donaciji!"
+    },
+    "prefsInfoDesc_2": {
+        "message": "Nabavite ThunderAI sa stranice dodataka za Thunderbird!"
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Omogući mod za otklanjanja pogrešaka"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks je eksperimentalni dodatak za Thunderbird, dizajniran za dodavanje naprednih značajki ThunderAI-ju. Da biste koristili ovaj dodatak, morate instalirati ThunderAI."
+    }
+}
