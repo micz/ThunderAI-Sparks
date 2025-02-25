@@ -4,6 +4,11 @@
 
 
 
+<h2>Version 1.0.3 - ??/??/2025</h2>
+        <ul>
+          <li>Croatian (hr) translation added, thanks to Petar Jedvaj.</li>
+          <li>...</li>
+        </ul>
 <h2>Version 1.0.2 - 29/01/2025</h2>
         <ul>
           <li>Forcing ThunderAI menu reload when installing Sparks [<a href="https://github.com/micz/ThunderAI/issues/240">#240</a>].</li>
