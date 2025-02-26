@@ -34,5 +34,8 @@
     },
     "prefsInfoDesc_1": {
         "message": "ThunderAI Sparks je eksperimentalni dodatak za Thunderbird, dizajniran za dodavanje naprednih značajki ThunderAI-ju. Da biste koristili ovaj dodatak, morate instalirati ThunderAI."
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
     }
 }
