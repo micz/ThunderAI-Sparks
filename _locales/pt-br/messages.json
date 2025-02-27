@@ -1,6 +1,6 @@
 {
     "extensionDescription": {
-        "message": "ThunderAI Sparks é um complemento experimental para Thunderbird, projetado para adicionar funcionalidades avançadas ao ThunderAI.",
+        "message": "ThunderAI Sparks é um complemento para o Thunderbird, projetado para adicionar recursos avançados ao ThunderAI.",
         "description": "Description of the extension."
     },
     "prefs_OptionText_do_debug": {
