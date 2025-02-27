@@ -1,54 +1,42 @@
 {
-  "extensionDescription": {
-    "message": "ThunderAI Sparks ist ein experimentelles Add-on für Thunderbird, das entwickelt wurde, um erweiterte Funktionen zu ThunderAI hinzuzufügen.",
-    "description": "Description of the extension."
-  },
-  "prefs_OptionText_do_debug": {
-    "message": "Debug-Modus aktivieren",
-    "description": ""
-  },
-  "prefs_OptionText_do_debug_info": {
-    "message": "Das Debug-System aktivieren",
-    "description": ""
-  },
-  "prefsInfoTitle": {
-    "message": "Wichtige Informationen",
-    "description": ""
-  },
-  "prefsInfoDesc_1": {
-    "message": "ThunderAI Sparks ist ein experimentelles Add-on für Thunderbird, das entwickelt wurde, um erweiterte Funktionen zu ThunderAI hinzuzufügen. Um dieses Add-on zu verwenden, müssen Sie ThunderAI installieren.",
-    "description": ""
-  },
-  "prefsInfoDesc_2": {
-    "message": "Laden Sie ThunderAI von der Thunderbird-Add-ons-Seite herunter!",
-    "description": ""
-  },
-  "prefsInfoDesc_3": {
-    "message": " ",
-    "description": ""
-  },
-  "TranslateText": {
-    "message": "Möchten Sie helfen, ThunderAI und ThunderAI Sparks zu übersetzen?",
-    "description": ""
-  },
-  "TranslateLink": {
-    "message": "Erfahren Sie wie!",
-    "description": ""
-  },
-  "prefsDonation_1": {
-    "message": "Gefällt Ihnen dieses Add-on?",
-    "description": ""
-  },
-  "prefsDonation_2": {
-    "message": "Erwägen Sie eine Spende!",
-    "description": ""
-  },
-  "prefs_OptionText_release_notes": {
-    "message": "Versionshinweise",
-    "description": ""
-  },
-  "backToOptionsText": {
-    "message": "Optionen",
-    "description": ""
-  }
+    "extensionDescription": {
+        "message": "ThunderAI Sparks ist ein Thunderbird-Add-on, das entwickelt wurde, um erweiterte Funktionen zu ThunderAI hinzuzufügen.",
+        "description": "Description of the extension."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Debug-Modus aktivieren"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Das Debug-System aktivieren"
+    },
+    "prefsInfoTitle": {
+        "message": "Wichtige Informationen"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks ist ein experimentelles Add-on für Thunderbird, das entwickelt wurde, um erweiterte Funktionen zu ThunderAI hinzuzufügen. Um dieses Add-on zu verwenden, müssen Sie ThunderAI installieren."
+    },
+    "prefsInfoDesc_2": {
+        "message": "Laden Sie ThunderAI von der Thunderbird-Add-ons-Seite herunter!"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "TranslateText": {
+        "message": "Möchten Sie helfen, ThunderAI und ThunderAI Sparks zu übersetzen?"
+    },
+    "TranslateLink": {
+        "message": "Erfahren Sie wie!"
+    },
+    "prefsDonation_1": {
+        "message": "Gefällt Ihnen dieses Add-on?"
+    },
+    "prefsDonation_2": {
+        "message": "Erwägen Sie eine Spende!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Versionshinweise"
+    },
+    "backToOptionsText": {
+        "message": "Optionen"
+    }
 }

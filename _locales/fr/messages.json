@@ -1,54 +1,42 @@
 {
-  "extensionDescription": {
-    "message": "ThunderAI Sparks est un module expérimental pour Thunderbird, conçu pour ajouter des fonctionnalités avancées à ThunderAI.",
-    "description": "Description of the extension."
-  },
-  "prefs_OptionText_do_debug": {
-    "message": "Activer le mode débogage",
-    "description": ""
-  },
-  "prefs_OptionText_do_debug_info": {
-    "message": "Activer le système de débogage",
-    "description": ""
-  },
-  "prefsInfoTitle": {
-    "message": "Informations importantes",
-    "description": ""
-  },
-  "prefsInfoDesc_1": {
-    "message": "ThunderAI Sparks est un module expérimental pour Thunderbird, conçu pour ajouter des fonctionnalités avancées à ThunderAI. Pour utiliser ce module, vous devez installer ThunderAI.",
-    "description": ""
-  },
-  "prefsInfoDesc_2": {
-    "message": "Téléchargez ThunderAI depuis la page des modules complémentaires Thunderbird !",
-    "description": ""
-  },
-  "prefsInfoDesc_3": {
-    "message": " ",
-    "description": ""
-  },
-  "TranslateText": {
-    "message": "Souhaitez-vous aider à traduire ThunderAI et ThunderAI Sparks ?",
-    "description": ""
-  },
-  "TranslateLink": {
-    "message": "Découvrez comment !",
-    "description": ""
-  },
-  "prefsDonation_1": {
-    "message": "Vous aimez ce module complémentaire ?",
-    "description": ""
-  },
-  "prefsDonation_2": {
-    "message": "Envisagez de faire un don !",
-    "description": ""
-  },
-  "prefs_OptionText_release_notes": {
-    "message": "Notes de version",
-    "description": ""
-  },
-  "backToOptionsText": {
-    "message": "Options",
-    "description": ""
-  }
+    "extensionDescription": {
+        "message": "ThunderAI Sparks est un module complémentaire pour Thunderbird, conçu pour ajouter des fonctionnalités avancées à ThunderAI.",
+        "description": "Description of the extension."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Activer le mode débogage"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Activer le système de débogage"
+    },
+    "prefsInfoTitle": {
+        "message": "Informations importantes"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks est un module expérimental pour Thunderbird, conçu pour ajouter des fonctionnalités avancées à ThunderAI. Pour utiliser ce module, vous devez installer ThunderAI."
+    },
+    "prefsInfoDesc_2": {
+        "message": "Téléchargez ThunderAI depuis la page des modules complémentaires Thunderbird !"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "TranslateText": {
+        "message": "Souhaitez-vous aider à traduire ThunderAI et ThunderAI Sparks ?"
+    },
+    "TranslateLink": {
+        "message": "Découvrez comment !"
+    },
+    "prefsDonation_1": {
+        "message": "Vous aimez ce module complémentaire ?"
+    },
+    "prefsDonation_2": {
+        "message": "Envisagez de faire un don !"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Notes de version"
+    },
+    "backToOptionsText": {
+        "message": "Options"
+    }
 }
