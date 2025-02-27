@@ -1,54 +1,42 @@
 {
-  "extensionDescription": {
-    "message": "ThunderAI Sparks to eksperymentalny dodatek do Thunderbirda, zaprojektowany w celu dodania zaawansowanych funkcji do ThunderAI.",
-    "description": "Description of the extension."
-  },
-  "prefs_OptionText_do_debug": {
-    "message": "Włącz tryb debugowania",
-    "description": ""
-  },
-  "prefs_OptionText_do_debug_info": {
-    "message": "Aktywuj system debugowania",
-    "description": ""
-  },
-  "prefsInfoTitle": {
-    "message": "Ważne informacje",
-    "description": ""
-  },
-  "prefsInfoDesc_1": {
-    "message": "ThunderAI Sparks to eksperymentalny dodatek do Thunderbirda, zaprojektowany w celu dodania zaawansowanych funkcji do ThunderAI. Aby korzystać z tego dodatku, musisz zainstalować ThunderAI.",
-    "description": ""
-  },
-  "prefsInfoDesc_2": {
-    "message": "Pobierz ThunderAI ze strony dodatków Thunderbirda!",
-    "description": ""
-  },
-  "prefsInfoDesc_3": {
-    "message": " ",
-    "description": ""
-  },
-  "TranslateText": {
-    "message": "Chcesz pomóc w tłumaczeniu ThunderAI i ThunderAI Sparks?",
-    "description": ""
-  },
-  "TranslateLink": {
-    "message": "Dowiedz się, jak!",
-    "description": ""
-  },
-  "prefsDonation_1": {
-    "message": "Podoba Ci się ten dodatek?",
-    "description": ""
-  },
-  "prefsDonation_2": {
-    "message": "Rozważ dokonanie darowizny!",
-    "description": ""
-  },
-  "prefs_OptionText_release_notes": {
-    "message": "Informacje o wydaniu",
-    "description": ""
-  },
-  "backToOptionsText": {
-    "message": "Opcje",
-    "description": ""
-  }
+    "extensionDescription": {
+        "message": "ThunderAI Sparks to eksperymentalny dodatek do Thunderbirda, zaprojektowany w celu dodania zaawansowanych funkcji do ThunderAI.",
+        "description": "Description of the extension."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Włącz tryb debugowania"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Aktywuj system debugowania"
+    },
+    "prefsInfoTitle": {
+        "message": "Ważne informacje"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks to eksperymentalny dodatek do Thunderbirda, zaprojektowany w celu dodania zaawansowanych funkcji do ThunderAI. Aby korzystać z tego dodatku, musisz zainstalować ThunderAI."
+    },
+    "prefsInfoDesc_2": {
+        "message": "Pobierz ThunderAI ze strony dodatków Thunderbirda!"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "TranslateText": {
+        "message": "Chcesz pomóc w tłumaczeniu ThunderAI i ThunderAI Sparks?"
+    },
+    "TranslateLink": {
+        "message": "Dowiedz się, jak!"
+    },
+    "prefsDonation_1": {
+        "message": "Podoba Ci się ten dodatek?"
+    },
+    "prefsDonation_2": {
+        "message": "Rozważ dokonanie darowizny!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Informacje o wydaniu"
+    },
+    "backToOptionsText": {
+        "message": "Opcje"
+    }
 }
