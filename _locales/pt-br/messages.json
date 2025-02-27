@@ -1,54 +1,42 @@
 {
-  "extensionDescription": {
-    "message": "ThunderAI Sparks é um complemento experimental para Thunderbird, projetado para adicionar funcionalidades avançadas ao ThunderAI.",
-    "description": "Description of the extension."
-  },
-  "prefs_OptionText_do_debug": {
-    "message": "Ativar Modo de Depuração",
-    "description": ""
-  },
-  "prefs_OptionText_do_debug_info": {
-    "message": "Ative o sistema de depuração",
-    "description": ""
-  },
-  "prefsInfoTitle": {
-    "message": "Informações Importantes",
-    "description": ""
-  },
-  "prefsInfoDesc_1": {
-    "message": "ThunderAI Sparks é um complemento experimental para Thunderbird, projetado para adicionar funcionalidades avançadas ao ThunderAI. Para usar este complemento, você precisa instalar o ThunderAI.",
-    "description": ""
-  },
-  "prefsInfoDesc_2": {
-    "message": "Baixe o ThunderAI na página de Complementos do Thunderbird!",
-    "description": ""
-  },
-  "prefsInfoDesc_3": {
-    "message": " ",
-    "description": ""
-  },
-  "TranslateText": {
-    "message": "Quer ajudar a traduzir ThunderAI e ThunderAI Sparks?",
-    "description": ""
-  },
-  "TranslateLink": {
-    "message": "Saiba como!",
-    "description": ""
-  },
-  "prefsDonation_1": {
-    "message": "Você gosta deste complemento?",
-    "description": ""
-  },
-  "prefsDonation_2": {
-    "message": "Considere fazer uma doação!",
-    "description": ""
-  },
-  "prefs_OptionText_release_notes": {
-    "message": "Notas de Lançamento",
-    "description": ""
-  },
-  "backToOptionsText": {
-    "message": "Opções",
-    "description": ""
-  }
+    "extensionDescription": {
+        "message": "ThunderAI Sparks é um complemento experimental para Thunderbird, projetado para adicionar funcionalidades avançadas ao ThunderAI.",
+        "description": "Description of the extension."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Ativar Modo de Depuração"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Ative o sistema de depuração"
+    },
+    "prefsInfoTitle": {
+        "message": "Informações Importantes"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks é um complemento experimental para Thunderbird, projetado para adicionar funcionalidades avançadas ao ThunderAI. Para usar este complemento, você precisa instalar o ThunderAI."
+    },
+    "prefsInfoDesc_2": {
+        "message": "Baixe o ThunderAI na página de Complementos do Thunderbird!"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "TranslateText": {
+        "message": "Quer ajudar a traduzir ThunderAI e ThunderAI Sparks?"
+    },
+    "TranslateLink": {
+        "message": "Saiba como!"
+    },
+    "prefsDonation_1": {
+        "message": "Você gosta deste complemento?"
+    },
+    "prefsDonation_2": {
+        "message": "Considere fazer uma doação!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Notas de Lançamento"
+    },
+    "backToOptionsText": {
+        "message": "Opções"
+    }
 }
