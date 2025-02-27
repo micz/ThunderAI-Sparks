@@ -4,10 +4,9 @@
 
 
 
-<h2>Version 1.0.3 - ??/??/2025</h2>
+<h2>Version 1.0.3 - 27/02/2025</h2>
         <ul>
           <li>Croatian (hr) translation added, thanks to Petar Jedvaj.</li>
-          <li>...</li>
         </ul>
 <h2>Version 1.0.2 - 29/01/2025</h2>
         <ul>
