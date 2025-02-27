@@ -1,6 +1,6 @@
 {
     "extensionDescription": {
-        "message": "ThunderAI Sparks to eksperymentalny dodatek do Thunderbirda, zaprojektowany w celu dodania zaawansowanych funkcji do ThunderAI.",
+        "message": "ThunderAI Sparks to dodatek do Thunderbirda, zaprojektowany w celu dodania zaawansowanych funkcji do ThunderAI.",
         "description": "Description of the extension."
     },
     "prefs_OptionText_do_debug": {
