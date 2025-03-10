@@ -1,0 +1,41 @@
+{
+    "prefsInfoTitle": {
+        "message": "Důležitá informace"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks je experimentálním doplňkem pro Thunderbird, navrženým pro přidání pokročilých funkcí do ThunderAI. Pro použití tohoto doplňku musíte mít nainstalované ThunderAI."
+    },
+    "prefsInfoDesc_2": {
+        "message": "Získejte ThunderAI z Doplňků aplikace Thunderbird!"
+    },
+    "prefsDonation_1": {
+        "message": "Líbí se vám tento doplněk?"
+    },
+    "prefsDonation_2": {
+        "message": "Zvažte přispění na vývoj!"
+    },
+    "backToOptionsText": {
+        "message": "Možnosti"
+    },
+    "extensionDescription": {
+        "message": "ThunderAI Sparks je doplněk pro Thunderbird, navržený pro přidání funkcí do ThunderAI."
+    },
+    "TranslateText": {
+        "message": "Chcete pomoct s překladem ThunderAI a ThunderAI Sparks?"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Poznámky k vydání"
+    },
+    "TranslateLink": {
+        "message": "Zjistěte jak!"
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Povolit režim ladění"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Aktivovat ladicí systém"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    }
+}
