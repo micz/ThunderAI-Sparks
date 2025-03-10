@@ -4,6 +4,11 @@
 
 
 
+<h2>Version 1.0.4 - ??/??/2025</h2>
+        <ul>
+          <li>Czech (cs) translation added, thanks to <a href="https://hosted.weblate.org/user/Fjuro/">Fjuro</a>.</li>
+          <li>...</li>
+        </ul>
 <h2>Version 1.0.3 - 27/02/2025</h2>
         <ul>
           <li>Croatian (hr) translation added, thanks to Petar Jedvaj.</li>
