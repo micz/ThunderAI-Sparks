@@ -7,6 +7,7 @@
 <h2>Version 1.0.4 - ??/??/2025</h2>
         <ul>
           <li>Czech (cs) translation added, thanks to <a href="https://hosted.weblate.org/user/Fjuro/">Fjuro</a>.</li>
+          <li>Simplified Chinese (zh_Hans) translation added, thanks to <a href="https://github.com/jeklau">jeklau</a>.</li>
           <li>...</li>
         </ul>
 <h2>Version 1.0.3 - 27/02/2025</h2>
