@@ -1,1 +1,41 @@
-{}
+{
+    "prefs_OptionText_do_debug": {
+        "message": "启用调试模式"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "激活调试系统"
+    },
+    "prefsInfoTitle": {
+        "message": "重要信息"
+    },
+    "prefsInfoDesc_2": {
+        "message": "从 Thunderbird 附加组件页面获取 ThunderAI！"
+    },
+    "TranslateLink": {
+        "message": "了解详情！"
+    },
+    "prefsDonation_1": {
+        "message": "你喜欢这个插件吗？"
+    },
+    "prefsDonation_2": {
+        "message": "考虑捐款！"
+    },
+    "backToOptionsText": {
+        "message": "选项"
+    },
+    "extensionDescription": {
+        "message": "ThunderAI Sparks 是 Thunderbird 插件，旨在为 ThunderAI 添加高级功能。"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks 是 Thunderbird 的一个实验性插件，旨在为 ThunderAI 添加高级功能。要使用此插件，您需要安装 ThunderAI。"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "发行说明"
+    },
+    "TranslateText": {
+        "message": "你想帮助翻译 ThunderAI 和 ThunderAI Sparks 吗？"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    }
+}
