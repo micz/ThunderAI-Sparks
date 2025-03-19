@@ -34,5 +34,8 @@
     },
     "TranslateText": {
         "message": "你想帮助翻译 ThunderAI 和 ThunderAI Sparks 吗？"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
     }
 }
