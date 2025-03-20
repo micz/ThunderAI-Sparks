@@ -74,8 +74,15 @@
                 return new CalAttendee("ATTENDEE:" + attendee, "", "REQ-PARTICIPANT", "", "");
               });
 
+              let curr_calendar = window.getSelectedCalendar();
+
+              if(curr_calendar.getProperty("disabled")) {
+                console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", "No active calendar found!");
+                return {result: false, error: "|>>noActiveCalendar"};
+              }
+
               window.createEventWithDialog(
-                window.getSelectedCalendar(), //calendars[0], //cal_data.calendar,
+                curr_calendar, //calendars[0], //cal_data.calendar,
                 startDate,
                 endDate,
                 cal_data.summary,
