@@ -26,6 +26,7 @@
   var { ExtensionUtils } = ChromeUtils.importESModule("resource://gre/modules/ExtensionUtils.sys.mjs");
   var { ExtensionError } = ExtensionUtils;
   var { cal } = ChromeUtils.importESModule("resource:///modules/calendar/calUtils.sys.mjs");
+  var { CalTimezoneService } = ChromeUtils.importESModule("resource:///modules/CalTimezoneService.sys.mjs");
 
   // var CalEditingSandbox = {require: exports.require, exports: {}};
 
@@ -61,10 +62,19 @@
               throw new Error("No active Thunderbird window found");
             }
             try {
+              let startDate = cal.createDateTime(cal_data.startDate)
+              let endDate = cal.createDateTime(cal_data.endDate)
+
+              if(cal_data.use_timezone) {
+                const timezoneService = new CalTimezoneService();
+                startDate.timezone = timezoneService.getTimezone(cal_data.timezone);
+                endDate.timezone = timezoneService.getTimezone(cal_data.timezone);
+              }
+
               window.createEventWithDialog(
                 window.getSelectedCalendar(), //calendars[0], //cal_data.calendar,
-                cal.createDateTime(cal_data.startDate),
-                cal.createDateTime(cal_data.endDate),
+                startDate,
+                endDate,
                 cal_data.summary,
                 null, //cal_data.event,
                 cal_data.forceAllDay,
