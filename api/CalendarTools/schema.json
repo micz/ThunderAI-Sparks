@@ -24,6 +24,14 @@
               },
               "forceAllDay" : {
                 "type": "boolean"
+              },
+              "timezone" : {
+                "type": "string",
+                "optional": true
+              },
+              "use_timezone" : {
+                "type": "boolean",
+                "optional": true
               }
             }
           }
