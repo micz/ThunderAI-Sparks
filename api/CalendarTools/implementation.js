@@ -27,6 +27,7 @@
   var { ExtensionError } = ExtensionUtils;
   var { cal } = ChromeUtils.importESModule("resource:///modules/calendar/calUtils.sys.mjs");
   var { CalTimezoneService } = ChromeUtils.importESModule("resource:///modules/CalTimezoneService.sys.mjs");
+  var { CalAttendee } = ChromeUtils.importESModule("resource:///modules/CalAttendee.sys.mjs");
 
   // var CalEditingSandbox = {require: exports.require, exports: {}};
 
@@ -53,7 +54,7 @@
         CalendarTools: {
           async openCalendarDialog(cal_data) {
             // implementation
-            // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
+            //  console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
 
             // let calendars = cal.manager.getCalendars().filter(calendar => !calendar.getProperty("disabled"));
 
@@ -71,6 +72,10 @@
                 endDate.timezone = timezoneService.getTimezone(cal_data.timezone);
               }
 
+              let attendees_obj = cal_data.attendees.map(attendee => {
+                return new CalAttendee("ATTENDEE:" + attendee, "", "REQ-PARTICIPANT", "", "");
+              });
+
               window.createEventWithDialog(
                 window.getSelectedCalendar(), //calendars[0], //cal_data.calendar,
                 startDate,
@@ -78,7 +83,7 @@
                 cal_data.summary,
                 null, //cal_data.event,
                 cal_data.forceAllDay,
-                cal_data.attendees
+                attendees_obj
               );
             } catch (e) {
               console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", e);
