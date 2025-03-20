@@ -25,6 +25,13 @@
               "forceAllDay" : {
                 "type": "boolean"
               },
+              "attendees" : {
+                "optional": true,
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
               "timezone" : {
                 "type": "string",
                 "optional": true

@@ -78,7 +78,7 @@
                 cal_data.summary,
                 null, //cal_data.event,
                 cal_data.forceAllDay,
-                [], //cal_data.attendees
+                cal_data.attendees
               );
             } catch (e) {
               console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", e);
