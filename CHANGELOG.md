@@ -6,6 +6,7 @@
 
 <h2>Version 1.1.0 - ??/??/2025</h2>
         <ul>
+          <li>It's now possibile to define a timezone in the ThunderAI Calendar Event settings page [<a href="https://github.com/micz/ThunderAI/issues/250">#250</a>].</li>
           <li>Czech (cs) translation added, thanks to <a href="https://hosted.weblate.org/user/Fjuro/">Fjuro</a>.</li>
           <li>Simplified Chinese (zh_Hans) translation added, thanks to <a href="https://github.com/jeklau">jeklau</a>.</li>
           <li>...</li>
