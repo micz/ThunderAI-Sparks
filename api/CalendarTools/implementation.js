@@ -70,9 +70,12 @@
                 endDate.timezone = timezoneService.getTimezone(cal_data.timezone);
               }
 
-              let attendees_obj = cal_data.attendees.map(attendee => {
-                return new CalAttendee("ATTENDEE:" + attendee, "", "REQ-PARTICIPANT", "", "");
-              });
+              let attendees_obj = [];
+              if(cal_data.attendees != null) {
+                attendees_obj = cal_data.attendees.map(attendee => {
+                  return new CalAttendee("ATTENDEE:" + attendee, "", "REQ-PARTICIPANT", "", "");
+                });
+              }
 
               let curr_calendar = window.getSelectedCalendar();
 
