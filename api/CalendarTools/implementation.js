@@ -77,12 +77,19 @@
                 });
               }
 
-              let curr_calendar = window.getSelectedCalendar();
+              let calendars = cal.manager.getCalendars();
+              calendars = calendars.filter(cal.acl.isCalendarWritable);
 
-              if(curr_calendar.getProperty("disabled")) {
+              if (calendars.length < 1) {
+                // There are no writable calendars
                 console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", "No active calendar found!");
                 return {result: false, error: "|>>noActiveCalendar"};
               }
+
+              let curr_calendar = window.getSelectedCalendar();
+
+              // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
+              // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));
 
               window.createEventWithDialog(
                 curr_calendar, //calendars[0], //cal_data.calendar,
