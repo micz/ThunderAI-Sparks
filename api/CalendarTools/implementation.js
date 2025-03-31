@@ -77,14 +77,14 @@
                 });
               }
 
-              let calendars = cal.manager.getCalendars();
-              calendars = calendars.filter(cal.acl.isCalendarWritable);
+              // let calendars = cal.manager.getCalendars();
+              // calendars = calendars.filter(cal.acl.isCalendarWritable);
 
-              if (calendars.length < 1) {
-                // There are no writable calendars
-                console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", "No active calendar found!");
-                return {result: false, error: "|>>noActiveCalendar"};
-              }
+              // if (calendars.length < 1) {
+              //   // There are no writable calendars
+              //   console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", "No active calendar found!");
+              //   return {result: false, error: "|>>noActiveCalendar"};
+              // }
 
               let curr_calendar = window.getSelectedCalendar();
 
