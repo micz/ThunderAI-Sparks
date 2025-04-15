@@ -2,48 +2,80 @@
     {
       "namespace": "CalendarTools",
       "functions": [
-      {
-        "name": "openCalendarDialog",
-        "type": "function",
-        "async": true,
-        "description": "Opens the calendar dialog, populating it with the given data",
-        "parameters": [
-          {
-          "name": "cal_data",
-          "type": "object",
-          "description": "Calendar event data",
-          "properties": {
-              "startDate": {
-                "type": "string"
-              },
-              "endDate": {
-                "type": "string"
-              },
-              "summary": {
-                "type": "string"
-              },
-              "forceAllDay" : {
-                "type": "boolean"
-              },
-              "attendees" : {
-                "optional": true,
-                "type": "array",
-                "items": {
+        {
+          "name": "openCalendarDialog",
+          "type": "function",
+          "async": true,
+          "description": "Opens the calendar dialog, populating it with the given data",
+          "parameters": [
+            {
+            "name": "cal_data",
+            "type": "object",
+            "description": "Calendar event data",
+            "properties": {
+                "startDate": {
                   "type": "string"
+                },
+                "endDate": {
+                  "type": "string"
+                },
+                "summary": {
+                  "type": "string"
+                },
+                "forceAllDay" : {
+                  "type": "boolean"
+                },
+                "attendees" : {
+                  "optional": true,
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "timezone" : {
+                  "type": "string",
+                  "optional": true
+                },
+                "use_timezone" : {
+                  "type": "boolean",
+                  "optional": true
                 }
-              },
-              "timezone" : {
-                "type": "string",
-                "optional": true
-              },
-              "use_timezone" : {
-                "type": "boolean",
-                "optional": true
               }
             }
-          }
-        ]
-      }
-      ] 
+          ]
+        },
+        {
+          "name": "openTodoDialog",
+          "type": "function",
+          "async": true,
+          "description": "Opens the task dialog, populating it with the given data",
+          "parameters": [
+            {
+            "name": "todo_data",
+            "type": "object",
+            "description": "Todo data",
+            "properties": {
+                "dueDate": {
+                  "type": "string"
+                },
+                "summary": {
+                  "type": "string"
+                },
+                "initialDate": {
+                  "type": "string"
+                },
+                "timezone" : {
+                  "type": "string",
+                  "optional": true
+                },
+                "use_timezone" : {
+                  "type": "boolean",
+                  "optional": true
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
 ]  
