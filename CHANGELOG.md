@@ -4,6 +4,10 @@
 
 
 
+<h2>Version 1.2.0 - ??/??/2025</h2>
+        <ul>
+          <li>...</li>
+        </ul>
 <h2>Version 1.1.0 - 31/01/2025</h2>
         <ul>
           <li>It's now possibile to define a timezone in the ThunderAI calendar event settings page [<a href="https://github.com/micz/ThunderAI/issues/250">#250</a>].</li>
