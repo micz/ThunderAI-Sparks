@@ -52,7 +52,7 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
 
   switch (message.action) {
     case "checkPresence":
-      return Promise.resolve("ok");
+      return Promise.resolve("1.2.0");
       break;
 
     case "openCalendarEventDialog":
