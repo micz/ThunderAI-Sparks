@@ -6,6 +6,7 @@
 
 <h2>Version 1.2.0 - ??/??/2025</h2>
         <ul>
+          <li>Sending the version number to ThunderAI [<a href="https://github.com/micz/ThunderAI/issues/315">#315</a>].</li>
           <li>...</li>
         </ul>
 <h2>Version 1.1.0 - 31/01/2025</h2>
