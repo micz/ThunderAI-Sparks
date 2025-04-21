@@ -87,32 +87,37 @@
             }
             return {result: true};
           },
-          async openTodoDialog(todo_data) {
+          async openTaskDialog(task_data) {
             // implementation
+
             let window = Services.wm.getMostRecentWindow("mail:3pane");
             if (!window) {
               throw new Error("No active Thunderbird window found");
             }
             try {
-              let dueDate = cal.createDateTime(todo_data.dueDate)
-              let initialDate = cal.createDateTime(todo_data.initialDate)
+                let dueDate = task_data.dueDate ? cal.createDateTime(task_data.dueDate) : null;
+                let initialDate = task_data.initialDate ? cal.createDateTime(task_data.initialDate) : null;
 
-              if(todo_data.use_timezone) {
+                if (task_data.use_timezone) {
                 const timezoneService = new CalTimezoneService();
-                dueDate.timezone = timezoneService.getTimezone(todo_data.timezone);
-                initialDate.timezone = timezoneService.getTimezone(todo_data.timezone);
-              }
+                if (dueDate) {
+                  dueDate.timezone = timezoneService.getTimezone(task_data.timezone);
+                }
+                if (initialDate) {
+                  initialDate.timezone = timezoneService.getTimezone(task_data.timezone);
+                }
+                }
 
               let curr_calendar = window.getSelectedCalendar();
 
-              // console.log(">>>>>>>>>> ThunderAI Sparks: openTodoDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
-              // console.log(">>>>>>>>>> ThunderAI Sparks: openTodoDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));
+              // console.log(">>>>>>>>>> ThunderAI Sparks: openTaskDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
+              // console.log(">>>>>>>>>> ThunderAI Sparks: openTaskDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));
 
               window.createTodoWithDialog(
                 curr_calendar,
                 dueDate,
-                todo_data.summary,
-                null, //todo_data.todo,
+                task_data.summary,
+                null, //task_data.todo,
                 initialDate
               );
             } catch (e) {

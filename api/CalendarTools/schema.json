@@ -45,24 +45,26 @@
           ]
         },
         {
-          "name": "openTodoDialog",
+          "name": "openTaskDialog",
           "type": "function",
           "async": true,
           "description": "Opens the task dialog, populating it with the given data",
           "parameters": [
             {
-            "name": "todo_data",
+            "name": "task_data",
             "type": "object",
-            "description": "Todo data",
+            "description": "Task data",
             "properties": {
                 "dueDate": {
-                  "type": "string"
+                  "type": "string",
+                  "optional": true
                 },
                 "summary": {
                   "type": "string"
                 },
                 "initialDate": {
-                  "type": "string"
+                  "type": "string",
+                  "optional": true
                 },
                 "timezone" : {
                   "type": "string",

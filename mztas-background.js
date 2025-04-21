@@ -55,7 +55,7 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
       return Promise.resolve("1.2.0");
       break;
 
-    case "openCalendarEventDialog":
+    case "openCalendarEventDialog": {
       tasLog.log("openCalendarEventDialog: ", message.calendar_event_data);
       let jsonObj = {};
       try{
@@ -76,6 +76,29 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
         }
       }
       break;
+    }
+    case "openTaskDialog": {
+      tasLog.log("openTaskDialog: ", message.task_data);
+      let jsonObj = {};
+      try{
+        jsonObj = extractJsonObject(message.task_data);
+      }catch(e){
+        console.error("[ThunderAI Sparks] openTaskDialog error: ", e);
+        return {result: "error", error: e};
+      }
+      tasLog.log("openTaskDialog jsonObj: ", JSON.stringify(jsonObj));
+      return _openTaskDialog(jsonObj);
+
+      async function _openTaskDialog(jsonObj) {
+        let _result = await browser.CalendarTools.openTaskDialog(jsonObj);
+        if(_result.result){
+          return "ok";
+        } else {
+          return {result: "error", error: _result.error};
+        }
+      }
+      break;
+    }
   }
   
   return true;
