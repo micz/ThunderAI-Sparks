@@ -27,25 +27,6 @@
   var { CalTimezoneService } = ChromeUtils.importESModule("resource:///modules/CalTimezoneService.sys.mjs");
   var { CalAttendee } = ChromeUtils.importESModule("resource:///modules/CalAttendee.sys.mjs");
 
-  // var CalEditingSandbox = {require: exports.require, exports: {}};
-
-  // var window = Services.wm.getMostRecentWindow("mail:3pane");
-  // if (!window) {
-  //   throw new Error("No active Thunderbird window found");
-  // }
-
-  // CalEditingSandbox.openDialog = function (url, name, features, args) {
-  //     return window.openDialog(url, name, features, args);
-  //   };
-
-  // CalEditingSandbox.window = window;
-  // CalEditingSandbox.document = window.document;
-
-  // Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-views-utils.js",CalEditingSandbox);
-  // Services.scriptloader.loadSubScript("chrome://calendar/content/calendar-item-editing.js",CalEditingSandbox);
-
-  // window.openEventDialog = CalEditingSandbox.openEventDialog;
-
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
       return {
@@ -102,6 +83,45 @@
               );
             } catch (e) {
               console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", e);
+              return {result: false, error: e};
+            }
+            return {result: true};
+          },
+          async openTaskDialog(task_data) {
+            // implementation
+
+            let window = Services.wm.getMostRecentWindow("mail:3pane");
+            if (!window) {
+              throw new Error("No active Thunderbird window found");
+            }
+            try {
+                let dueDate = task_data.dueDate ? cal.createDateTime(task_data.dueDate) : null;
+                let initialDate = task_data.initialDate ? cal.createDateTime(task_data.initialDate) : null;
+
+                if (task_data.use_timezone) {
+                const timezoneService = new CalTimezoneService();
+                if (dueDate) {
+                  dueDate.timezone = timezoneService.getTimezone(task_data.timezone);
+                }
+                if (initialDate) {
+                  initialDate.timezone = timezoneService.getTimezone(task_data.timezone);
+                }
+                }
+
+              let curr_calendar = window.getSelectedCalendar();
+
+              // console.log(">>>>>>>>>> ThunderAI Sparks: openTaskDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
+              // console.log(">>>>>>>>>> ThunderAI Sparks: openTaskDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));
+
+              window.createTodoWithDialog(
+                curr_calendar,
+                dueDate,
+                task_data.summary,
+                null, //task_data.todo,
+                initialDate
+              );
+            } catch (e) {
+              console.error("[ThunderAI Sparks] openTodoDialog ExtensionAPI error: ", e);
               return {result: false, error: e};
             }
             return {result: true};
