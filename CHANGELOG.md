@@ -4,6 +4,10 @@
 
 
 
+<h2>Version 1.2.1 - ??/??/2025</h2>
+        <ul>
+          <li>Traditional Chinese (zh_Hant) translation added, thanks to <a href="https://github.com/evez">evez</a>.</li>
+        </ul>
 <h2>Version 1.2.0 - 07/05/2025</h2>
         <ul>
           <li>Added support to Tasks (Todo) [<a href="https://github.com/micz/ThunderAI/issues/333">#333</a>].</li>
