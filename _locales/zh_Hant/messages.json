@@ -1,1 +1,41 @@
-{}
+{
+    "prefs_OptionText_do_debug": {
+        "message": "啟用除錯模式"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "extensionDescription": {
+        "message": "ThunderAI Sparks 是一個 Thunderbird 的擴充功能，旨在為 ThunderAI 增加更進階的功能。"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "啟用除錯系統"
+    },
+    "prefsInfoTitle": {
+        "message": "重要資訊"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks 是一個仍在實驗階段的 Thunderbird 擴充功能，旨在為 ThunderAI 增加更進階的功能。要使用這個擴充功能，你需要先安裝 ThunderAI。"
+    },
+    "prefsInfoDesc_2": {
+        "message": "從 Thunderbird 擴充功能頁面取得 ThunderAI！"
+    },
+    "TranslateText": {
+        "message": "你想幫忙翻譯 ThunderAI 和 ThunderAI Sparks 嗎？"
+    },
+    "TranslateLink": {
+        "message": "了解怎麼做！"
+    },
+    "prefsDonation_1": {
+        "message": "你喜歡這個擴充功能嗎？"
+    },
+    "prefsDonation_2": {
+        "message": "考慮贊助一下吧！"
+    },
+    "backToOptionsText": {
+        "message": "選項"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "發行說明"
+    }
+}
