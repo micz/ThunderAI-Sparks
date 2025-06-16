@@ -4,9 +4,10 @@
 
 
 
-<h2>Version 1.2.1 - ??/??/2025</h2>
+<h2>Version 1.2.1 - 16/06/2025</h2>
         <ul>
           <li>Traditional Chinese (zh_Hant) translation added, thanks to <a href="https://github.com/evez">evez</a>.</li>
+          <li>Sparks is now compatible also with Thunderbird 140.</li>
         </ul>
 <h2>Version 1.2.0 - 07/05/2025</h2>
         <ul>
