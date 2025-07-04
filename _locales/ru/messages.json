@@ -19,5 +19,23 @@
     },
     "prefsInfoDesc_3": {
         "message": " "
+    },
+    "TranslateText": {
+        "message": "Хотите помочь с переводом ThunderAI и ThunderAI Sparks?"
+    },
+    "TranslateLink": {
+        "message": "Узнайте как!"
+    },
+    "prefsDonation_1": {
+        "message": "Нравится ли вам этот аддон?"
+    },
+    "prefsDonation_2": {
+        "message": "Подумайте о том, чтобы сделать пожертвование!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Примечания к выпуску"
+    },
+    "backToOptionsText": {
+        "message": "Опции"
     }
 }
