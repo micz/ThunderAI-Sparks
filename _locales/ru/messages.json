@@ -1,0 +1,41 @@
+{
+    "extensionDescription": {
+        "message": "ThunderAI Sparks - это дополнение для Thunderbird, предназначенное для добавления расширенных возможностей в ThunderAI."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Включить режим отладки"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Активировать систему отладки"
+    },
+    "prefsInfoTitle": {
+        "message": "Важная информация"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks - это экспериментальное дополнение для Thunderbird, предназначенное для добавления расширенных возможностей ThunderAI. Для использования этого дополнения необходимо установить ThunderAI."
+    },
+    "prefsInfoDesc_2": {
+        "message": "Получите ThunderAI со страницы дополнений Thunderbird!"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "TranslateText": {
+        "message": "Хотите помочь с переводом ThunderAI и ThunderAI Sparks?"
+    },
+    "TranslateLink": {
+        "message": "Узнайте как!"
+    },
+    "prefsDonation_1": {
+        "message": "Нравится ли вам этот аддон?"
+    },
+    "prefsDonation_2": {
+        "message": "Подумайте о том, чтобы сделать пожертвование!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Примечания к выпуску"
+    },
+    "backToOptionsText": {
+        "message": "Опции"
+    }
+}
