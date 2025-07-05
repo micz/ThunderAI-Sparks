@@ -21,13 +21,13 @@
         "message": "從 Thunderbird 擴充功能頁面取得 ThunderAI！"
     },
     "TranslateText": {
-        "message": "你想幫忙翻譯 ThunderAI 和 ThunderAI Sparks 嗎？"
+        "message": "您願意幫忙翻譯 ThunderAI 和 ThunderAI Sparks 嗎？"
     },
     "TranslateLink": {
         "message": "了解怎麼做！"
     },
     "prefsDonation_1": {
-        "message": "你喜歡這個擴充功能嗎？"
+        "message": "你喜歡這個附加元件嗎？"
     },
     "prefsDonation_2": {
         "message": "考慮贊助一下吧！"
@@ -36,6 +36,6 @@
         "message": "選項"
     },
     "prefs_OptionText_release_notes": {
-        "message": "發行說明"
+        "message": "版本說明"
     }
 }
