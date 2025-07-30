@@ -4,6 +4,10 @@
 
 
 
+<h2>Version 1.2.2 - 30/07/2025</h2>
+        <ul>
+          <li>Russian (ru) translation added, thanks to <a href="https://hosted.weblate.org/user/law820314/">Maksim</a>.</li>
+        </ul>
 <h2>Version 1.2.1 - 16/06/2025</h2>
         <ul>
           <li>Traditional Chinese (zh_Hant) translation added, thanks to <a href="https://github.com/evez">evez</a>.</li>
