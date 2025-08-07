@@ -1,1 +1,41 @@
-{}
+{
+    "extensionDescription": {
+        "message": "ThunderAI Sparks е добавка за Thunderbird, създадена да добави разширени функции към ThunderAI."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Активиране на режим за отстраняване на грешки"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Активиране на системата за отстраняване на грешки"
+    },
+    "prefsInfoTitle": {
+        "message": "Важна информация"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks е експериментално допълнение за Thunderbird, създадено с цел да добави разширени функции към ThunderAI. За да използвате това допълнение, трябва да инсталирате ThunderAI."
+    },
+    "prefsInfoDesc_2": {
+        "message": "Изтеглете ThunderAI от страницата с добавки за Thunderbird!"
+    },
+    "prefsInfoDesc_3": {
+        "message": " . "
+    },
+    "TranslateText": {
+        "message": "Искате ли да помогнете за превода на ThunderAI и ThunderAI Sparks?"
+    },
+    "TranslateLink": {
+        "message": "Разберете как!"
+    },
+    "prefsDonation_1": {
+        "message": "Харесвате ли тази добавка?"
+    },
+    "prefsDonation_2": {
+        "message": "Помислете за дарение!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Бележки по изданието"
+    },
+    "backToOptionsText": {
+        "message": "Опции"
+    }
+}
