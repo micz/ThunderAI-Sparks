@@ -1,1 +1,11 @@
-{}
+{
+    "extensionDescription": {
+        "message": "A ThunderAI Sparks egy Thunderbird kiegészítő, mely extra szolgáltatásokat nyújt a ThunderAI-hoz."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Hibakeresési mód engedélyezése"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Hibakeresési rendszer aktiválása"
+    }
+}
