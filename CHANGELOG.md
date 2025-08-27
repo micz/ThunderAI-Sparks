@@ -8,6 +8,7 @@
 <h2>Version 1.2.3 - ??/??/2025</h2>
         <ul>
           <li>Bulgarian (bg) translation added, thanks to <a href="https://hosted.weblate.org/user/bogomil/">Bogomil Shopov</a>.</li>
+          <li>Sparks is now compatible also with Thunderbird 143.</li>
           <li>...</li>
         </ul>
 <h2>Version 1.2.2 - 30/07/2025</h2>
