@@ -5,6 +5,11 @@
 
 
 
+<h2>Version 1.2.4 - ??/??/2025</h2>
+        <ul>
+          <li>Sparks is now compatible also with Thunderbird 144.</li>
+          <li>...</li>
+        </ul>
 <h2>Version 1.2.3 - 27/08/2025</h2>
         <ul>
           <li>Bulgarian (bg) translation added, thanks to <a href="https://hosted.weblate.org/user/bogomil/">Bogomil Shopov</a>.</li>
