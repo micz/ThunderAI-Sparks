@@ -1,1 +1,11 @@
-{}
+{
+    "extensionDescription": {
+        "message": "ThunderAI Sparks är ett tillägg till Thunderbird, utformat för att lägga till avancerade funktioner till ThunderAI."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Aktivera felsökningsläge"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Aktivera felsökningssystemet"
+    }
+}
