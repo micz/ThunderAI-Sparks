@@ -7,5 +7,35 @@
     },
     "prefs_OptionText_do_debug_info": {
         "message": "Aktivera felsökningssystemet"
+    },
+    "prefsInfoTitle": {
+        "message": "Viktig information"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks är ett experimentellt tillägg för ThunderAI, utformat för att lägga till avancerade funktioner i ThunderAI. För att använda detta tillägg måste du installera ThunderAI."
+    },
+    "prefsInfoDesc_2": {
+        "message": "Hämta ThunderAI från Thunderbirds tilläggssida!"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "TranslateText": {
+        "message": "Vill du hjälpa till att översätta ThunderAI och ThunderAI Sparks?"
+    },
+    "TranslateLink": {
+        "message": "Ta reda på hur!"
+    },
+    "prefsDonation_1": {
+        "message": "Gillar du det här tillägget?"
+    },
+    "prefsDonation_2": {
+        "message": "Överväg att göra en donation!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Versionsinformation"
+    },
+    "backToOptionsText": {
+        "message": "Alternativ"
     }
 }
