@@ -8,7 +8,7 @@
 <h2>Version 1.2.4 - 04/01/2026</h2>
         <ul>
           <li>Swedish (sv) translation added, thanks to <a href="https://hosted.weblate.org/user/Andy_tb/">Andreas Pettersson</a>.</li>
-          <li>Sparks is now compatible also with Thunderbird 144.</li>
+          <li>Sparks is now compatible also with Thunderbird 147.</li>
         </ul>
 <h2>Version 1.2.3 - 27/08/2025</h2>
         <ul>
