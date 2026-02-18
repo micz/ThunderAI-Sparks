@@ -5,6 +5,10 @@
 
 
 
+<h2>Version 2.0.0 - ??/??/2026</h2>
+        <ul>
+          <li>Sparks is now compatible only with Thunderbird 140 and later up to 148 [<a href="https://github.com/micz/ThunderAI/issues/625">#625</a>].</li>
+        </ul>
 <h2>Version 1.2.4 - 04/01/2026</h2>
         <ul>
           <li>Swedish (sv) translation added, thanks to <a href="https://hosted.weblate.org/user/Andy_tb/">Andreas Pettersson</a>.</li>
