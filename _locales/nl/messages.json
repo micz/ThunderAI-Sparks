@@ -1,0 +1,11 @@
+{
+    "extensionDescription": {
+        "message": "ThunderAI Sparks is een add-on voor Thunderbird, ontworpen om geavanceerde functies toe te voegen aan ThunderAI."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Debugmodus inschakelen"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Activeer het debug systeem."
+    }
+}
