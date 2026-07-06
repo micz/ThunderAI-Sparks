@@ -1,0 +1,41 @@
+{
+    "prefs_OptionText_do_debug": {
+        "message": "Aktifkan Mode Debug"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Aktifkan sistem debug"
+    },
+    "prefsInfoTitle": {
+        "message": "Informasi Penting"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks adalah add-on eksperimental untuk Thunderbird, yang dirancang untuk menambahkan fitur-fitur lanjutan ke ThunderAI. Untuk menggunakan add-on ini, Anda perlu menginstal ThunderAI."
+    },
+    "prefsInfoDesc_2": {
+        "message": "Dapatkan ThunderAI dari halaman Add-ons Thunderbird!"
+    },
+    "TranslateText": {
+        "message": "Apakah Anda ingin membantu menerjemahkan ThunderAI dan ThunderAI Sparks?"
+    },
+    "TranslateLink": {
+        "message": "Cari tahu caranya!"
+    },
+    "prefsDonation_1": {
+        "message": "Apakah Anda menyukai add-on ini?"
+    },
+    "prefsDonation_2": {
+        "message": "Pertimbangkan untuk memberikan donasi!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Catatan Rilis"
+    },
+    "backToOptionsText": {
+        "message": "Opsi"
+    },
+    "extensionDescription": {
+        "message": "ThunderAI Sparks adalah add-on Thunderbird yang dirancang untuk menambahkan fitur-fitur lanjutan ke ThunderAI."
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    }
+}
