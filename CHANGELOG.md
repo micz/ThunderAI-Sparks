@@ -5,6 +5,11 @@
 
 
 
+<h2>Version 2.1.0 - ??/??/2026</h2>
+        <ul>
+          <li>Sparks is now compatible with Thunderbird 140+.</li>
+          <li>...</li>
+        </ul>
 <h2>Version 2.0.0 - 24/02/2026</h2>
         <ul>
           <li>Sparks is now compatible only with Thunderbird 140 and later up to 148 [<a href="https://github.com/micz/ThunderAI/issues/625">#625</a>].</li>
