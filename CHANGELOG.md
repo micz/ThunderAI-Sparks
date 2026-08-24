@@ -8,6 +8,7 @@
 <h2>Version 2.1.0 - ??/??/2026</h2>
         <ul>
           <li>Sparks is now compatible with Thunderbird 140+.</li>
+          <li>Indonesian (id) translation added, thanks to <a href="https://github.com/arifpedia">Arif Budiman</a>.</li>
           <li>...</li>
         </ul>
 <h2>Version 2.0.0 - 24/02/2026</h2>
