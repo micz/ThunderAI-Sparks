@@ -27,6 +27,10 @@
   var { CalTimezoneService } = ChromeUtils.importESModule("resource:///modules/CalTimezoneService.sys.mjs");
   var { CalAttendee } = ChromeUtils.importESModule("resource:///modules/CalAttendee.sys.mjs");
 
+  ChromeUtils.defineESModuleGetters(globalThis, {
+    CalEvent: "resource:///modules/CalEvent.sys.mjs",
+  });
+
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
       return {
@@ -51,13 +55,6 @@
                 endDate.timezone = timezoneService.getTimezone(cal_data.timezone);
               }
 
-              let attendees_obj = [];
-              if(cal_data.attendees != null) {
-                attendees_obj = cal_data.attendees.map(attendee => {
-                  return new CalAttendee("ATTENDEE:" + attendee, "", "REQ-PARTICIPANT", "", "");
-                });
-              }
-
               // let calendars = cal.manager.getCalendars();
               // calendars = calendars.filter(cal.acl.isCalendarWritable);
 
@@ -72,15 +69,25 @@
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));
 
-              window.createEventWithDialog(
-                curr_calendar, //calendars[0], //cal_data.calendar,
-                startDate,
-                endDate,
-                cal_data.summary,
-                null, //cal_data.event,
-                cal_data.forceAllDay,
-                attendees_obj
-              );
+				let event = new CalEvent();
+
+				event.title = cal_data.summary;
+				event.calendar = curr_calendar;
+				event.startDate = startDate;
+				event.endDate = endDate;
+
+				if (cal_data.attendees) {
+				  for (let a of cal_data.attendees) {
+				    event.addAttendee(new CalAttendee("ATTENDEE:" + a, "", "REQ-PARTICIPANT", "", ""));
+				  }
+				}
+
+				// Add location if provided
+				if (cal_data.location) {
+				  event.setProperty("LOCATION", cal_data.location);
+				}
+
+              window.createEventWithDialog(null, null, null, null, event, cal_data.forceAllDay);
             } catch (e) {
               console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", e);
               return {result: false, error: e};
