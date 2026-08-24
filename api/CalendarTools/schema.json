@@ -22,6 +22,10 @@
                 "summary": {
                   "type": "string"
                 },
+                "location": {
+                  "type": "string",
+                  "optional": true
+                },
                 "forceAllDay" : {
                   "type": "boolean"
                 },
