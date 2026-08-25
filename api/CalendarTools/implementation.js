@@ -87,6 +87,11 @@
 				  event.setProperty("LOCATION", cal_data.location);
 				}
 
+              // Add description if provided
+              if (cal_data.description) {
+                event.descriptionText = cal_data.description;
+              }
+
               window.createEventWithDialog(null, null, null, null, event, cal_data.forceAllDay);
             } catch (e) {
               console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", e);
