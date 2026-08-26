@@ -19,6 +19,8 @@
 import { extractJsonObject } from "./js/mztas-utils.js";
 import { tasLogger } from "./js/mztas-logger.js";
 
+const SPARKS_VERSION = browser.runtime.getManifest().version;
+
 // ============== FOR TESTING ==============
 // browser.browserAction.onClicked.addListener(() => {
 //     testThunderAISparks();
@@ -52,7 +54,7 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
 
   switch (message.action) {
     case "checkPresence":
-      return Promise.resolve("1.2.0");
+      return Promise.resolve(SPARKS_VERSION);
       break;
 
     case "openCalendarEventDialog": {
