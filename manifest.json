@@ -9,7 +9,7 @@
         "gecko": {
             "id": "thunderai-sparks@micz.it",
             "strict_min_version": "140.0",
-            "strict_max_version": "153.*"
+            "strict_max_version": "156.*"
         }
     },
     "permissions": [
