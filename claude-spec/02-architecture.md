@@ -70,8 +70,12 @@ idiom:
 
 `openTaskDialog(task_data)`:
 - Same window lookup and timezone handling for `dueDate` / `initialDate`.
+- When a `location` or `description` is present, creates a `CalTodo` template and
+  sets title, calendar, `entryDate` / `dueDate` (tasks do not use
+  `startDate`/`endDate`) and the optional `LOCATION` / `DESCRIPTION` properties.
 - Opens the native todo dialog via `window.createTodoWithDialog(calendar,
-  dueDate, summary, null, initialDate)`.
+  dueDate, summary, todo, initialDate)` — `todo` is that template, or `null` to
+  let Thunderbird apply its own defaults.
 - Returns `{result: true}` or `{result: false, error}`.
 
 > The `(function(exports){...})(this)` closure, the `ChromeUtils` /

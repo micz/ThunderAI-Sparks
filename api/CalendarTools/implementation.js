@@ -29,6 +29,7 @@
 
   ChromeUtils.defineESModuleGetters(globalThis, {
     CalEvent: "resource:///modules/CalEvent.sys.mjs",
+    CalTodo: "resource:///modules/CalTodo.sys.mjs",
   });
 
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
@@ -125,11 +126,41 @@
               // console.log(">>>>>>>>>> ThunderAI Sparks: openTaskDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
               // console.log(">>>>>>>>>> ThunderAI Sparks: openTaskDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));
 
+              // createTodoWithDialog only applies summary/dates when no template task
+              // is passed, so build one ourselves as soon as we have a location or a
+              // description to set on it.
+              let todo = null;
+
+              if (task_data.location || task_data.description) {
+                todo = new CalTodo();
+
+                todo.title = task_data.summary;
+                todo.calendar = curr_calendar;
+
+                // Tasks use entryDate/dueDate, not startDate/endDate.
+                if (initialDate) {
+                  todo.entryDate = initialDate;
+                }
+                if (dueDate) {
+                  todo.dueDate = dueDate;
+                }
+
+                // Add location if provided
+                if (task_data.location) {
+                  todo.setProperty("LOCATION", task_data.location);
+                }
+
+                // Add description if provided
+                if (task_data.description) {
+                  todo.descriptionText = task_data.description;
+                }
+              }
+
               window.createTodoWithDialog(
                 curr_calendar,
                 dueDate,
                 task_data.summary,
-                null, //task_data.todo,
+                todo,
                 initialDate
               );
             } catch (e) {

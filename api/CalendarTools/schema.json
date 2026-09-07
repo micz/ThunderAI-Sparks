@@ -74,6 +74,14 @@
                   "type": "string",
                   "optional": true
                 },
+                "location": {
+                  "type": "string",
+                  "optional": true
+                },
+                "description": {
+                  "type": "string",
+                  "optional": true
+                },
                 "timezone" : {
                   "type": "string",
                   "optional": true

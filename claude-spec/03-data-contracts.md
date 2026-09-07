@@ -66,8 +66,10 @@ the LLM output is tolerated.
 | Field | Type | Required | Notes |
 |---|---|---|---|
 | `summary` | string | yes | task title |
-| `dueDate` | string | no | iCal datetime |
-| `initialDate` | string | no | iCal datetime (start) |
+| `dueDate` | string | no | iCal datetime → `dueDate` |
+| `initialDate` | string | no | iCal datetime (start) → `entryDate` |
+| `location` | string | no | set as `LOCATION` property |
+| `description` | string | no | set as `DESCRIPTION` property |
 | `timezone` | string | no | applied only when `use_timezone` is true |
 | `use_timezone` | boolean | no | if true, apply `timezone` to due/initial |
 
@@ -76,10 +78,20 @@ the LLM output is tolerated.
   "summary": "Send the report",
   "dueDate": "20250110T170000Z",
   "initialDate": "20250108T090000Z",
+  "location": "Room 2",
+  "description": "Include the Q1 figures",
   "timezone": "Europe/Rome",
   "use_timezone": true
 }
 ```
+
+`createTodoWithDialog(calendar, dueDate, summary, todo, initialDate)` applies
+`summary`/`dueDate` **only when `todo` is null** — its 4th argument is a *template
+task*, not a text body. So `location`/`description` require building a `CalTodo`
+ourselves and setting `title`/`entryDate`/`dueDate` on it too (tasks use
+`entryDate`, not `startDate`). `implementation.js` builds that template only when a
+location or description is present, and otherwise passes `null` to keep
+Thunderbird's own defaults.
 
 ## Return contract from the experimental API
 
