@@ -10,7 +10,7 @@
           <li>Sparks is now compatible with Thunderbird 140+.</li>
           <li>Indonesian (id) translation added, thanks to <a href="https://github.com/arifpedia">Arif Budiman</a>.</li>
           <li>It's now possibile to add the location in a calendar event and in a task, be sure to update the prompt in the ThunderAI settings, thanks to <a href="https://github.com/touste">touste</a> [<a href="https://github.com/micz/ThunderAI/issues/870">#870</a>].</li>
-          <li>It's now possibile to add the description in a the calendar event and in a task.</li>
+          <li>It's now possibile to add the description in a the calendar event and in a task, be sure to update the prompt in the ThunderAI settings [<a href="https://github.com/micz/ThunderAI/issues/872">#872</a>].</li>
           <li>...</li>
         </ul>
 <h2>Version 2.0.0 - 24/02/2026</h2>
