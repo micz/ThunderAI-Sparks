@@ -26,11 +26,38 @@
   var { cal } = ChromeUtils.importESModule("resource:///modules/calendar/calUtils.sys.mjs");
   var { CalTimezoneService } = ChromeUtils.importESModule("resource:///modules/CalTimezoneService.sys.mjs");
   var { CalAttendee } = ChromeUtils.importESModule("resource:///modules/CalAttendee.sys.mjs");
+  var { CalAlarm } = ChromeUtils.importESModule("resource:///modules/CalAlarm.sys.mjs");
 
   ChromeUtils.defineESModuleGetters(globalThis, {
     CalEvent: "resource:///modules/CalEvent.sys.mjs",
     CalTodo: "resource:///modules/CalTodo.sys.mjs",
   });
+
+  // True when reminderMinutes asks for a specific reminder setting
+  // (-1 = no reminder, >= 0 = minutes before), false when it is absent or
+  // invalid, meaning Thunderbird's default reminder must be applied.
+  function hasReminderMinutes(reminderMinutes) {
+    return Number.isInteger(reminderMinutes) && reminderMinutes >= -1;
+  }
+
+  // Replaces the item's alarms with the requested one: none for -1, otherwise
+  // a single DISPLAY alarm reminderMinutes before the given relation
+  // (Ci.calIAlarm.ALARM_RELATED_START or ALARM_RELATED_END).
+  function setReminder(item, reminderMinutes, related) {
+    item.clearAlarms();
+    if (reminderMinutes >= 0) {
+      let alarmOffset = cal.createDuration();
+      alarmOffset.minutes = reminderMinutes;
+      alarmOffset.normalize();
+      alarmOffset.isNegative = true;
+
+      let alarm = new CalAlarm();
+      alarm.related = related;
+      alarm.action = "DISPLAY";
+      alarm.offset = alarmOffset;
+      item.addAlarm(alarm);
+    }
+  }
 
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
@@ -93,6 +120,22 @@
                 event.descriptionText = cal_data.description;
               }
 
+              // Reminder: absent (or invalid) = Thunderbird's default reminder,
+              // -1 = explicitly no reminder, >= 0 = exactly one DISPLAY alarm
+              // that many minutes before the start.
+              // createEventWithDialog applies the default alarm only when no
+              // template event is passed, so we apply it ourselves, after the
+              // calendar and the dates are set. setDefaultValues honors
+              // calendar.alarms.onforevents (and adds nothing when it is off),
+              // and for events it depends only on the calendar (alarm action),
+              // not on the dates, so forceAllDay, applied later by
+              // createEventWithDialog, does not change the default alarm.
+              if (hasReminderMinutes(cal_data.reminderMinutes)) {
+                setReminder(event, cal_data.reminderMinutes, Ci.calIAlarm.ALARM_RELATED_START);
+              } else {
+                cal.alarms.setDefaultValues(event);
+              }
+
               window.createEventWithDialog(null, null, null, null, event, cal_data.forceAllDay);
             } catch (e) {
               console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", e);
@@ -126,34 +169,52 @@
               // console.log(">>>>>>>>>> ThunderAI Sparks: openTaskDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
               // console.log(">>>>>>>>>> ThunderAI Sparks: openTaskDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));
 
-              // createTodoWithDialog only applies summary/dates when no template task
-              // is passed, so build one ourselves as soon as we have a location or a
-              // description to set on it.
-              let todo = null;
+              // Always build the task ourselves: createTodoWithDialog applies
+              // Thunderbird's default alarm only when no template task is passed,
+              // and a template is needed anyway for location, description and a
+              // specific reminder. With a template it ignores its summary/date
+              // arguments, so everything is set here.
+              let todo = new CalTodo();
 
-              if (task_data.location || task_data.description) {
-                todo = new CalTodo();
+              todo.title = task_data.summary;
+              todo.calendar = curr_calendar;
 
-                todo.title = task_data.summary;
-                todo.calendar = curr_calendar;
+              // Tasks use entryDate/dueDate, not startDate/endDate.
+              if (initialDate) {
+                todo.entryDate = initialDate;
+              }
+              if (dueDate) {
+                todo.dueDate = dueDate;
+              }
 
-                // Tasks use entryDate/dueDate, not startDate/endDate.
-                if (initialDate) {
-                  todo.entryDate = initialDate;
-                }
-                if (dueDate) {
-                  todo.dueDate = dueDate;
-                }
+              // Add location if provided
+              if (task_data.location) {
+                todo.setProperty("LOCATION", task_data.location);
+              }
 
-                // Add location if provided
-                if (task_data.location) {
-                  todo.setProperty("LOCATION", task_data.location);
-                }
+              // Add description if provided
+              if (task_data.description) {
+                todo.descriptionText = task_data.description;
+              }
 
-                // Add description if provided
-                if (task_data.description) {
-                  todo.descriptionText = task_data.description;
-                }
+              // Reminder: absent (or invalid) = Thunderbird's default reminder,
+              // -1 = explicitly no reminder, >= 0 = exactly one DISPLAY alarm
+              // that many minutes before the due date (ALARM_RELATED_END, which
+              // Thunderbird resolves to dueDate for tasks), or before the
+              // initial date (ALARM_RELATED_START = entryDate) when there is no
+              // due date. Without any date a reminder can't be related to
+              // anything, so the value is ignored (the background script
+              // already dropped and logged it) and the default applies.
+              // setDefaultValues honors calendar.alarms.onfortodos, adds nothing
+              // when it is off, and sets entryDate to now if missing.
+              let reminderMinutes = task_data.reminderMinutes;
+              if (hasReminderMinutes(reminderMinutes) && reminderMinutes >= 0 && !dueDate && !initialDate) {
+                reminderMinutes = undefined;
+              }
+              if (hasReminderMinutes(reminderMinutes)) {
+                setReminder(todo, reminderMinutes, dueDate ? Ci.calIAlarm.ALARM_RELATED_END : Ci.calIAlarm.ALARM_RELATED_START);
+              } else {
+                cal.alarms.setDefaultValues(todo);
               }
 
               window.createTodoWithDialog(

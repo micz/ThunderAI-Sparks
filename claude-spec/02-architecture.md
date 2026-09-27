@@ -35,9 +35,12 @@ The only always-on code. Responsibilities:
 3. Register `runtime.onMessageExternal` and dispatch on `message.action`:
    - `checkPresence` → `Promise.resolve(SPARKS_VERSION)`
    - `openCalendarEventDialog` → extract JSON from `message.calendar_event_data`,
-     call `CalendarTools.openCalendarDialog`.
-   - `openTaskDialog` → extract JSON from `message.task_data`, call
-     `CalendarTools.openTaskDialog`.
+     keep only the schema fields (`filterFields()`), drop an invalid
+     `reminderMinutes` (`filterReminderMinutes()`), call
+     `CalendarTools.openCalendarDialog`.
+   - `openTaskDialog` → extract JSON from `message.task_data`, keep only the
+     schema fields, drop an invalid `reminderMinutes` (or a `>= 0` one when the
+     task has no due/initial date), call `CalendarTools.openTaskDialog`.
 
 `SPARKS_VERSION` comes from `browser.runtime.getManifest().version` — never
 hardcoded.
@@ -52,7 +55,7 @@ idiom:
 ```js
 (function (exports) {
   var { cal } = ChromeUtils.importESModule(".../calUtils.sys.mjs");
-  // ... CalTimezoneService, CalAttendee, CalEvent ...
+  // ... CalTimezoneService, CalAttendee, CalAlarm, CalEvent ...
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI { ... };
   exports.CalendarTools = CalendarTools;
 })(this);
@@ -65,17 +68,26 @@ idiom:
 - Creates a `CalEvent`, sets title, calendar (the window's selected calendar),
   start/end, optional attendees (`CalAttendee`), optional `LOCATION` and
   `DESCRIPTION` properties.
+- Applies `reminderMinutes`: `-1` clears the alarms, `>= 0` clears them and adds
+  one `DISPLAY` `CalAlarm` related to the start. Absent/invalid applies
+  Thunderbird's default with `cal.alarms.setDefaultValues()`, because
+  Thunderbird skips the default for a template event (see
+  [`03-data-contracts.md`](03-data-contracts.md#reminders-reminderminutes)).
 - Opens the native dialog via `window.createEventWithDialog(..., event, forceAllDay)`.
 - Returns `{result: true}` or `{result: false, error}`.
 
 `openTaskDialog(task_data)`:
 - Same window lookup and timezone handling for `dueDate` / `initialDate`.
-- When a `location` or `description` is present, creates a `CalTodo` template and
-  sets title, calendar, `entryDate` / `dueDate` (tasks do not use
-  `startDate`/`endDate`) and the optional `LOCATION` / `DESCRIPTION` properties.
+- Always creates a `CalTodo` template and sets title, calendar, `entryDate` /
+  `dueDate` (tasks do not use `startDate`/`endDate`) and the optional
+  `LOCATION` / `DESCRIPTION` properties.
+- Applies `reminderMinutes` as for events, with the alarm related to the due
+  date (`ALARM_RELATED_END`), or to the start when there is no due date.
+  Absent, invalid, or `>= 0` without any date applies the default with
+  `cal.alarms.setDefaultValues()` (`calendar.alarms.onfortodos`).
 - Opens the native todo dialog via `window.createTodoWithDialog(calendar,
-  dueDate, summary, todo, initialDate)` — `todo` is that template, or `null` to
-  let Thunderbird apply its own defaults.
+  dueDate, summary, todo, initialDate)`. Thunderbird ignores the summary/date
+  arguments when a template is passed.
 - Returns `{result: true}` or `{result: false, error}`.
 
 > The `(function(exports){...})(this)` closure, the `ChromeUtils` /
@@ -105,6 +117,8 @@ user picks "add to calendar"
                           │
                           ├─ extractJsonObject(text)  → {startDate, ...}
                           │  (js/mztas-utils.js: first {...} match, JSON.parse)
+                          │
+                          ├─ filterFields(obj)  → schema fields only
                           │
                           └─ browser.CalendarTools.openCalendarDialog(obj)
                                   │  (privileged experiment)

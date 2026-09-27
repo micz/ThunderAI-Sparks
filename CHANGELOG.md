@@ -8,7 +8,10 @@
 
 <h2>Version 3.1.0 - ??/??/2026</h2>
         <ul>
-          <li>...</li>
+          <li>It's now possibile to add a reminder to a calendar event, it requires ThunderAI 5.1.0 or later [<a href="https://github.com/micz/ThunderAI/issues/887">#887</a>].</li>
+          <li>It's now possibile to add a reminder to a task too, before the due date (or before the initial date if there is no due date), it requires ThunderAI 5.1.0 or later [<a href="https://github.com/micz/ThunderAI/issues/887">#887</a>].</li>
+          <li>Calendar events and tasks created from ThunderAI now get the default reminder set in the Thunderbird settings (when it is enabled there), unless the AI sets a specific reminder or explicitly no reminder.</li>
+          <li>Unknown fields in the AI response no longer break the creation of calendar events and tasks.</li>
         </ul>
 <h2>Version 3.0.0 - 08/09/2026</h2>
         <ul>
