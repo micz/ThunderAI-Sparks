@@ -5,6 +5,11 @@
 
 
 
+
+<h2>Version 3.1.0 - ??/??/2026</h2>
+        <ul>
+          <li>...</li>
+        </ul>
 <h2>Version 3.0.0 - 08/09/2026</h2>
         <ul>
           <li>Sparks is now compatible with Thunderbird 140+.</li>
