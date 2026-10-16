@@ -47,6 +47,41 @@ browser.runtime.onInstalled.addListener(({reason}) => {
 let prefs_init = await browser.storage.sync.get({do_debug: false});
 let tasLog = new tasLogger("mztas-background",prefs_init.do_debug);
 
+// Fields declared in api/CalendarTools/schema.json. Any other property in the
+// AI response would make the schema validation fail, so it is discarded.
+const CALENDAR_EVENT_FIELDS = ["startDate", "endDate", "summary", "location", "description", "forceAllDay", "attendees", "timezone", "use_timezone", "reminderMinutes"];
+const TASK_FIELDS = ["dueDate", "summary", "initialDate", "location", "description", "timezone", "use_timezone", "reminderMinutes"];
+
+function filterFields(jsonObj, allowedFields, caller) {
+  if (!jsonObj || typeof jsonObj !== "object") {
+    return jsonObj;
+  }
+  let filtered = {};
+  let discarded = [];
+  for (let key of Object.keys(jsonObj)) {
+    if (allowedFields.includes(key)) {
+      filtered[key] = jsonObj[key];
+    } else {
+      discarded.push(key);
+    }
+  }
+  if (discarded.length > 0) {
+    tasLog.log(caller + " discarded unknown fields: ", discarded.join(", "));
+  }
+  return filtered;
+}
+
+// reminderMinutes must be an integer >= -1, otherwise it is ignored
+// (a non-integer value would also fail the schema validation) and
+// Thunderbird's default reminder applies.
+function filterReminderMinutes(jsonObj, caller) {
+  if (jsonObj && ("reminderMinutes" in jsonObj) && !(Number.isInteger(jsonObj.reminderMinutes) && jsonObj.reminderMinutes >= -1)) {
+    tasLog.log(caller + " ignoring invalid reminderMinutes: ", jsonObj.reminderMinutes);
+    delete jsonObj.reminderMinutes;
+  }
+  return jsonObj;
+}
+
 // Listen for messages from ThunderAI
 browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) => {
   tasLog.log("Message received:", message);
@@ -67,6 +102,8 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
         return {result: "error", error: e};
       }
       tasLog.log("openCalendarEventDialog jsonObj: ", JSON.stringify(jsonObj));
+      jsonObj = filterFields(jsonObj, CALENDAR_EVENT_FIELDS, "openCalendarEventDialog");
+      jsonObj = filterReminderMinutes(jsonObj, "openCalendarEventDialog");
       return _openCalendarDialog(jsonObj);
 
       async function _openCalendarDialog(jsonObj) {
@@ -89,6 +126,15 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
         return {result: "error", error: e};
       }
       tasLog.log("openTaskDialog jsonObj: ", JSON.stringify(jsonObj));
+      jsonObj = filterFields(jsonObj, TASK_FIELDS, "openTaskDialog");
+      jsonObj = filterReminderMinutes(jsonObj, "openTaskDialog");
+      // A task reminder is related to the due date, or to the initial date
+      // when there is no due date: without any date it is ignored and
+      // Thunderbird's default reminder applies.
+      if (jsonObj && jsonObj.reminderMinutes >= 0 && !jsonObj.dueDate && !jsonObj.initialDate) {
+        tasLog.log("openTaskDialog ignoring reminderMinutes, the task has no due or initial date: ", jsonObj.reminderMinutes);
+        delete jsonObj.reminderMinutes;
+      }
       return _openTaskDialog(jsonObj);
 
       async function _openTaskDialog(jsonObj) {

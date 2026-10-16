@@ -66,9 +66,11 @@ user-visible half (the prompt) is on the ThunderAI side.
 
 1. **Sparks** — `api/CalendarTools/schema.json`: add the property (mark
    `optional` if appropriate).
-2. **Sparks** — `api/CalendarTools/implementation.js`: read it from `cal_data` /
+2. **Sparks** — `mztas-background.js`: add the field name to
+   `CALENDAR_EVENT_FIELDS` / `TASK_FIELDS`, otherwise the whitelist drops it.
+3. **Sparks** — `api/CalendarTools/implementation.js`: read it from `cal_data` /
    `task_data` and apply it to the `CalEvent` / todo.
-3. **Sparks** — bump `manifest.json` version, add a `CHANGELOG.md` entry (note it
+4. **Sparks** — bump `manifest.json` version, add a `CHANGELOG.md` entry (note it
    needs a ThunderAI prompt update).
-4. **ThunderAI** — update the relevant prompt so the LLM emits the field.
-5. File/track the issue in the **ThunderAI** repo with the `Sparks` label.
+5. **ThunderAI** — update the relevant prompt so the LLM emits the field.
+6. File/track the issue in the **ThunderAI** repo with the `Sparks` label.

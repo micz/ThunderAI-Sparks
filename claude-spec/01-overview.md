@@ -36,7 +36,8 @@ delegates the calendar/task work to Sparks over cross-extension messaging.
 | Presence/version detection | `checkPresence` | returns manifest version |
 
 Event fields supported today: start/end date, summary, location, description,
-attendees, timezone. Task fields: summary, due date, initial date, timezone.
+attendees, timezone, reminder. Task fields: summary, due date, initial date,
+location, description, timezone, reminder.
 (See [`03-data-contracts.md`](03-data-contracts.md).)
 
 ## What Sparks does NOT do

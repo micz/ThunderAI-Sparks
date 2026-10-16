@@ -66,7 +66,7 @@ Issues for Sparks are filed in the **ThunderAI** repo with the
 
 The **experimental API** is the whole reason Sparks exists: it needs
 `ChromeUtils.importESModule(...)` access to Thunderbird's calendar modules
-(`CalEvent`, `CalAttendee`, `CalTimezoneService`, `calUtils`) which are not
+(`CalEvent`, `CalTodo`, `CalAttendee`, `CalAlarm`, `calUtils`) which are not
 available to regular WebExtensions. This is also why the add-on requests full
 permissions.
 
@@ -128,5 +128,6 @@ commented `testThunderAISparks()` block in
   globals are required by the experiments framework — don't "modernize" them into
   regular imports.
 - A new event/task field needs changes in **both** repos: the field plumbed
-  through `schema.json` + `implementation.js` here, and the LLM asked to produce
-  it via the prompt in ThunderAI.
+  through `schema.json` + `implementation.js` here (and added to the field
+  whitelist in `mztas-background.js`, which drops undeclared fields), and the
+  LLM asked to produce it via the prompt in ThunderAI.

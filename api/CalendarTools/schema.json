@@ -47,6 +47,10 @@
                 "use_timezone" : {
                   "type": "boolean",
                   "optional": true
+                },
+                "reminderMinutes" : {
+                  "type": "integer",
+                  "optional": true
                 }
               }
             }
@@ -88,6 +92,10 @@
                 },
                 "use_timezone" : {
                   "type": "boolean",
+                  "optional": true
+                },
+                "reminderMinutes" : {
+                  "type": "integer",
                   "optional": true
                 }
               }
