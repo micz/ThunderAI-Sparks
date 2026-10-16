@@ -24,7 +24,6 @@
 (function (exports) {
 
   var { cal } = ChromeUtils.importESModule("resource:///modules/calendar/calUtils.sys.mjs");
-  var { CalTimezoneService } = ChromeUtils.importESModule("resource:///modules/CalTimezoneService.sys.mjs");
   var { CalAttendee } = ChromeUtils.importESModule("resource:///modules/CalAttendee.sys.mjs");
   var { CalAlarm } = ChromeUtils.importESModule("resource:///modules/CalAlarm.sys.mjs");
 
@@ -78,7 +77,7 @@
               let endDate = cal.createDateTime(cal_data.endDate)
 
               if(cal_data.use_timezone) {
-                const timezoneService = new CalTimezoneService();
+                const timezoneService = cal.timezoneService;
                 startDate.timezone = timezoneService.getTimezone(cal_data.timezone);
                 endDate.timezone = timezoneService.getTimezone(cal_data.timezone);
               }
@@ -155,7 +154,7 @@
                 let initialDate = task_data.initialDate ? cal.createDateTime(task_data.initialDate) : null;
 
                 if (task_data.use_timezone) {
-                const timezoneService = new CalTimezoneService();
+                const timezoneService = cal.timezoneService;
                 if (dueDate) {
                   dueDate.timezone = timezoneService.getTimezone(task_data.timezone);
                 }

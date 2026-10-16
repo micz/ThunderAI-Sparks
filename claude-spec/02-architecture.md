@@ -55,7 +55,7 @@ idiom:
 ```js
 (function (exports) {
   var { cal } = ChromeUtils.importESModule(".../calUtils.sys.mjs");
-  // ... CalTimezoneService, CalAttendee, CalAlarm, CalEvent ...
+  // ... CalAttendee, CalAlarm, CalEvent, CalTodo ...
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI { ... };
   exports.CalendarTools = CalendarTools;
 })(this);
@@ -64,7 +64,7 @@ idiom:
 `openCalendarDialog(cal_data)`:
 - Finds the most recent `mail:3pane` window (throws if none).
 - Builds start/end `cal.createDateTime(...)`; if `use_timezone`, applies the
-  timezone via `CalTimezoneService`.
+  timezone via `cal.timezoneService`.
 - Creates a `CalEvent`, sets title, calendar (the window's selected calendar),
   start/end, optional attendees (`CalAttendee`), optional `LOCATION` and
   `DESCRIPTION` properties.
