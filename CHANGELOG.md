@@ -6,7 +6,7 @@
 
 
 
-<h2>Version 3.1.0 - ??/??/2026</h2>
+<h2>Version 3.1.0 - 17/10/2026</h2>
         <ul>
           <li>It's now possibile to add a reminder to a calendar event, it requires ThunderAI 5.1.0 or later [<a href="https://github.com/micz/ThunderAI/issues/887">#887</a>].</li>
           <li>It's now possibile to add a reminder to a task too, before the due date (or before the initial date if there is no due date), it requires ThunderAI 5.1.0 or later [<a href="https://github.com/micz/ThunderAI/issues/887">#887</a>].</li>
