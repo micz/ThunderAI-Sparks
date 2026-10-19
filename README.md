@@ -14,8 +14,8 @@ These are features that ThunderAI itself cannot ship, because they rely on Thund
 
 
 ## Features
-- Automatically add a calendar event from a mail message [[#182](https://github.com/micz/ThunderAI/issues/182)], with support for a timezone [[#250](https://github.com/micz/ThunderAI/issues/250)], the attendees [[#258](https://github.com/micz/ThunderAI/issues/258)], the location [[#870](https://github.com/micz/ThunderAI/issues/870)] and the description [[#872](https://github.com/micz/ThunderAI/issues/872)].
-- Automatically add a task (todo) from a mail message [[#333](https://github.com/micz/ThunderAI/issues/333)], with support for the location [[#870](https://github.com/micz/ThunderAI/issues/870)] and the description [[#872](https://github.com/micz/ThunderAI/issues/872)].
+- Automatically add a calendar event from a mail message [[#182](https://github.com/micz/ThunderAI/issues/182)], with support for a timezone [[#250](https://github.com/micz/ThunderAI/issues/250)], the attendees [[#258](https://github.com/micz/ThunderAI/issues/258)], the location [[#870](https://github.com/micz/ThunderAI/issues/870)], the description [[#872](https://github.com/micz/ThunderAI/issues/872)] and a reminder [[#887](https://github.com/micz/ThunderAI/issues/887)].
+- Automatically add a task (todo) from a mail message [[#333](https://github.com/micz/ThunderAI/issues/333)], with support for the location [[#870](https://github.com/micz/ThunderAI/issues/870)], the description [[#872](https://github.com/micz/ThunderAI/issues/872)] and a reminder [[#887](https://github.com/micz/ThunderAI/issues/887)].
 
 The native Thunderbird dialog is opened pre-filled, so you always get to review and edit everything before saving.
 
@@ -28,6 +28,7 @@ The native Thunderbird dialog is opened pre-filled, so you always get to review 
 | Timezone | 1.1.0 |
 | Location | 3.0.0 |
 | Description | 3.0.0 |
+| Reminder | 3.1.0 |
 
 **Tasks (todos)** can be pre-filled with:
 
@@ -37,10 +38,14 @@ The native Thunderbird dialog is opened pre-filled, so you always get to review 
 | Timezone | 1.2.0 |
 | Location | 3.0.0 |
 | Description | 3.0.0 |
+| Reminder (before the due date, or before the start date if there is no due date) | 3.1.0 |
 
 > [!NOTE]
 > The location and description fields need to be requested from the AI model.
 > After updating, be sure to update the prompt in the ThunderAI settings, otherwise those fields will stay empty.
+> Reminders require ThunderAI **version 5.1.0 or later**.
+
+When the AI doesn't specify a reminder, calendar events and tasks get the default reminder set in the Thunderbird settings (if it is enabled there). The AI can also set a specific reminder, or explicitly ask for no reminder.
 
 <br>
 
@@ -64,6 +69,7 @@ Install both add-ons from the [ThunderAI add-on page](https://micz.it/thunderbir
 
 | ThunderAI Sparks | Requires ThunderAI | Thunderbird |
 |---|---|---|
+| 3.1.0 | 5.0.0+ (5.1.0+ for reminders) | 140 - 159 |
 | 3.0.0 | 5.0.0+ | 140 - 156 |
 | 2.0.0 | earlier versions | 140 - 148 |
 | 1.2.4 | earlier versions | 128 - 147 |
