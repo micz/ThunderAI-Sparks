@@ -1,1 +1,41 @@
-{}
+{
+    "extensionDescription": {
+        "message": "ThunderAI Sparks, ThunderAI'ye gelişmiş özellikler eklemek için tasarlanmış bir Thunderbird eklentisidir."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Hata Ayıklama Modunu Etkinleştir"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Hata ayıklama sistemini etkinleştir"
+    },
+    "prefsInfoTitle": {
+        "message": "Önemli Bilgi"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks, ThunderAI'ye gelişmiş özellikler eklemek için tasarlanmış Thunderbird için deneysel bir eklentidir. Bu eklentiyi kullanmak için ThunderAI'yi yüklemeniz gerekir."
+    },
+    "prefsInfoDesc_2": {
+        "message": "ThunderAI'yi Thunderbird Eklentileri sayfasından edinin!"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "TranslateText": {
+        "message": "ThunderAI ve ThunderAI Sparks'ı çevirmeye yardımcı olmak ister misiniz?"
+    },
+    "TranslateLink": {
+        "message": "Nasıl yapılacağını öğrenin!"
+    },
+    "prefsDonation_1": {
+        "message": "Bu eklentiyi beğendiniz mi?"
+    },
+    "prefsDonation_2": {
+        "message": "Bağış yapmayı düşünün!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Sürüm Notları"
+    },
+    "backToOptionsText": {
+        "message": "Seçenekler"
+    }
+}
