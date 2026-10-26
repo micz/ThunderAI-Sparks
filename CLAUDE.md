@@ -87,6 +87,11 @@ js/
 options/                   Options UI + release-notes page
 _locales/<lang>/messages.json   Translations (default_locale: en)
 images/                    Icons
+tests/                     Automated suite (node:test), never packaged (see tests/README.md)
+  *.test.mjs               Level 1: modules + background under a browser mock, no install
+  dom/<page>/*.dom.mjs     DOM tests in jsdom (npm ci)
+  helpers/                 browser-mock, loader, DOM harness, known-issues mechanism
+package.json               Dev tooling only (jsdom + npm test scripts), never packaged
 ```
 
 See [`claude-spec/`](claude-spec/) for detailed architecture docs.
@@ -112,11 +117,28 @@ See [`claude-spec/`](claude-spec/) for detailed architecture docs.
 
 ## Testing / running
 
-There is no build step and no automated test suite. To exercise it manually you
-load it as a temporary add-on in Thunderbird (140+) alongside ThunderAI. The
-commented `testThunderAISparks()` block in
-[`mztas-background.js`](mztas-background.js) shows the shape of a direct
-`CalendarTools` call for ad-hoc testing.
+There is no build step. There **is** an automated test suite in [`tests/`](tests/),
+built with the same method as the main ThunderAI add-on: Node's built-in runner
+(`node:test`), two levels, and jsdom as the one development-only dependency (see
+[`tests/README.md`](tests/README.md)).
+
+- **Level 1** (`tests/*.test.mjs`, nothing to install): `extractJsonObject()`, and the
+  real background `mztas-background.js` loaded under an in-memory `browser` mock (the
+  presence check, the calendar/task dialog flows with their field whitelist and reminder
+  rules, the install-time menu reload), plus a static check that the field whitelists match
+  `api/CalendarTools/schema.json`. Run with `node --test "tests/**/*.test.mjs"`.
+- **DOM** (`tests/dom/<page>/*.dom.mjs`, needs `npm ci`): the options page in jsdom. Run
+  the whole suite with `npm test`.
+
+Tests are written from the spec, not the code: a failing test is a potential bug (run it as
+a known-issue TODO, see `tests/README.md`), never a reason to bend the source. The suite is
+**never packaged** — the packaging script must exclude `tests/`, `package.json`,
+`package-lock.json` and `node_modules/`, and no shipped code may import from `node_modules`.
+
+To exercise it manually, load it as a temporary add-on in Thunderbird (140+) alongside
+ThunderAI. The commented `testThunderAISparks()` block in
+[`mztas-background.js`](mztas-background.js) shows the shape of a direct `CalendarTools`
+call for ad-hoc testing.
 
 ## Gotchas
 

@@ -1,0 +1,41 @@
+name: Tests
+
+# On demand only, never on every commit: run it by hand (Actions → Tests → Run workflow,
+# or `gh workflow run tests.yml --ref <branch>`), or add the `run-tests` label to a pull request.
+on:
+  workflow_dispatch:
+  pull_request:
+    types: [labeled]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  tests:
+    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'run-tests'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        # node --test expands a quoted glob itself only from Node 21 on; jsdom 30.1.1 (the DOM
+        # tests' one dev dependency) needs ^22.22.2 || ^24.15.0 || >=26, which is engines.node in
+        # package.json.
+        node: [22, 24]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      # Before installing anything: the level-1 suite must keep running with no install.
+      - name: Level-1 suite, no dependencies
+        run: node --test --test-timeout=120000 "tests/**/*.test.mjs"
+      - name: Install the development tooling
+        run: npm ci
+      - name: Whole suite (level 1 and DOM tests)
+        run: npm test
