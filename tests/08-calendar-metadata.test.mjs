@@ -159,3 +159,12 @@ test('simulated native legacy fields, empty attendees, reminder and mandatory co
     assert.equal(h.calls.dialogs[0][4], event);
     assert.equal(h.calls.dialogs[0][5], false);
 });
+
+test('simulated native no calendar able to receive the event: an explicit error and no dialog', async () => {
+    const selected = calendar('selected',{readOnly:true});
+    const h = loadCalendarAPI({selected,calendars:[selected,calendar('off',{disabled:true})]});
+    const result = await h.api.openCalendarDialog(EVENT);
+    assert.equal(result.result,false);
+    assert.ok(result.error);
+    assert.equal(h.calls.dialogs.length,0);
+});

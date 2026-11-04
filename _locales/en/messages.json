@@ -62,5 +62,8 @@
   },
   "calendar_links_description_only": {
     "message": "Some links could not be added as calendar attachments. They are still available in the event description."
+  },
+  "calendar_no_writable_events": {
+    "message": "No available calendar allows creating events. Enable a writable event calendar and try again."
   }
 }

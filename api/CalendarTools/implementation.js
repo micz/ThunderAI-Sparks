@@ -192,11 +192,14 @@
               //   return {result: false, error: "|>>noActiveCalendar"};
               // }
 
-              // The calendar the dialog will really use; still the selected one when none is
-              // eligible, which the dialog then handles as it always has.
+              // The calendar the dialog will really use. With none eligible the dialog would open
+              // nothing at all: report it instead of claiming success.
               let curr_calendar = window.getSelectedCalendar();
               if (!canCreateEvent(curr_calendar)) {
-                curr_calendar = firstEligibleCalendar(window) || curr_calendar;
+                curr_calendar = firstEligibleCalendar(window);
+              }
+              if (!curr_calendar) {
+                return {result: false, error: context.extension.localeData.localizeMessage("calendar_no_writable_events")};
               }
 
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));

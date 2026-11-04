@@ -154,7 +154,7 @@ The background accepts only the ThunderAI sender ID and validates message shape.
 Optional category/link types are filtered before entering the experimental API.
 `applyMetadata()` re-reads categories, respects the limits of the calendar that receives
 the event (when the selected one is ineligible, the first eligible one in the calendar
-list's order, as the dialog picks it) and creates URI
+list's order, as the dialog picks it; with none, an explicit error) and creates URI
 attachments with `CalAttachment`, and the first link fills `URL`, which a server may
 keep when it drops `ATTACH`. Links remain in `descriptionText` even when
 attachments are unsupported. Only fields/counts are included in metadata diagnostics.
