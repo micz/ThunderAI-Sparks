@@ -58,11 +58,21 @@
     }
   }
 
+  function canCreateEvent(calendar) {
+    return !!calendar && calendar.getProperty("capabilities.events.supported") !== false &&
+      cal.acl.isCalendarWritable(calendar) && cal.acl.userCanAddItemsToCalendar(calendar);
+  }
+
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
       return {
         CalendarTools: {
-          async openCalendarDialog(cal_data) {
+          async listWritableCalendars() {
+            return cal.manager.getCalendars().filter(canCreateEvent).map(calendar => ({
+              id: calendar.id, name: calendar.name, type: calendar.type
+            }));
+          },
+          async openCalendarDialog(cal_data, preferred_calendar_id = "") {
             // implementation
             //  console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
 
@@ -82,16 +92,26 @@
                 endDate.timezone = timezoneService.getTimezone(cal_data.timezone);
               }
 
-              // let calendars = cal.manager.getCalendars();
-              // calendars = calendars.filter(cal.acl.isCalendarWritable);
-
-              // if (calendars.length < 1) {
-              //   // There are no writable calendars
-              //   console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", "No active calendar found!");
-              //   return {result: false, error: "|>>noActiveCalendar"};
-              // }
-
-              let curr_calendar = window.getSelectedCalendar();
+              // Preserve the selected-calendar path when no preference is configured.
+              let curr_calendar;
+              if (!preferred_calendar_id) {
+                curr_calendar = window.getSelectedCalendar();
+              } else {
+                const calendars = cal.manager.getCalendars();
+                curr_calendar = calendars.find(calendar => calendar.id === preferred_calendar_id && canCreateEvent(calendar));
+                if (!curr_calendar) {
+                  const selected = window.getSelectedCalendar();
+                  curr_calendar = canCreateEvent(selected) ? selected : calendars.find(canCreateEvent);
+                  if (curr_calendar) {
+                    Services.prompt.alert(window,
+                      context.extension.localeData.localizeMessage("calendar_fallback_title"),
+                      context.extension.localeData.localizeMessage("calendar_fallback_message"));
+                  }
+                }
+              }
+              if (!canCreateEvent(curr_calendar)) {
+                return {result: false, error: context.extension.localeData.localizeMessage("calendar_no_writable_events")};
+              }
 
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));

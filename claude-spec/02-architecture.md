@@ -15,7 +15,7 @@ js/
   mztas-logger.js           tasLogger(prefix, do_debug)
   mztas-i18n.js             __MSG_*__ DOM localizer (vendored)
   mztas-options.js          storage.sync get/set helper (vendored, MPL-2.0)
-  mztas-options-default.js  { do_debug: false }
+  mztas-options-default.js  { do_debug: false, preferred_calendar_id: "" }
 
 options/
   mztas-options.html/.css/mztas-options-page.js   Options page
@@ -48,7 +48,9 @@ hardcoded.
 ### `api/CalendarTools/` — the experimental API
 
 The reason the add-on exists. `schema.json` declares the API surface; the two
-functions are `async` and take a single object parameter. `implementation.js`
+creation functions are `async` and take an object parameter. `openCalendarDialog`
+also accepts an optional internal calendar ID; `listWritableCalendars()` reads
+available event calendars. `implementation.js`
 runs in a **privileged** context and is wrapped in the experiments-framework
 idiom:
 
@@ -133,7 +135,8 @@ The task flow is identical with `openTaskDialog` / `task_data` /
 
 ## Options / storage
 
-- Prefs stored in `browser.storage.sync`. Only one pref today: `do_debug`.
+- Prefs stored in `browser.storage.sync`: `do_debug` and `preferred_calendar_id`
+  (empty string = currently selected calendar).
 - `mztas-options.js` (vendored options-manager) wires `.option-input` elements
   to `storage.sync` on `change`, and restores them on load.
 - The options page and release-notes page are localized via the `__MSG_*__`
@@ -146,3 +149,16 @@ The task flow is identical with `openTaskDialog` / `task_data` /
   (implementation), and logged to the console with a `[ThunderAI Sparks]` prefix.
 - Verbose diagnostic logs go through `tasLogger` and only print when `do_debug`
   is enabled.
+
+## Preferred event calendar
+
+The background reads `preferred_calendar_id` for each event and passes it as a
+separate API argument, never an AI field. Native event support, writability and
+creation ACL are rechecked. An unusable preference falls back to the selected
+calendar when eligible, else the first eligible manager entry; a native warning
+is shown and the saved ID is kept. No eligible calendar means an error and no
+dialog. With no preference the selected-calendar path remains in use.
+
+The selector is restored separately from the vendored `.option-input` manager,
+which dispatches synthetic changes. Restoring never writes the preference.
+See [details and manual checks](../docs/default-event-calendar.md).

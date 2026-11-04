@@ -185,3 +185,12 @@ Adding a field to an event/task requires **both repos**:
    ThunderAI settings").
 
 See [`04-thunderai-integration.md`](04-thunderai-integration.md).
+
+## Internal preferred-calendar argument
+
+`CalendarTools.openCalendarDialog(cal_data, preferred_calendar_id?)` accepts the
+stable ID from Sparks preferences as a separate optional argument. Neither the
+AI JSON nor the external creation message can choose it. `checkPresence` and the
+event/task JSON whitelist remain unchanged. `listWritableCalendars()` returns
+`{id, name, type}[]` after native event-support, writability and add-item ACL checks.
+See [the preference contract](../docs/default-event-calendar.md).

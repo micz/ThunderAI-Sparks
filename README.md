@@ -105,3 +105,11 @@ Are you using this addon in your Thunderbird?
 ## Attributions
 
 Thanks to [Philipp](https://github.com/kewisch/) for the help with the experimental calendar API.
+
+## Default event calendar (development)
+
+Sparks options can select the calendar used for new events. Leave **Default
+calendar for events** empty to use the currently selected calendar. If a saved
+calendar becomes unavailable, Sparks warns and chooses an eligible fallback
+without erasing the preference. See the [configuration and validation
+guide](docs/default-event-calendar.md). Tasks keep their existing behavior.

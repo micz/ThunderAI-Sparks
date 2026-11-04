@@ -29,4 +29,37 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelectorAll(".option-input").forEach(element => {
       element.addEventListener("change", tasPrefs.saveOptions);
     });
+    // This select is intentionally outside .option-input: restoreOptions dispatches
+    // synthetic change events, which must never overwrite a stored calendar ID.
+    await restorePreferredCalendar();
   }, { once: true });
+
+async function restorePreferredCalendar() {
+    const select = document.getElementById("preferred_calendar_id");
+    const status = document.getElementById("preferred_calendar_status");
+    try {
+      const [stored, calendars] = await Promise.all([
+        tasPrefs.getPref("preferred_calendar_id"),
+        browser.CalendarTools.listWritableCalendars()
+      ]);
+      const preferred = typeof stored === "string" ? stored : "";
+      select.add(new Option(browser.i18n.getMessage("prefs_selected_event_calendar"), ""));
+      for (const calendar of calendars) {
+        select.add(new Option(`${calendar.name} (${calendar.type}; ${calendar.id})`, calendar.id));
+      }
+      if (preferred && !calendars.some(calendar => calendar.id === preferred)) {
+        const unavailable = new Option(browser.i18n.getMessage("prefs_unavailable_event_calendar") + ` (${preferred})`, preferred);
+        unavailable.disabled = true;
+        select.add(unavailable);
+        status.textContent = browser.i18n.getMessage("prefs_unavailable_event_calendar_info");
+      }
+      select.value = preferred;
+      select.disabled = false;
+      select.addEventListener("change", async () => {
+        await tasPrefs.setPref("preferred_calendar_id", select.value);
+        status.textContent = "";
+      });
+    } catch (e) {
+      status.textContent = browser.i18n.getMessage("prefs_event_calendars_load_error");
+    }
+}

@@ -27,7 +27,11 @@ test('every default pref has a matching .option-input control on the options pag
     const html = readRepo('options/mztas-options.html');
     const ids = [...html.matchAll(/<input\b[^>]*\bid="([^"]+)"[^>]*\bclass="[^"]*\boption-input\b[^"]*"/g)]
         .map(m => m[1]);
-    for (const pref of Object.keys(prefs_default)) {
+    // This select has its own restoration; the generic manager dispatches change.
+    assert.ok(/<select\b[^>]*\bid="preferred_calendar_id"/.test(html));
+    assert.equal(prefs_default.preferred_calendar_id, '');
+    assert.ok(!ids.includes('preferred_calendar_id'));
+    for (const pref of Object.keys(prefs_default).filter(pref => pref !== 'preferred_calendar_id')) {
         assert.ok(ids.includes(pref), 'no .option-input with id="' + pref + '" on the options page');
     }
 });

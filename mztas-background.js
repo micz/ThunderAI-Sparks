@@ -107,7 +107,12 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
       return _openCalendarDialog(jsonObj);
 
       async function _openCalendarDialog(jsonObj) {
-        let _result = await browser.CalendarTools.openCalendarDialog(jsonObj);
+        // The calendar ID is user configuration, never part of the AI's JSON.
+        const prefs = await browser.storage.sync.get({preferred_calendar_id: ""});
+        const preferred = typeof prefs.preferred_calendar_id === "string" ? prefs.preferred_calendar_id : "";
+        let _result = preferred
+          ? await browser.CalendarTools.openCalendarDialog(jsonObj, preferred)
+          : await browser.CalendarTools.openCalendarDialog(jsonObj);
         if(_result.result){
           return "ok";
         } else {
