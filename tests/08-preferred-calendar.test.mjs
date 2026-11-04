@@ -64,16 +64,17 @@ test('simulated native no preference keeps the selected calendar path', async ()
     assert.equal(h.calls.warnings.length, 0);
 });
 
-// Thunderbird's openEventDialog() retargets a new event on the first eligible calendar:
-// without a preference an ineligible selected calendar must still reach that dialog.
-test('simulated native no preference leaves an ineligible selected calendar to the native dialog', async () => {
+// Thunderbird's openEventDialog() retargets a new event on the first eligible calendar of the
+// calendar list: without a preference Sparks picks that calendar itself, silently, so what it
+// prepares (category and attachment limits) is for the calendar that receives the event.
+test('simulated native no preference sends an ineligible selected calendar\'s event to the first eligible one, silently', async () => {
     for (const props of [{disabled:true},{readOnly:true},{aclDenied:true},{'capabilities.events.supported':false}]) {
-        const selected = calendar('selected',props);
-        const h = loadCalendarAPI({selected,calendars:[selected,calendar('other')]});
+        const selected = calendar('selected',props), other = calendar('other');
+        const h = loadCalendarAPI({selected,calendars:[selected,other]});
         const result = await h.api.openCalendarDialog(EVENT);
         assert.equal(result.result,true);
         assert.equal(h.calls.dialogs.length,1);
-        assert.equal(h.event().calendar,selected);
+        assert.equal(h.event().calendar,other);
         assert.equal(h.calls.warnings.length,0);
     }
 });
@@ -89,12 +90,15 @@ test('simulated native deleted, disabled, read-only and ACL-denied preferences f
     }
 });
 
-test('simulated native fallback uses manager order if the selected calendar is ineligible', async () => {
+test('simulated native fallback follows the calendar list order if the selected calendar is ineligible', async () => {
     const first = calendar('first'), second = calendar('second');
     const h = loadCalendarAPI({selected:calendar('bad',{readOnly:true}),calendars:[first,second]});
     await h.api.openCalendarDialog(EVENT,'missing');
     assert.equal(h.event().calendar,first);
     assert.equal(h.calls.warnings.length,1);
+    const sorted = loadCalendarAPI({selected:calendar('bad',{readOnly:true}),calendars:[first,second],sortCalendarArray:list => [...list].reverse()});
+    await sorted.api.openCalendarDialog(EVENT,'missing');
+    assert.equal(sorted.event().calendar,second);
 });
 
 test('simulated native no eligible calendar reports an error and opens no dialog', async () => {

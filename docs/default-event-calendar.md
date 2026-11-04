@@ -3,8 +3,10 @@
 In ThunderAI, **Manage calendar event settings** lets you choose a default calendar,
 stored as a stable calendar ID. The empty value, **Use the currently selected
 calendar**, keeps the
-existing `window.getSelectedCalendar()` path, including Thunderbird's own retargeting
-of a new event when that calendar is not eligible. Tasks are unaffected.
+existing `window.getSelectedCalendar()` path. When that calendar cannot receive the
+event, Sparks picks the one Thunderbird's dialog would retarget to, the first eligible
+calendar in the calendar list's order, silently as before; the category and attachment
+limits applied are then that calendar's. Tasks are unaffected.
 
 Only calendars supporting events and passing Thunderbird's native writability
 and add-item ACL checks are listed. These checks also account for disabled and
@@ -21,8 +23,8 @@ Sparks does not answer it: the selector stays disabled and says why.
 
 At creation, Sparks rechecks the preferred calendar's availability, event support,
 writability and creation ACL. If it is no longer usable, the selected calendar is
-used when eligible, otherwise the first eligible calendar returned by the native
-manager is used. A native warning explains the fallback. The saved ID is kept,
+used when eligible, otherwise the first eligible calendar in the calendar list's order,
+as Thunderbird's dialog picks it. A native warning explains the fallback. The saved ID is kept,
 so temporarily offline calendars do not lose their preference. With no usable
 calendar, Sparks returns an explicit error and opens no event dialog.
 

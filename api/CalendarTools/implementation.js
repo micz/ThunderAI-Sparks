@@ -63,6 +63,15 @@
       cal.acl.isCalendarWritable(calendar) && cal.acl.userCanAddItemsToCalendar(calendar);
   }
 
+  // The calendar Thunderbird's event dialog uses when the given one cannot receive a new event:
+  // the first eligible one in the calendar list's order, as openEventDialog() picks it
+  // (sortCalendarArray() of the 3-pane window). Deciding it here means the category and
+  // attachment limits are those of the calendar that receives the event.
+  function firstEligibleCalendar(window) {
+    const eligible = cal.manager.getCalendars().filter(canCreateEvent);
+    return (typeof window.sortCalendarArray === "function" ? window.sortCalendarArray(eligible) : eligible)[0];
+  }
+
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
       return {
@@ -92,26 +101,21 @@
                 endDate.timezone = timezoneService.getTimezone(cal_data.timezone);
               }
 
-              // Preserve the selected-calendar path when no preference is configured.
-              let curr_calendar;
-              if (!preferred_calendar_id) {
-                curr_calendar = window.getSelectedCalendar();
-              } else {
-                const calendars = cal.manager.getCalendars();
-                curr_calendar = calendars.find(calendar => calendar.id === preferred_calendar_id && canCreateEvent(calendar));
-                if (!curr_calendar) {
-                  const selected = window.getSelectedCalendar();
-                  curr_calendar = canCreateEvent(selected) ? selected : calendars.find(canCreateEvent);
-                  if (curr_calendar) {
-                    Services.prompt.alert(window,
-                      context.extension.localeData.localizeMessage("calendar_fallback_title"),
-                      context.extension.localeData.localizeMessage("calendar_fallback_message"));
-                  }
+              // The preferred calendar when it can receive the event. Otherwise the selected one,
+              // else the one the dialog would retarget to: silently without a preference, as it
+              // always was, and with a warning when the preference cannot be honored.
+              let curr_calendar = preferred_calendar_id ? cal.manager.getCalendars()
+                .find(calendar => calendar.id === preferred_calendar_id && canCreateEvent(calendar)) : undefined;
+              if (!curr_calendar) {
+                const selected = window.getSelectedCalendar();
+                curr_calendar = canCreateEvent(selected) ? selected : firstEligibleCalendar(window);
+                if (curr_calendar && preferred_calendar_id) {
+                  Services.prompt.alert(window,
+                    context.extension.localeData.localizeMessage("calendar_fallback_title"),
+                    context.extension.localeData.localizeMessage("calendar_fallback_message"));
                 }
               }
-              // Without a preference an ineligible selected calendar stays: openEventDialog()
-              // retargets a new event on the first eligible calendar, as it always has.
-              if (!canCreateEvent(curr_calendar) && !cal.manager.getCalendars().some(canCreateEvent)) {
+              if (!canCreateEvent(curr_calendar)) {
                 return {result: false, error: context.extension.localeData.localizeMessage("calendar_no_writable_events")};
               }
 

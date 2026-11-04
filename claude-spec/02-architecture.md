@@ -155,10 +155,12 @@ ThunderAI owns this setting and sends `preferred_calendar_id` next to
 `calendar_event_data`. The background passes it as a separate API argument, never
 from the AI JSON. `listWritableCalendars` answers ThunderAI's settings page. Native event support, writability and
 creation ACL are rechecked. An unusable preference falls back to the selected
-calendar when eligible, else the first eligible manager entry; a native warning
+calendar when eligible, else the first eligible calendar in the calendar list's order
+(`sortCalendarArray()` of the 3-pane window, as `openEventDialog()` picks it); a native warning
 is shown and the saved ID is kept. No eligible calendar means an error and no
-dialog. With no preference the selected-calendar path remains in use, and
-Thunderbird retargets a new event if that calendar is ineligible.
+dialog. With no preference the selected calendar is used; when it is ineligible, Sparks
+picks the same calendar the dialog would retarget to, silently, so the category and
+attachment limits are those of the calendar that receives the event.
 
 The selector is restored separately from the vendored `.option-input` manager,
 which dispatches synthetic changes. Restoring never writes the preference.
