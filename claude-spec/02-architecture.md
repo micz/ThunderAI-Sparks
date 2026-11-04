@@ -15,7 +15,7 @@ js/
   mztas-logger.js           tasLogger(prefix, do_debug)
   mztas-i18n.js             __MSG_*__ DOM localizer (vendored)
   mztas-options.js          storage.sync get/set helper (vendored, MPL-2.0)
-  mztas-options-default.js  { do_debug: false, preferred_calendar_id: "" }
+  mztas-options-default.js  { do_debug: false }
 
 options/
   mztas-options.html/.css/mztas-options-page.js   Options page
@@ -135,8 +135,7 @@ The task flow is identical with `openTaskDialog` / `task_data` /
 
 ## Options / storage
 
-- Prefs stored in `browser.storage.sync`: `do_debug` and `preferred_calendar_id`
-  (empty string = currently selected calendar).
+- Prefs stored in `browser.storage.sync`: `do_debug`.
 - `mztas-options.js` (vendored options-manager) wires `.option-input` elements
   to `storage.sync` on `change`, and restores them on load.
 - The options page and release-notes page are localized via the `__MSG_*__`
@@ -152,12 +151,14 @@ The task flow is identical with `openTaskDialog` / `task_data` /
 
 ## Preferred event calendar
 
-The background reads `preferred_calendar_id` for each event and passes it as a
-separate API argument, never an AI field. Native event support, writability and
+ThunderAI owns this setting and sends `preferred_calendar_id` next to
+`calendar_event_data`. The background passes it as a separate API argument, never
+from the AI JSON. `listWritableCalendars` answers ThunderAI's settings page. Native event support, writability and
 creation ACL are rechecked. An unusable preference falls back to the selected
 calendar when eligible, else the first eligible manager entry; a native warning
 is shown and the saved ID is kept. No eligible calendar means an error and no
-dialog. With no preference the selected-calendar path remains in use.
+dialog. With no preference the selected-calendar path remains in use, and
+Thunderbird retargets a new event if that calendar is ineligible.
 
 The selector is restored separately from the vendored `.option-input` manager,
 which dispatches synthetic changes. Restoring never writes the preference.

@@ -90,7 +90,6 @@ DOM:
 ## Preferred-calendar checks
 
 `08-preferred-calendar.test.mjs` executes the real privileged implementation with
-Thunderbird doubles; `dom/options/02-preferred-calendar.dom.mjs` checks actual
-options-page restoration without writes, duplicate names and API failures in
-jsdom. These do not validate real providers or native windows. See the
+Thunderbird doubles, and the real background with the message contract. The selector
+itself is tested in ThunderAI. These do not validate real providers or native windows. See the
 [manual procedure](../docs/default-event-calendar.md#validation).

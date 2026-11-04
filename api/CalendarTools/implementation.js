@@ -109,7 +109,9 @@
                   }
                 }
               }
-              if (!canCreateEvent(curr_calendar)) {
+              // Without a preference an ineligible selected calendar stays: openEventDialog()
+              // retargets a new event on the first eligible calendar, as it always has.
+              if (!canCreateEvent(curr_calendar) && !cal.manager.getCalendars().some(canCreateEvent)) {
                 return {result: false, error: context.extension.localeData.localizeMessage("calendar_no_writable_events")};
               }
 

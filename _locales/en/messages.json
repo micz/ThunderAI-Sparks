@@ -51,21 +51,6 @@
     "message": "Options",
     "description": ""
   },
-  "prefs_default_event_calendar": {
-    "message": "Default calendar for events"
-  },
-  "prefs_selected_event_calendar": {
-    "message": "Use the currently selected calendar"
-  },
-  "prefs_unavailable_event_calendar": {
-    "message": "Unavailable calendar"
-  },
-  "prefs_unavailable_event_calendar_info": {
-    "message": "The saved calendar is unavailable. Event creation will use an available calendar and warn you. Your saved preference is kept."
-  },
-  "prefs_event_calendars_load_error": {
-    "message": "Calendars could not be loaded. Your saved preference has not been changed."
-  },
   "calendar_fallback_title": {
     "message": "ThunderAI Sparks — calendar unavailable"
   },

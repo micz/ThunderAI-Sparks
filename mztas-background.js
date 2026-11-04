@@ -92,6 +92,11 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
       return Promise.resolve(SPARKS_VERSION);
       break;
 
+    case "listWritableCalendars":
+      // Calendar names are private: for ThunderAI only.
+      if (sender?.id !== "thunderai@micz.it") return undefined;
+      return browser.CalendarTools.listWritableCalendars();
+
     case "openCalendarEventDialog": {
       tasLog.log("openCalendarEventDialog: ", message.calendar_event_data);
       let jsonObj = {};
@@ -107,9 +112,8 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
       return _openCalendarDialog(jsonObj);
 
       async function _openCalendarDialog(jsonObj) {
-        // The calendar ID is user configuration, never part of the AI's JSON.
-        const prefs = await browser.storage.sync.get({preferred_calendar_id: ""});
-        const preferred = typeof prefs.preferred_calendar_id === "string" ? prefs.preferred_calendar_id : "";
+        // A setting of ThunderAI, sent next to the AI's JSON and never read from it.
+        const preferred = typeof message.preferred_calendar_id === "string" ? message.preferred_calendar_id : "";
         let _result = preferred
           ? await browser.CalendarTools.openCalendarDialog(jsonObj, preferred)
           : await browser.CalendarTools.openCalendarDialog(jsonObj);
