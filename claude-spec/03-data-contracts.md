@@ -56,7 +56,7 @@ the LLM output is tolerated.
 | `use_timezone` | boolean | no | if true, apply `timezone` to start/end |
 | `reminderMinutes` | integer | no | reminder (alarm), see below |
 | `categories` | string[] | no | exact existing native category names; deduplicated and checked again at creation |
-| `links` | string[] | no | normalized HTTP/HTTPS URI attachments, also retained in description |
+| `links` | string[] | no | normalized HTTP/HTTPS URI attachments, also retained in description; the first also fills the event `URL` |
 
 ```json
 {

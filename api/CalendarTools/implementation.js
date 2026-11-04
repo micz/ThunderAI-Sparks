@@ -68,11 +68,27 @@
     try {
       const url = new URL(value);
       if (!["http:", "https:"].includes(url.protocol) || !url.hostname ||
-          url.username || url.password || value.split("/")[2].includes("@")) return null;
+          url.username || url.password || value.split(/[/?#]/)[2].includes("@")) return null;
       return url.href;
     } catch (e) {
       return null;
     }
+  }
+
+  // The links a text already carries. A scan cannot tell the last character of a URL from
+  // the punctuation around it ("see URL.", "[x](URL)"), so every shorter form counts too.
+  function linksInText(text) {
+    const found = new Set();
+    for (const match of (text.match(/https?:\/\/[^\s<>"\u0000-\u001f]+/gi) || []).flatMap(found => found.split("]("))) {
+      let candidate = match, previous;
+      do {
+        previous = candidate;
+        const link = normalizedLink(candidate);
+        if (link) found.add(link);
+        candidate = candidate.replace(/[.,;:!?'’”»`)\]}*_]$/u, "");
+      } while (candidate !== previous);
+    }
+    return found;
   }
 
   function applyMetadata(event, data, calendar, window, context) {
@@ -100,10 +116,11 @@
       const ignored = data.links.length - links.length;
       if (ignored) console.warn("[ThunderAI Sparks] links ignored:", ignored);
       const description = event.descriptionText || "";
-      const existing = new Set((description.match(/https?:\/\/[^\s<>"\u0000-\u001f]+/gi) || [])
-        .map(normalizedLink).filter(Boolean));
+      const existing = linksInText(description);
       const missing = links.filter(link => !existing.has(link));
       if (missing.length) event.descriptionText = [description, ...missing].filter(Boolean).join("\n");
+      // A server can drop ATTACH without notice: URL is the other native place for a link.
+      if (links.length) event.setProperty("URL", links[0]);
       if (links.length && calendar?.getProperty("capabilities.attachments.supported") === false) {
         warn("calendar_links_description_only");
       } else {

@@ -75,6 +75,48 @@ test('simulated native URI attachments validate, normalize and deduplicate witho
     assert.equal(JSON.stringify(h.calls.logs).includes('secret'), false);
 });
 
+test('simulated native description deduplication ignores punctuation around a URL, not a URL of its own', async () => {
+    const link = 'https://example.org/p.pdf';
+    for (const description of ['See '+link+'.', 'See ['+link+']('+link+')', '('+link+'), thanks', '**'+link+'**', '"'+link+'"', link]) {
+        const h = loadCalendarAPI();
+        await h.api.openCalendarDialog({...EVENT,description,links:[link]});
+        assert.equal(h.event().descriptionText, description);
+        assert.deepEqual(h.event().attachments.map(a => a.uri.spec), [link]);
+    }
+    const wiki = 'https://example.org/wiki/Foo_(bar)';
+    for (const [description, expected] of [
+        ['('+wiki+')', '('+wiki+')'],
+        ['https://example.org/wiki/Foo_', 'https://example.org/wiki/Foo_\n'+wiki],
+    ]) {
+        const h = loadCalendarAPI();
+        await h.api.openCalendarDialog({...EVENT,description,links:[wiki]});
+        assert.equal(h.event().descriptionText, expected);
+    }
+});
+
+test('simulated native first valid link becomes the native event URL, even without attachment support', async () => {
+    const links = ['ftp://example.org/x','https://example.org/a','https://example.org/b'];
+    for (const options of [{},{selected:calendar('limited',{'capabilities.attachments.supported':false})}]) {
+        const h = loadCalendarAPI(options);
+        await h.api.openCalendarDialog({...EVENT,links});
+        assert.equal(h.event().properties.URL,'https://example.org/a');
+    }
+    for (const fields of [{},{links:[]},{links:['ftp://example.org/x']}]) {
+        const h = loadCalendarAPI();
+        await h.api.openCalendarDialog({...EVENT,...fields});
+        assert.equal('URL' in h.event().properties,false);
+    }
+});
+
+test('simulated native "@" is refused in the authority only', async () => {
+    const accepted = ['https://meet.example.org?email=a@b.org','https://example.org#a@b','https://example.org/path?email=a@b.org',
+        'https://teams.example.org/l/19:meeting_x@thread.v2/0?context=%7b%7d'];
+    const h = loadCalendarAPI();
+    await h.api.openCalendarDialog({...EVENT,links:[...accepted,'https://@example.org/','https://:@example.org/','https://user@example.org/','https://a@b@example.org/']});
+    assert.deepEqual(h.event().attachments.map(a => new URL(a.uri.spec).hostname),
+        ['meet.example.org','example.org','example.org','teams.example.org']);
+});
+
 test('simulated native unsupported attachments and URI failures keep URLs in the description and warn', async () => {
     for (const options of [{selected:calendar('limited',{'capabilities.attachments.supported':false})},{uriFailure:true}]) {
         const h = loadCalendarAPI(options);

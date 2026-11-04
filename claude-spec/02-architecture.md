@@ -153,6 +153,7 @@ The background accepts only the ThunderAI sender ID and validates message shape.
 `getCapabilities` advertises the event fields plus the native category list.
 Optional category/link types are filtered before entering the experimental API.
 `applyMetadata()` re-reads categories, respects the provider limit and creates URI
-attachments with `CalAttachment`. Links remain in `descriptionText` even when
+attachments with `CalAttachment`, and the first link fills `URL`, which a server may
+keep when it drops `ATTACH`. Links remain in `descriptionText` even when
 attachments are unsupported. Only fields/counts are included in metadata diagnostics.
 The native review dialog is still required; no item is saved by Sparks.

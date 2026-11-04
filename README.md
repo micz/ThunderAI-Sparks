@@ -110,6 +110,6 @@ Thanks to [Philipp](https://github.com/kewisch/) for the help with the experimen
 
 Calendar extraction supports existing native categories and HTTP/HTTPS URI
 attachments with matching ThunderAI and Sparks capability support. Valid links
-are also kept in the description. Saved prompts are preserved; see the
+are also kept in the description. Turn it on in ThunderAI's calendar event settings; see the
 [configuration, JSON contract and validation guide](docs/calendar-event-metadata.md).
 The native event window remains the confirmation step before saving.
