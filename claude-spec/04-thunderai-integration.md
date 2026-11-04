@@ -74,3 +74,12 @@ user-visible half (the prompt) is on the ThunderAI side.
    needs a ThunderAI prompt update).
 5. **ThunderAI** — update the relevant prompt so the LLM emits the field.
 6. File/track the issue in the **ThunderAI** repo with the `Sparks` label.
+
+## Category/link capability negotiation
+
+The optional `categories` and `links` fields use the separate `getCapabilities`
+action; no minimum-version change is needed. ThunderAI's category placeholder
+requires the matching companion change. Old clients continue to use the existing
+version handshake and creation message. New clients facing old/malformed or
+unresponsive capability replies strip new native fields but keep links as text.
+See [the configuration guide](../docs/calendar-event-metadata.md).

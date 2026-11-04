@@ -47,8 +47,8 @@ hardcoded.
 
 ### `api/CalendarTools/` — the experimental API
 
-The reason the add-on exists. `schema.json` declares the API surface; the two
-functions are `async` and take a single object parameter. `implementation.js`
+The reason the add-on exists. `schema.json` declares the async creation functions
+and the `getCalendarCategories()` read method. Creation functions take an object parameter. `implementation.js`
 runs in a **privileged** context and is wrapped in the experiments-framework
 idiom:
 
@@ -146,3 +146,13 @@ The task flow is identical with `openTaskDialog` / `task_data` /
   (implementation), and logged to the console with a `[ThunderAI Sparks]` prefix.
 - Verbose diagnostic logs go through `tasLogger` and only print when `do_debug`
   is enabled.
+
+## Event metadata
+
+The background accepts only the ThunderAI sender ID and validates message shape.
+`getCapabilities` advertises the event fields plus the native category list.
+Optional category/link types are filtered before entering the experimental API.
+`applyMetadata()` re-reads categories, respects the provider limit and creates URI
+attachments with `CalAttachment`. Links remain in `descriptionText` even when
+attachments are unsupported. Only fields/counts are included in metadata diagnostics.
+The native review dialog is still required; no item is saved by Sparks.
