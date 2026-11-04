@@ -108,6 +108,18 @@ test('simulated native first valid link becomes the native event URL, even witho
     }
 });
 
+test('simulated native limits are those of the calendar that receives the event, not of an ineligible selected one', async () => {
+    const selected = calendar('selected',{readOnly:true,'capabilities.categories.maxCount':0,'capabilities.attachments.supported':false});
+    const first = calendar('first'), second = calendar('second');
+    const h = loadCalendarAPI({categories:['A','B','C'],selected,calendars:[selected,first,second],
+        sortCalendarArray: list => [...list].reverse()});
+    await h.api.openCalendarDialog({...EVENT,categories:['A','B','C'],links:['https://example.org/a','https://example.org/b']});
+    assert.equal(h.event().calendar, second);
+    assert.deepEqual(h.event().categoryCalls, [['A','B','C']]);
+    assert.equal(h.event().attachments.length, 2);
+    assert.equal(h.calls.warnings.length, 0);
+});
+
 test('simulated native "@" is refused in the authority only', async () => {
     const accepted = ['https://meet.example.org?email=a@b.org','https://example.org#a@b','https://example.org/path?email=a@b.org',
         'https://teams.example.org/l/19:meeting_x@thread.v2/0?context=%7b%7d'];

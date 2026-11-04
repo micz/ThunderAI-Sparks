@@ -142,6 +142,20 @@
     }
   }
 
+  function canCreateEvent(calendar) {
+    return !!calendar && calendar.getProperty("capabilities.events.supported") !== false &&
+      cal.acl.isCalendarWritable(calendar) && cal.acl.userCanAddItemsToCalendar(calendar);
+  }
+
+  // The calendar Thunderbird's event dialog uses when the given one cannot receive a new event:
+  // the first eligible one in the calendar list's order, as openEventDialog() picks it
+  // (sortCalendarArray() of the 3-pane window). Deciding it here means the category and
+  // attachment limits are those of the calendar that receives the event.
+  function firstEligibleCalendar(window) {
+    const eligible = cal.manager.getCalendars().filter(canCreateEvent);
+    return (typeof window.sortCalendarArray === "function" ? window.sortCalendarArray(eligible) : eligible)[0];
+  }
+
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
       return {
@@ -178,7 +192,12 @@
               //   return {result: false, error: "|>>noActiveCalendar"};
               // }
 
+              // The calendar the dialog will really use; still the selected one when none is
+              // eligible, which the dialog then handles as it always has.
               let curr_calendar = window.getSelectedCalendar();
+              if (!canCreateEvent(curr_calendar)) {
+                curr_calendar = firstEligibleCalendar(window) || curr_calendar;
+              }
 
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));

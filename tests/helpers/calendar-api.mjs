@@ -35,6 +35,8 @@ export function loadCalendarAPI(options = {}) {
     const window = {
         getSelectedCalendar() { calls.selected++; return selected; },
         createEventWithDialog(...args) { calls.dialogs.push(args); },
+        // calendar-ui-utils.js, in the 3-pane window: the calendar list's order.
+        ...(options.sortCalendarArray ? { sortCalendarArray: options.sortCalendarArray } : {}),
     };
     const cal = {
         category: { fromPrefs() { return options.categories || []; } },
