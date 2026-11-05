@@ -83,6 +83,11 @@ Install both add-ons from the [ThunderAI add-on page](https://micz.it/thunderbir
 
 <br>
 
+## Contributing
+Bug reports, translations and pull requests are welcome! Please read the [contributing guide](CONTRIBUTING.md) before getting started.
+
+<br>
+
 ## Changelog
 ThunderAI-Sparks's changes are logged [here](CHANGELOG.md).
 
