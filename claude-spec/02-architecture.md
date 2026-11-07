@@ -48,7 +48,9 @@ hardcoded.
 ### `api/CalendarTools/` — the experimental API
 
 The reason the add-on exists. `schema.json` declares the API surface; the two
-functions are `async` and take a single object parameter. `implementation.js`
+creation functions are `async` and take an object parameter. `openCalendarDialog`
+also accepts an optional internal calendar ID; `listWritableCalendars()` reads
+available event calendars. `implementation.js`
 runs in a **privileged** context and is wrapped in the experiments-framework
 idiom:
 
@@ -133,7 +135,7 @@ The task flow is identical with `openTaskDialog` / `task_data` /
 
 ## Options / storage
 
-- Prefs stored in `browser.storage.sync`. Only one pref today: `do_debug`.
+- Prefs stored in `browser.storage.sync`: `do_debug`.
 - `mztas-options.js` (vendored options-manager) wires `.option-input` elements
   to `storage.sync` on `change`, and restores them on load.
 - The options page and release-notes page are localized via the `__MSG_*__`
@@ -146,3 +148,20 @@ The task flow is identical with `openTaskDialog` / `task_data` /
   (implementation), and logged to the console with a `[ThunderAI Sparks]` prefix.
 - Verbose diagnostic logs go through `tasLogger` and only print when `do_debug`
   is enabled.
+
+## Preferred event calendar
+
+ThunderAI owns this setting and sends `preferred_calendar_id` next to
+`calendar_event_data`. The background passes it as a separate API argument, never
+from the AI JSON. `listWritableCalendars` answers ThunderAI's settings page. Native event support, writability and
+creation ACL are rechecked. An unusable preference falls back to the selected
+calendar when eligible, else the first eligible calendar in the calendar list's order
+(`sortCalendarArray()` of the 3-pane window, as `openEventDialog()` picks it); a native warning
+is shown and the saved ID is kept. No eligible calendar means an error and no
+dialog. With no preference the selected calendar is used; when it is ineligible, Sparks
+picks the same calendar the dialog would retarget to, silently, so the category and
+attachment limits are those of the calendar that receives the event.
+
+The selector is restored separately from the vendored `.option-input` manager,
+which dispatches synthetic changes. Restoring never writes the preference.
+See [details and manual checks](../docs/default-event-calendar.md).

@@ -86,3 +86,10 @@ DOM:
   Thunderbird.
 - Real layout and CSS — jsdom has no layout engine.
 - How the UI looks, and the end-to-end round trip with the ThunderAI add-on.
+
+## Preferred-calendar checks
+
+`08-preferred-calendar.test.mjs` executes the real privileged implementation with
+Thunderbird doubles, and the real background with the message contract. The selector
+itself is tested in ThunderAI. These do not validate real providers or native windows. See the
+[manual procedure](../docs/default-event-calendar.md#validation).

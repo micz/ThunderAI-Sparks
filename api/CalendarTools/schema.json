@@ -53,6 +53,12 @@
                   "optional": true
                 }
               }
+            },
+            {
+              "name": "preferred_calendar_id",
+              "type": "string",
+              "optional": true,
+              "description": "User-configured calendar ID, never taken from AI event data"
             }
           ]
         },
@@ -101,6 +107,13 @@
               }
             }
           ]
+        },
+        {
+          "name": "listWritableCalendars",
+          "type": "function",
+          "async": true,
+          "description": "Lists currently available calendars allowing event creation",
+          "parameters": []
         }
       ]
     }

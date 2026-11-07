@@ -58,11 +58,30 @@
     }
   }
 
+  function canCreateEvent(calendar) {
+    return !!calendar && calendar.getProperty("capabilities.events.supported") !== false &&
+      cal.acl.isCalendarWritable(calendar) && cal.acl.userCanAddItemsToCalendar(calendar);
+  }
+
+  // The calendar Thunderbird's event dialog uses when the given one cannot receive a new event:
+  // the first eligible one in the calendar list's order, as openEventDialog() picks it
+  // (sortCalendarArray() of the 3-pane window). Deciding it here means the category and
+  // attachment limits are those of the calendar that receives the event.
+  function firstEligibleCalendar(window) {
+    const eligible = cal.manager.getCalendars().filter(canCreateEvent);
+    return (typeof window.sortCalendarArray === "function" ? window.sortCalendarArray(eligible) : eligible)[0];
+  }
+
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
       return {
         CalendarTools: {
-          async openCalendarDialog(cal_data) {
+          async listWritableCalendars() {
+            return cal.manager.getCalendars().filter(canCreateEvent).map(calendar => ({
+              id: calendar.id, name: calendar.name, type: calendar.type
+            }));
+          },
+          async openCalendarDialog(cal_data, preferred_calendar_id = "") {
             // implementation
             //  console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
 
@@ -82,16 +101,23 @@
                 endDate.timezone = timezoneService.getTimezone(cal_data.timezone);
               }
 
-              // let calendars = cal.manager.getCalendars();
-              // calendars = calendars.filter(cal.acl.isCalendarWritable);
-
-              // if (calendars.length < 1) {
-              //   // There are no writable calendars
-              //   console.error("[ThunderAI Sparks] openCalendarDialog ExtensionAPI error: ", "No active calendar found!");
-              //   return {result: false, error: "|>>noActiveCalendar"};
-              // }
-
-              let curr_calendar = window.getSelectedCalendar();
+              // The preferred calendar when it can receive the event. Otherwise the selected one,
+              // else the one the dialog would retarget to: silently without a preference, as it
+              // always was, and with a warning when the preference cannot be honored.
+              let curr_calendar = preferred_calendar_id ? cal.manager.getCalendars()
+                .find(calendar => calendar.id === preferred_calendar_id && canCreateEvent(calendar)) : undefined;
+              if (!curr_calendar) {
+                const selected = window.getSelectedCalendar();
+                curr_calendar = canCreateEvent(selected) ? selected : firstEligibleCalendar(window);
+                if (curr_calendar && preferred_calendar_id) {
+                  Services.prompt.alert(window,
+                    context.extension.localeData.localizeMessage("calendar_fallback_title"),
+                    context.extension.localeData.localizeMessage("calendar_fallback_message"));
+                }
+              }
+              if (!canCreateEvent(curr_calendar)) {
+                return {result: false, error: context.extension.localeData.localizeMessage("calendar_no_writable_events")};
+              }
 
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));

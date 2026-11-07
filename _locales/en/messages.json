@@ -50,5 +50,14 @@
   "backToOptionsText": {
     "message": "Options",
     "description": ""
+  },
+  "calendar_fallback_title": {
+    "message": "ThunderAI Sparks — calendar unavailable"
+  },
+  "calendar_fallback_message": {
+    "message": "Your preferred calendar cannot accept new events. An available calendar has been selected instead. Review the calendar before saving; your preference has not been changed."
+  },
+  "calendar_no_writable_events": {
+    "message": "No available calendar allows creating events. Enable a writable event calendar and try again."
   }
 }
