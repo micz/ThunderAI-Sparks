@@ -29,7 +29,8 @@ export function extractJsonObject(inputString) {
         return null;
       }
     } catch (error) {
-      console.error("[ThunderAI-Sparks] Error extracting JSON object:", error);
+      // The kind only: a parser's message can quote the text, which comes from the mail.
+      console.error("[ThunderAI-Sparks] Error extracting JSON object:", error?.name || "Error");
       return null;
     }
   }

@@ -23,6 +23,8 @@
 // Using a closure to not leak anything but the API to the outside world.
 (function (exports) {
 
+  Cu.importGlobalProperties(["URL"]);
+
   var { cal } = ChromeUtils.importESModule("resource:///modules/calendar/calUtils.sys.mjs");
   var { CalAttendee } = ChromeUtils.importESModule("resource:///modules/CalAttendee.sys.mjs");
   var { CalAlarm } = ChromeUtils.importESModule("resource:///modules/CalAlarm.sys.mjs");
@@ -30,6 +32,7 @@
   ChromeUtils.defineESModuleGetters(globalThis, {
     CalEvent: "resource:///modules/CalEvent.sys.mjs",
     CalTodo: "resource:///modules/CalTodo.sys.mjs",
+    CalAttachment: "resource:///modules/CalAttachment.sys.mjs",
   });
 
   // True when reminderMinutes asks for a specific reminder setting
@@ -58,10 +61,108 @@
     }
   }
 
+  // Parse before constructing any native URI. Never download attachment contents.
+  function normalizedLink(value) {
+    if (typeof value !== "string" || !/^https?:\/\//i.test(value) ||
+        /[\\\s\u0000-\u001f\u007f-\u009f]/u.test(value)) return null;
+    try {
+      const url = new URL(value);
+      if (!["http:", "https:"].includes(url.protocol) || !url.hostname ||
+          url.username || url.password || value.split(/[/?#]/)[2].includes("@")) return null;
+      return url.href;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  // The links a text already carries. A scan cannot tell the last character of a URL from
+  // the punctuation around it ("see URL.", "[x](URL)"), so every shorter form counts too.
+  function linksInText(text) {
+    const found = new Set();
+    for (const match of (text.match(/https?:\/\/[^\s<>"\u0000-\u001f]+/gi) || []).flatMap(found => found.split("]("))) {
+      let candidate = match, previous;
+      do {
+        previous = candidate;
+        const link = normalizedLink(candidate);
+        if (link) found.add(link);
+        candidate = candidate.replace(/[.,;:!?'’”»`)\]}*_]$/u, "");
+      } while (candidate !== previous);
+    }
+    return found;
+  }
+
+  function applyMetadata(event, data, calendar, window, context) {
+    const warn = key => Services.prompt.alert(window,
+      context.extension.localeData.localizeMessage("calendar_metadata_warning_title"),
+      context.extension.localeData.localizeMessage(key));
+    if (Array.isArray(data.categories) && data.categories.length) {
+      try {
+        const catalogue = new Set(cal.category.fromPrefs());
+        const categories = [...new Set(data.categories.filter(value =>
+          typeof value === "string" && catalogue.has(value)))];
+        const ignored = data.categories.length - categories.length;
+        if (ignored) console.warn("[ThunderAI Sparks] categories ignored:", ignored);
+        const limit = calendar?.getProperty("capabilities.categories.maxCount");
+        const kept = Number.isInteger(limit) && limit >= 0 ? categories.slice(0, limit) : categories;
+        if (kept.length) event.setCategories(kept);
+        if (kept.length < categories.length) warn("calendar_categories_limited");
+      } catch (e) {
+        console.warn("[ThunderAI Sparks] categories could not be applied");
+        warn("calendar_categories_unavailable");
+      }
+    }
+    if (Array.isArray(data.links) && data.links.length) {
+      const links = [...new Set(data.links.map(normalizedLink).filter(Boolean))];
+      const ignored = data.links.length - links.length;
+      if (ignored) console.warn("[ThunderAI Sparks] links ignored:", ignored);
+      const description = event.descriptionText || "";
+      const existing = linksInText(description);
+      const missing = links.filter(link => !existing.has(link));
+      if (missing.length) event.descriptionText = [description, ...missing].filter(Boolean).join("\n");
+      // A server can drop ATTACH without notice: URL is the other native place for a link.
+      if (links.length) event.setProperty("URL", links[0]);
+      if (links.length && calendar?.getProperty("capabilities.attachments.supported") === false) {
+        warn("calendar_links_description_only");
+      } else {
+        let failed = 0;
+        for (const link of links) {
+          try {
+            const attachment = new CalAttachment();
+            attachment.uri = Services.io.newURI(link);
+            event.addAttachment(attachment);
+          } catch (e) {
+            failed++;
+          }
+        }
+        if (failed) {
+          console.warn("[ThunderAI Sparks] links not attached:", failed);
+          warn("calendar_links_description_only");
+        }
+      }
+    }
+  }
+
+  function canCreateEvent(calendar) {
+    return !!calendar && calendar.getProperty("capabilities.events.supported") !== false &&
+      cal.acl.isCalendarWritable(calendar) && cal.acl.userCanAddItemsToCalendar(calendar);
+  }
+
+  // The calendar Thunderbird's event dialog uses when the given one cannot receive a new event:
+  // the first eligible one in the calendar list's order, as openEventDialog() picks it
+  // (sortCalendarArray() of the 3-pane window). Deciding it here means the category and
+  // attachment limits are those of the calendar that receives the event.
+  function firstEligibleCalendar(window) {
+    const eligible = cal.manager.getCalendars().filter(canCreateEvent);
+    return (typeof window.sortCalendarArray === "function" ? window.sortCalendarArray(eligible) : eligible)[0];
+  }
+
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
       return {
         CalendarTools: {
+          async getCalendarCategories() {
+            return cal.category.fromPrefs();
+          },
           async openCalendarDialog(cal_data) {
             // implementation
             //  console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
@@ -91,7 +192,15 @@
               //   return {result: false, error: "|>>noActiveCalendar"};
               // }
 
+              // The calendar the dialog will really use. With none eligible the dialog would open
+              // nothing at all: report it instead of claiming success.
               let curr_calendar = window.getSelectedCalendar();
+              if (!canCreateEvent(curr_calendar)) {
+                curr_calendar = firstEligibleCalendar(window);
+              }
+              if (!curr_calendar) {
+                return {result: false, error: context.extension.localeData.localizeMessage("calendar_no_writable_events")};
+              }
 
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.name: ", JSON.stringify(curr_calendar.name));
               // console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog curr_calendar.getProperty(\"disabled\"): ", JSON.stringify(curr_calendar.getProperty("disabled")));
@@ -118,6 +227,8 @@
               if (cal_data.description) {
                 event.descriptionText = cal_data.description;
               }
+
+              applyMetadata(event, cal_data, curr_calendar, window, context);
 
               // Reminder: absent (or invalid) = Thunderbird's default reminder,
               // -1 = explicitly no reminder, >= 0 = exactly one DISPLAY alarm

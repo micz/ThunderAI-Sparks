@@ -16,6 +16,14 @@ Sender: the ThunderAI add-on (`thunderai@micz.it`). Handled in
 - **Purpose**: lets ThunderAI detect that Sparks is installed and which version,
   so it can enable/adjust Sparks-dependent features.
 
+### `getCapabilities`
+
+Request `{action: "getCapabilities"}` from `thunderai@micz.it` returns
+`{calendarEventFields: string[], calendarCategories: string[]}`. Categories come
+from the current `cal.category.fromPrefs()` catalogue. This action is separate
+from the unchanged version-string `checkPresence` response. Messages must have
+an object shape and string action, and come from the exact companion ID.
+
 ### `openCalendarEventDialog`
 
 - **Payload**: `message.calendar_event_data` — a **string** (typically raw LLM
@@ -47,6 +55,8 @@ the LLM output is tolerated.
 | `timezone` | string | no | applied only when `use_timezone` is true |
 | `use_timezone` | boolean | no | if true, apply `timezone` to start/end |
 | `reminderMinutes` | integer | no | reminder (alarm), see below |
+| `categories` | string[] | no | exact existing native category names; deduplicated and checked again at creation |
+| `links` | string[] | no | normalized HTTP/HTTPS URI attachments, also retained in description; the first also fills the event `URL` |
 
 ```json
 {
@@ -185,3 +195,12 @@ Adding a field to an event/task requires **both repos**:
    ThunderAI settings").
 
 See [`04-thunderai-integration.md`](04-thunderai-integration.md).
+
+## Optional event metadata
+
+Invalid optional metadata fields/entries are discarded before schema validation.
+The privileged layer revalidates native category membership and URLs. Provider
+category limits and unsupported attachments produce native warnings. No catalogue
+changes, downloads, binary attachments or automatic saves occur. See
+[the metadata contract](../docs/calendar-event-metadata.md) for URI rules,
+capability fallback and the native/CalDAV validation procedure.

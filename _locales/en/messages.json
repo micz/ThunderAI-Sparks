@@ -50,5 +50,20 @@
   "backToOptionsText": {
     "message": "Options",
     "description": ""
+  },
+  "calendar_metadata_warning_title": {
+    "message": "ThunderAI Sparks — event metadata"
+  },
+  "calendar_categories_limited": {
+    "message": "This calendar limits event categories. Some proposed categories could not be included. Review the event before saving."
+  },
+  "calendar_categories_unavailable": {
+    "message": "Event categories could not be applied. Review the event before saving."
+  },
+  "calendar_links_description_only": {
+    "message": "Some links could not be added as calendar attachments. They are still available in the event description."
+  },
+  "calendar_no_writable_events": {
+    "message": "No available calendar allows creating events. Enable a writable event calendar and try again."
   }
 }
