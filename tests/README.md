@@ -86,3 +86,11 @@ DOM:
   Thunderbird.
 - Real layout and CSS — jsdom has no layout engine.
 - How the UI looks, and the end-to-end round trip with the ThunderAI add-on.
+
+## Simulated privileged metadata coverage
+
+`08-calendar-metadata.test.mjs` and `helpers/calendar-api.mjs` run the real
+`api/CalendarTools/implementation.js` in a VM with Thunderbird doubles, including
+categories, URI attachments, provider limits and the native dialog call. No real
+Thunderbird window, provider, save or synchronization is tested. See
+[manual validation](../docs/calendar-event-metadata.md#validation).

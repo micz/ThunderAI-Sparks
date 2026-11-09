@@ -8,6 +8,7 @@
 <h2>Version 3.1.1 - ??/??/2026</h2>
         <ul>
           <li>Turkish (tr) translation added, thanks to <a href="https://github.com/cahitcengizhan">cahitcengizhan</a>.</li>
+          <li>Calendar events can use existing Thunderbird categories and HTTP/HTTPS URI attachments with matching ThunderAI support. Links remain in the description when attachments are unavailable. Turn it on in the ThunderAI calendar event settings.</li>
           <li>...</li>
         </ul>
 <h2>Version 3.1.0 - 17/10/2026</h2>

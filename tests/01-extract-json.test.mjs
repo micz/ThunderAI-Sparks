@@ -1,6 +1,7 @@
 // extractJsonObject() (js/mztas-utils.js), per CLAUDE.md "How the two add-ons communicate" #3:
 //  - it greedily matches the FIRST { ... } block, so the LLM output may contain surrounding prose;
-//  - on a match it returns the parsed object; on no match or invalid JSON it returns null (and logs).
+//  - on a match it returns the parsed object; on no match or invalid JSON it returns null (and logs
+//    the kind of error only, never the text).
 //
 // Level 1: the module alone, nothing to install.
 
@@ -54,4 +55,17 @@ test('returns null for a non-string input instead of throwing', () => {
         assert.equal(extractJsonObject(null), null);
         assert.equal(extractJsonObject(undefined), null);
     } finally { con.restore(); }
+});
+
+test('a parse error is logged by its kind, never with the text it was given', () => {
+    // An Error is kept whole here: its message is what a parser may fill with the input.
+    const logged = [];
+    const original = console.error;
+    console.error = (...args) => logged.push(args.map(a => (a instanceof Error ? a.name + ': ' + a.message : String(a))).join(' '));
+    try {
+        assert.equal(extractJsonObject('{"summary": SYNTHETIC_MAIL_TEXT, "x": 1}'), null);
+    } finally { console.error = original; }
+    assert.equal(logged.length, 1);
+    assert.equal(logged[0].includes('SYNTHETIC'), false);
+    assert.ok(logged[0].includes('SyntaxError'));
 });
