@@ -8,6 +8,7 @@
 <h2>Version 3.1.1 - ??/??/2026</h2>
         <ul>
           <li>Turkish (tr) translation added, thanks to <a href="https://github.com/cahitcengizhan">cahitcengizhan</a>.</li>
+          <li>Choose a default event calendar in the ThunderAI calendar event settings (requires the matching ThunderAI). An unavailable preference falls back with a warning and is kept for later use. With no usable calendar, event creation reports an error.</li>
           <li>...</li>
         </ul>
 <h2>Version 3.1.0 - 17/10/2026</h2>
