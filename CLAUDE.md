@@ -103,8 +103,12 @@ See [`claude-spec/`](claude-spec/) for detailed architecture docs.
 - **Version** is read at runtime from the manifest
   (`browser.runtime.getManifest().version`) — do not hardcode it. When bumping a
   release, change `manifest.json` `version` and add a `<h2>` block at the top of
-  [`CHANGELOG.md`](CHANGELOG.md) (note: CHANGELOG uses HTML `<h2>`/`<ul>`, not
-  markdown headings).
+  the release notes.
+- **Release notes**: edit only [`options/mztas-release-notes.html`](options/mztas-release-notes.html).
+  [`CHANGELOG.md`](CHANGELOG.md) is generated from it
+  ([`.github/scripts/changelog-sync.mjs`](.github/scripts/changelog-sync.mjs), `npm run changelog`)
+  and committed by the `changelog-sync.yml` workflow on every push that touches the release
+  notes — never edit it by hand.
 - **Naming**: files/vars are prefixed `mztas` / `tas` (ThunderAI Sparks).
 - **License**: GPL-3.0 for the add-on's own files (keep the header block on new
   source files); some vendored helpers (`mztas-options.js`, `mztas-i18n.js`)
