@@ -3,7 +3,7 @@
 
 <h2>Version 3.2.0 - ??/??/2026</h2>
 <ul>
-  <li>Turkish (tr) translation added, thanks to <a href="https://github.com/cahitcengizhan">cahitcengizhan</a>.</li>
+  <li>Turkish (tr) translation added, thanks to <a href="https://github.com/cahitcengizhan">Cahit Cengizhan</a>.</li>
   <li>...</li>
 </ul>
 <h2>Version 3.1.0 - 17/10/2026</h2>
