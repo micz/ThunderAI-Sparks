@@ -1,80 +1,75 @@
 # ![ThunderAI-Sparks icon](images/icon-32px.png "ThunderAI-Sparks") ThunderAI-Sparks Release Notes
 
 
-
-
-
-
-<h2>Version 3.1.1 - ??/??/2026</h2>
-        <ul>
-          <li>Turkish (tr) translation added, thanks to <a href="https://github.com/cahitcengizhan">cahitcengizhan</a>.</li>
-          <li>...</li>
-        </ul>
+<h2>Version 3.2.0 - ??/??/2026</h2>
+<ul>
+  <li>Turkish (tr) translation added, thanks to <a href="https://github.com/cahitcengizhan">cahitcengizhan</a>.</li>
+  <li>...</li>
+</ul>
 <h2>Version 3.1.0 - 17/10/2026</h2>
-        <ul>
-          <li>It's now possibile to add a reminder to a calendar event, it requires ThunderAI 5.1.0 or later [<a href="https://github.com/micz/ThunderAI/issues/887">#887</a>].</li>
-          <li>It's now possibile to add a reminder to a task too, before the due date (or before the initial date if there is no due date), it requires ThunderAI 5.1.0 or later [<a href="https://github.com/micz/ThunderAI/issues/887">#887</a>].</li>
-          <li>Calendar events and tasks created from ThunderAI now get the default reminder set in the Thunderbird settings (when it is enabled there), unless the AI sets a specific reminder or explicitly no reminder.</li>
-          <li>Unknown fields in the AI response no longer break the creation of calendar events and tasks.</li>
-          <li>Fixed the creation of calendar events and tasks with a fixed timezone on Thunderbird 154 and later [<a href="https://github.com/micz/ThunderAI/issues/960">#960</a>].</li>
-        </ul>
+<ul>
+  <li>It's now possibile to add a reminder to a calendar event, it requires ThunderAI 5.1.0 or later [<a href="https://github.com/micz/ThunderAI/issues/887">#887</a>].</li>
+  <li>It's now possibile to add a reminder to a task too, before the due date (or before the initial date if there is no due date), it requires ThunderAI 5.1.0 or later [<a href="https://github.com/micz/ThunderAI/issues/887">#887</a>].</li>
+  <li>Calendar events and tasks created from ThunderAI now get the default reminder set in the Thunderbird settings (when it is enabled there), unless the AI sets a specific reminder or explicitly no reminder.</li>
+  <li>Unknown fields in the AI response no longer break the creation of calendar events and tasks.</li>
+  <li>Fixed the creation of calendar events and tasks with a fixed timezone on Thunderbird 154 and later [<a href="https://github.com/micz/ThunderAI/issues/960">#960</a>].</li>
+</ul>
 <h2>Version 3.0.0 - 08/09/2026</h2>
-        <ul>
-          <li>Sparks is now compatible with Thunderbird 140+.</li>
-          <li>Indonesian (id) translation added, thanks to <a href="https://github.com/arifpedia">Arif Budiman</a>.</li>
-          <li>It's now possibile to add the location in a calendar event and in a task, be sure to update the prompt in the ThunderAI settings, thanks to <a href="https://github.com/touste">touste</a> [<a href="https://github.com/micz/ThunderAI/issues/870">#870</a>].</li>
-          <li>It's now possibile to add the description in a the calendar event and in a task, be sure to update the prompt in the ThunderAI settings [<a href="https://github.com/micz/ThunderAI/issues/872">#872</a>].</li>
-        </ul>
+<ul>
+  <li>Sparks is now compatible with Thunderbird 140+.</li>
+  <li>Indonesian (id) translation added, thanks to <a href="https://github.com/arifpedia">Arif Budiman</a>.</li>
+  <li>It's now possibile to add the location in a calendar event and in a task, be sure to update the prompt in the ThunderAI settings, thanks to <a href="https://github.com/touste">touste</a> [<a href="https://github.com/micz/ThunderAI/issues/870">#870</a>].</li>
+  <li>It's now possibile to add the description in a the calendar event and in a task, be sure to update the prompt in the ThunderAI settings [<a href="https://github.com/micz/ThunderAI/issues/872">#872</a>].</li>
+</ul>
 <h2>Version 2.0.0 - 24/02/2026</h2>
-        <ul>
-          <li>Sparks is now compatible only with Thunderbird 140 and later up to 148 [<a href="https://github.com/micz/ThunderAI/issues/625">#625</a>].</li>
-        </ul>
+<ul>
+  <li>Sparks is now compatible only with Thunderbird 140 and later up to 148 [<a href="https://github.com/micz/ThunderAI/issues/625">#625</a>].</li>
+</ul>
 <h2>Version 1.2.4 - 04/01/2026</h2>
-        <ul>
-          <li>Swedish (sv) translation added, thanks to <a href="https://hosted.weblate.org/user/Andy_tb/">Andreas Pettersson</a>.</li>
-          <li>Sparks is now compatible also with Thunderbird 147.</li>
-        </ul>
+<ul>
+  <li>Swedish (sv) translation added, thanks to <a href="https://hosted.weblate.org/user/Andy_tb/">Andreas Pettersson</a>.</li>
+  <li>Sparks is now compatible also with Thunderbird 147.</li>
+</ul>
 <h2>Version 1.2.3 - 27/08/2025</h2>
-        <ul>
-          <li>Bulgarian (bg) translation added, thanks to <a href="https://hosted.weblate.org/user/bogomil/">Bogomil Shopov</a>.</li>
-          <li>Sparks is now compatible also with Thunderbird 143.</li>
-        </ul>
+<ul>
+  <li>Bulgarian (bg) translation added, thanks to <a href="https://hosted.weblate.org/user/bogomil/">Bogomil Shopov</a>.</li>
+  <li>Sparks is now compatible also with Thunderbird 143.</li>
+</ul>
 <h2>Version 1.2.2 - 30/07/2025</h2>
-        <ul>
-          <li>Russian (ru) translation added, thanks to <a href="https://hosted.weblate.org/user/law820314/">Maksim</a>.</li>
-        </ul>
+<ul>
+  <li>Russian (ru) translation added, thanks to <a href="https://hosted.weblate.org/user/law820314/">Maksim</a>.</li>
+</ul>
 <h2>Version 1.2.1 - 16/06/2025</h2>
-        <ul>
-          <li>Traditional Chinese (zh_Hant) translation added, thanks to <a href="https://github.com/evez">evez</a>.</li>
-          <li>Sparks is now compatible also with Thunderbird 140.</li>
-        </ul>
+<ul>
+  <li>Traditional Chinese (zh_Hant) translation added, thanks to <a href="https://github.com/evez">evez</a>.</li>
+  <li>Sparks is now compatible also with Thunderbird 140.</li>
+</ul>
 <h2>Version 1.2.0 - 07/05/2025</h2>
-        <ul>
-          <li>Added support to Tasks (Todo) [<a href="https://github.com/micz/ThunderAI/issues/333">#333</a>].</li>
-          <li>Sending the version number to ThunderAI [<a href="https://github.com/micz/ThunderAI/issues/315">#315</a>].</li>
-        </ul>
-<h2>Version 1.1.0 - 31/01/2025</h2>
-        <ul>
-          <li>It's now possibile to define a timezone in the ThunderAI calendar event settings page [<a href="https://github.com/micz/ThunderAI/issues/250">#250</a>].</li>
-          <li>It's now possibile to add the attendees in the calendar event, be sure to update the prompt in the ThunderAI settings [<a href="https://github.com/micz/ThunderAI/issues/258">#258</a>].</li>
-          <li>Czech (cs) translation added, thanks to <a href="https://hosted.weblate.org/user/Fjuro/">Fjuro</a>.</li>
-          <li>Simplified Chinese (zh_Hans) translation added, thanks to <a href="https://github.com/jeklau">jeklau</a>.</li>
-        </ul>
+<ul>
+  <li>Added support to Tasks (Todo) [<a href="https://github.com/micz/ThunderAI/issues/333">#333</a>].</li>
+  <li>Sending the version number to ThunderAI [<a href="https://github.com/micz/ThunderAI/issues/315">#315</a>].</li>
+</ul>
+<h2>Version 1.1.0 - 31/03/2025</h2>
+<ul>
+  <li>It's now possibile to define a timezone in the ThunderAI calendar event settings page [<a href="https://github.com/micz/ThunderAI/issues/250">#250</a>].</li>
+  <li>Czech (cs) translation added, thanks to <a href="https://hosted.weblate.org/user/Fjuro/">Fjuro</a>.</li>
+  <li>Simplified Chinese (zh_Hans) translation added, thanks to <a href="https://github.com/jeklau">jeklau</a>.</li>
+</ul>
 <h2>Version 1.0.3 - 27/02/2025</h2>
-        <ul>
-          <li>Croatian (hr) translation added, thanks to Petar Jedvaj.</li>
-        </ul>
+<ul>
+  <li>Croatian (hr) translation added, thanks to Petar Jedvaj.</li>
+</ul>
 <h2>Version 1.0.2 - 29/01/2025</h2>
-        <ul>
-          <li>Forcing ThunderAI menu reload when installing Sparks [<a href="https://github.com/micz/ThunderAI/issues/240">#240</a>].</li>
-          <li>Better error handling.</li>
-        </ul>
+<ul>
+  <li>Forcing ThunderAI menu reload when installing Sparks [<a href="https://github.com/micz/ThunderAI/issues/240">#240</a>].</li>
+  <li>Better error handling.</li>
+</ul>
 <h2>Version 1.0.1 - 26/01/2025</h2>
-        <ul>
-          <li>An error in opening the calendar event dialog is now correctly managed [<a href="https://github.com/micz/ThunderAI/issues/232">#232</a>].</li>
-          <li>Added an information text in the options page [<a href="https://github.com/micz/ThunderAI/issues/215">#215</a>].</li>
-          <li>All ThunderAI locales added [<a href="https://github.com/micz/ThunderAI/issues/233">#233</a>].</li>
-        </ul>
+<ul>
+  <li>An error in opening the calendar event dialog is now correctly managed [<a href="https://github.com/micz/ThunderAI/issues/232">#232</a>].</li>
+  <li>Added an information text in the options page [<a href="https://github.com/micz/ThunderAI/issues/215">#215</a>].</li>
+  <li>All ThunderAI locales added [<a href="https://github.com/micz/ThunderAI/issues/233">#233</a>].</li>
+</ul>
 <h2>Version 1.0.0 - 13/01/2025</h2>
 <ul>
   <li>First release.</li>

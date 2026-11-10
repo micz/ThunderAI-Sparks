@@ -40,11 +40,12 @@ repository so both sides can be coordinated.
 
 ## Release notes and changelog
 
-When your change should be mentioned to users, add an entry to
-`options/mztas-release-notes.html` and a matching `<h2>` block at the top of
-[`CHANGELOG.md`](CHANGELOG.md) (the changelog uses HTML `<h2>`/`<ul>`, not Markdown
-headings). The version is read at runtime from the manifest, so do not hardcode it; a
-release bump changes `version` in `manifest.json`.
+Please **do not edit [`CHANGELOG.md`](CHANGELOG.md)**: it is generated automatically from
+the release notes and committed by a GitHub workflow.
+If your change needs to be mentioned in the release notes, edit only
+`options/mztas-release-notes.html`.
+The version is read at runtime from the manifest, so do not hardcode it; a release bump
+changes `version` in `manifest.json`.
 
 ## Branches
 

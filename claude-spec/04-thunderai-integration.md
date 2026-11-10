@@ -70,7 +70,8 @@ user-visible half (the prompt) is on the ThunderAI side.
    `CALENDAR_EVENT_FIELDS` / `TASK_FIELDS`, otherwise the whitelist drops it.
 3. **Sparks** — `api/CalendarTools/implementation.js`: read it from `cal_data` /
    `task_data` and apply it to the `CalEvent` / todo.
-4. **Sparks** — bump `manifest.json` version, add a `CHANGELOG.md` entry (note it
-   needs a ThunderAI prompt update).
+4. **Sparks** — bump `manifest.json` version, add an entry to
+   `options/mztas-release-notes.html` (note it needs a ThunderAI prompt update);
+   `CHANGELOG.md` is regenerated from it by the `changelog-sync.yml` workflow.
 5. **ThunderAI** — update the relevant prompt so the LLM emits the field.
 6. File/track the issue in the **ThunderAI** repo with the `Sparks` label.
