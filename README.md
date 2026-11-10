@@ -1,4 +1,13 @@
 # ![ThunderAI-Sparks icon](images/icon-32px.png "ThunderAI-Sparks") ThunderAI-Sparks
+
+[![Latest release](https://micz.it/badges/sparks/release.svg)](https://github.com/micz/ThunderAI-Sparks/releases/latest)
+[![Latest pre-release](https://micz.it/badges/sparks/prerelease.svg)](https://github.com/micz/ThunderAI-Sparks/releases)
+[![Development version](https://micz.it/badges/sparks/dev.svg)](https://github.com/micz/ThunderAI-Sparks/tree/dev)
+[![Thunderbird Add-ons](https://img.shields.io/badge/Thunderbird%20Add--ons-install-blue?logo=thunderbird)](https://addons.thunderbird.net/thunderbird/addon/thunderai-sparks/)
+[![Requires ThunderAI 5.0.0+](https://img.shields.io/badge/ThunderAI-5.0.0%2B-purple)](https://github.com/micz/ThunderAI)
+[![Thunderbird 140 - 159](https://img.shields.io/badge/Thunderbird-140%20--%20159-informational?logo=thunderbird)](https://www.thunderbird.net/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-green.svg)](LICENSE)
+
 ThunderAI Sparks is an add-on for Thunderbird, designed to add advanced features to ThunderAI.
 
 These are features that ThunderAI itself cannot ship, because they rely on Thunderbird's [experimental APIs](https://developer.thunderbird.net/add-ons/mailextensions/experiments) to access the calendar backend.
