@@ -193,5 +193,5 @@ stable ID ThunderAI sends in the `preferred_calendar_id` message field, next to
 `calendar_event_data`, as a separate optional argument. The AI JSON cannot choose it. `checkPresence` and the
 event/task JSON whitelist remain unchanged. `listWritableCalendars()`, also the
 `listWritableCalendars` message answered to ThunderAI only, returns
-`{id, name, type}[]` after native event-support, writability and add-item ACL checks.
-See [the preference contract](../docs/default-event-calendar.md).
+`{id, name, type}[]` after native event-support, writability and add-item ACL checks. An older
+Sparks does not answer it, and ThunderAI then disables its selector.

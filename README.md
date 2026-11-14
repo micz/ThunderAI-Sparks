@@ -119,11 +119,3 @@ Are you using this addon in your Thunderbird?
 ## Attributions
 
 Thanks to [Philipp](https://github.com/kewisch/) for the help with the experimental calendar API.
-
-## Default event calendar (development)
-
-ThunderAI's calendar event settings can select the calendar used for new events;
-Sparks lists the calendars and applies the choice. With no choice, the currently
-selected calendar is used. If the chosen calendar becomes unavailable, Sparks warns
-and chooses an eligible fallback without erasing the preference. See the [configuration and validation
-guide](docs/default-event-calendar.md). Tasks keep their existing behavior.

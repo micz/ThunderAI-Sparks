@@ -163,5 +163,5 @@ picks the same calendar the dialog would retarget to, silently, so the category 
 attachment limits are those of the calendar that receives the event.
 
 The selector is restored separately from the vendored `.option-input` manager,
-which dispatches synthetic changes. Restoring never writes the preference.
-See [details and manual checks](../docs/default-event-calendar.md).
+which dispatches synthetic changes. Restoring never writes the preference. Calendars are listed by
+name, with their provider and ID only for homonyms. Tasks are unaffected.
