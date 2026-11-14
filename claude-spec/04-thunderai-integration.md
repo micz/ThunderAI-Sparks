@@ -75,3 +75,10 @@ user-visible half (the prompt) is on the ThunderAI side.
    `CHANGELOG.md` is regenerated from it by the `changelog-sync.yml` workflow.
 5. **ThunderAI** — update the relevant prompt so the LLM emits the field.
 6. File/track the issue in the **ThunderAI** repo with the `Sparks` label.
+
+## Category capability negotiation
+
+The optional `categories` field uses the separate `getCapabilities` action, so no minimum-version
+change is needed on either side. A ThunderAI that does not ask keeps the existing handshake and
+creation message. ThunderAI 5.3.0 asks once per extraction, with a two-second bound because an older
+Sparks never answers an unknown action, and drops the field when the reply is missing or invalid.

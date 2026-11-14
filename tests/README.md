@@ -81,8 +81,9 @@ DOM:
 
 ## What is not covered
 
-- The experimental API itself (`api/CalendarTools/implementation.js`): it runs in a privileged
-  Thunderbird context and builds real `CalEvent`/`CalTodo` objects, so it is tested by hand in
-  Thunderbird.
+- The experimental API itself (`api/CalendarTools/implementation.js`) in Thunderbird: it runs in a
+  privileged context and builds real `CalEvent`/`CalTodo` objects, so it is tested by hand.
+  `08-calendar-categories.test.mjs` runs its category code in a VM with Thunderbird doubles
+  (`helpers/calendar-api.mjs`): no real window, provider, save or synchronization.
 - Real layout and CSS — jsdom has no layout engine.
 - How the UI looks, and the end-to-end round trip with the ThunderAI add-on.

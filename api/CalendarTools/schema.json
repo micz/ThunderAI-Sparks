@@ -48,6 +48,11 @@
                   "type": "boolean",
                   "optional": true
                 },
+                "categories": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "optional": true
+                },
                 "reminderMinutes" : {
                   "type": "integer",
                   "optional": true
@@ -101,6 +106,13 @@
               }
             }
           ]
+        },
+        {
+          "name": "getCalendarCategories",
+          "type": "function",
+          "async": true,
+          "description": "Returns the current native category names without changing the catalogue",
+          "parameters": []
         }
       ]
     }

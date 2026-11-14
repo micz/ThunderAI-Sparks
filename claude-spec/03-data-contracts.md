@@ -16,6 +16,14 @@ Sender: the ThunderAI add-on (`thunderai@micz.it`). Handled in
 - **Purpose**: lets ThunderAI detect that Sparks is installed and which version,
   so it can enable/adjust Sparks-dependent features.
 
+### `getCapabilities`
+
+Request `{action: "getCapabilities"}` returns `{calendarEventFields: string[], calendarCategories:
+string[]}`: the event fields Sparks accepts and the current names of `cal.category.fromPrefs()`.
+It is separate from the unchanged version-string `checkPresence`. Like every request, it is answered
+only for the `thunderai@micz.it` sender, an object message and a string action; anything else gets
+no answer, because category names are private.
+
 ### `openCalendarEventDialog`
 
 - **Payload**: `message.calendar_event_data` — a **string** (typically raw LLM
@@ -47,6 +55,7 @@ the LLM output is tolerated.
 | `timezone` | string | no | applied only when `use_timezone` is true |
 | `use_timezone` | boolean | no | if true, apply `timezone` to start/end |
 | `reminderMinutes` | integer | no | reminder (alarm), see below |
+| `categories` | string[] | no | exact existing native category names; a non-array is dropped and only non-empty strings are kept before the schema, and the catalogue and the calendar's limit are checked again at creation |
 
 ```json
 {
