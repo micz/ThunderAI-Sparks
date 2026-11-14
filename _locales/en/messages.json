@@ -50,5 +50,17 @@
   "backToOptionsText": {
     "message": "Options",
     "description": ""
+  },
+  "calendar_fallback_title": {
+    "message": "ThunderAI Sparks — calendar unavailable",
+    "description": "Title of the native warning shown when the default calendar chosen in ThunderAI cannot receive the new event."
+  },
+  "calendar_fallback_message": {
+    "message": "Your preferred calendar cannot accept new events. An available calendar has been selected instead. Review the calendar before saving; your preference has not been changed.",
+    "description": "Native warning: the default calendar cannot accept new events, so another available calendar was chosen; the saved choice is kept."
+  },
+  "calendar_no_writable_events": {
+    "message": "No available calendar allows creating events. Enable a writable event calendar and try again.",
+    "description": "Error returned to ThunderAI when no calendar can receive a new event; no event window is opened."
   }
 }
