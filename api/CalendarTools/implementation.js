@@ -58,10 +58,38 @@
     }
   }
 
+  // Sets the categories of a new event: only names that exist in Thunderbird's catalogue, read
+  // again now, each once, within the category limit of the event's calendar. A limit or a
+  // failure is shown with a native warning; the event is created in any case.
+  function applyCategories(event, data, calendar, window, context) {
+    if (!Array.isArray(data.categories) || !data.categories.length) return;
+    const warn = key => Services.prompt.alert(window,
+      context.extension.localeData.localizeMessage("calendar_categories_warning_title"),
+      context.extension.localeData.localizeMessage(key));
+    try {
+      const catalogue = new Set(cal.category.fromPrefs());
+      const categories = [...new Set(data.categories.filter(value =>
+        typeof value === "string" && catalogue.has(value)))];
+      const ignored = data.categories.length - categories.length;
+      if (ignored) console.warn("[ThunderAI Sparks] categories ignored:", ignored);
+      const limit = calendar?.getProperty("capabilities.categories.maxCount");
+      const kept = Number.isInteger(limit) && limit >= 0 ? categories.slice(0, limit) : categories;
+      if (kept.length) event.setCategories(kept);
+      if (kept.length < categories.length) warn("calendar_categories_limited");
+    } catch (e) {
+      console.warn("[ThunderAI Sparks] categories could not be applied");
+      warn("calendar_categories_unavailable");
+    }
+  }
+
   var CalendarTools = class extends ExtensionCommon.ExtensionAPI {
     getAPI(context) {
       return {
         CalendarTools: {
+          // The current names of Thunderbird's category catalogue, without changing it.
+          async getCalendarCategories() {
+            return cal.category.fromPrefs();
+          },
           async openCalendarDialog(cal_data) {
             // implementation
             //  console.log(">>>>>>>>>> ThunderAI Sparks: openCalendarDialog cal_data: ", JSON.stringify(cal_data));
@@ -118,6 +146,8 @@
               if (cal_data.description) {
                 event.descriptionText = cal_data.description;
               }
+
+              applyCategories(event, cal_data, curr_calendar, window, context);
 
               // Reminder: absent (or invalid) = Thunderbird's default reminder,
               // -1 = explicitly no reminder, >= 0 = exactly one DISPLAY alarm
