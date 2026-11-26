@@ -5,7 +5,7 @@
 [![Development version](https://micz.it/badges/sparks/dev.svg)](https://github.com/micz/ThunderAI-Sparks/tree/dev)
 [![Thunderbird Add-ons](https://img.shields.io/badge/Thunderbird%20Add--ons-install-blue?logo=thunderbird)](https://addons.thunderbird.net/thunderbird/addon/thunderai-sparks/)
 [![Requires ThunderAI 5.0.0+](https://img.shields.io/badge/ThunderAI-5.0.0%2B-purple)](https://github.com/micz/ThunderAI)
-[![Thunderbird 140 - 159](https://img.shields.io/badge/Thunderbird-140%20--%20159-informational?logo=thunderbird)](https://www.thunderbird.net/)
+[![Thunderbird 140 - 162](https://img.shields.io/badge/Thunderbird-140%20--%20162-informational?logo=thunderbird)](https://www.thunderbird.net/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-green.svg)](LICENSE)
 
 ThunderAI Sparks is an add-on for Thunderbird, designed to add advanced features to ThunderAI.
