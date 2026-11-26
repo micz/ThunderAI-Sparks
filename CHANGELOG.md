@@ -1,7 +1,7 @@
 # ![ThunderAI-Sparks icon](images/icon-32px.png "ThunderAI-Sparks") ThunderAI-Sparks Release Notes
 
 
-<h2>Version 3.2.0 - 25/11/2026</h2>
+<h2>Version 3.2.0 - 26/11/2026</h2>
 <ul>
   <li>Calendar events can now get existing Thunderbird categories chosen by the AI, it requires ThunderAI 5.3.0 or later.</li>
   <li>Turkish (tr) translation added, thanks to <a href="https://github.com/cahitcengizhan">Cahit Cengizhan</a>.</li>
