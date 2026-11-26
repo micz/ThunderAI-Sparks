@@ -49,7 +49,7 @@ let tasLog = new tasLogger("mztas-background",prefs_init.do_debug);
 
 // Fields declared in api/CalendarTools/schema.json. Any other property in the
 // AI response would make the schema validation fail, so it is discarded.
-const CALENDAR_EVENT_FIELDS = ["startDate", "endDate", "summary", "location", "description", "forceAllDay", "attendees", "timezone", "use_timezone", "reminderMinutes"];
+const CALENDAR_EVENT_FIELDS = ["startDate", "endDate", "summary", "location", "description", "forceAllDay", "attendees", "timezone", "use_timezone", "reminderMinutes", "categories"];
 const TASK_FIELDS = ["dueDate", "summary", "initialDate", "location", "description", "timezone", "use_timezone", "reminderMinutes"];
 
 function filterFields(jsonObj, allowedFields, caller) {
@@ -82,18 +82,48 @@ function filterReminderMinutes(jsonObj, caller) {
   return jsonObj;
 }
 
+// Invalid optional categories must not fail the experiment's schema validation: a non-array
+// field is dropped, and only non-empty strings are kept. The catalogue is checked at creation.
+function filterEventCategories(data) {
+  if (!data || typeof data !== "object" || !("categories" in data)) return data;
+  const values = data.categories;
+  if (!Array.isArray(values)) {
+    delete data.categories;
+    tasLog.log("openCalendarEventDialog ignored invalid field: categories");
+    return data;
+  }
+  data.categories = values.filter(value => typeof value === "string" && value.length > 0);
+  const ignored = values.length - data.categories.length;
+  if (ignored) tasLog.log("openCalendarEventDialog ignored categories: " + ignored);
+  return data;
+}
+
 // Listen for messages from ThunderAI
 browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) => {
   tasLog.log("Message received:", message);
   tasLog.log("Sender info:", sender);
+  // Only ThunderAI may ask: the capabilities hold the user's category names.
+  if (sender?.id !== "thunderai@micz.it" || !message ||
+      typeof message !== "object" || Array.isArray(message) || typeof message.action !== "string") {
+    return undefined;
+  }
 
   switch (message.action) {
     case "checkPresence":
       return Promise.resolve(SPARKS_VERSION);
       break;
 
+    case "getCapabilities":
+      return browser.CalendarTools.getCalendarCategories().then(calendarCategories => ({
+        calendarEventFields: [...CALENDAR_EVENT_FIELDS],
+        calendarCategories
+      }));
+
     case "openCalendarEventDialog": {
       tasLog.log("openCalendarEventDialog: ", message.calendar_event_data);
+      if (typeof message.calendar_event_data !== "string") {
+        return {result: "error", error: "Invalid calendar_event_data"};
+      }
       let jsonObj = {};
       try{
         jsonObj = extractJsonObject(message.calendar_event_data);
@@ -104,6 +134,7 @@ browser.runtime.onMessageExternal.addListener((message, sender, sendResponse) =>
       tasLog.log("openCalendarEventDialog jsonObj: ", JSON.stringify(jsonObj));
       jsonObj = filterFields(jsonObj, CALENDAR_EVENT_FIELDS, "openCalendarEventDialog");
       jsonObj = filterReminderMinutes(jsonObj, "openCalendarEventDialog");
+      jsonObj = filterEventCategories(jsonObj);
       return _openCalendarDialog(jsonObj);
 
       async function _openCalendarDialog(jsonObj) {

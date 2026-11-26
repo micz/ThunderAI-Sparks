@@ -159,6 +159,7 @@ export function installBrowserMock(opts = {}) {
         },
         // The experimental API: a stub, the native Thunderbird dialog cannot run here.
         CalendarTools: {
+            async getCalendarCategories() { return clone(opts.categories || []); },
             async openCalendarDialog(data) {
                 calendarCalls.push({ fn: 'openCalendarDialog', data: clone(data) });
                 return calendarAnswer(data);

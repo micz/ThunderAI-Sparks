@@ -47,8 +47,9 @@ hardcoded.
 
 ### `api/CalendarTools/` — the experimental API
 
-The reason the add-on exists. `schema.json` declares the API surface; the two
-functions are `async` and take a single object parameter. `implementation.js`
+The reason the add-on exists. `schema.json` declares the API surface: the two creation functions,
+`async` and taking a single object parameter, and the `getCalendarCategories()` read method.
+`implementation.js`
 runs in a **privileged** context and is wrapped in the experiments-framework
 idiom:
 
@@ -146,3 +147,15 @@ The task flow is identical with `openTaskDialog` / `task_data` /
   (implementation), and logged to the console with a `[ThunderAI Sparks]` prefix.
 - Verbose diagnostic logs go through `tasLogger` and only print when `do_debug`
   is enabled.
+
+## Event categories
+
+The background answers `getCapabilities` and creation requests from the ThunderAI sender ID only,
+with an object message and a string action. `getCapabilities` advertises the event fields and the
+current native category names. A `categories` field that is not an array is dropped before the
+experimental API, and only non-empty strings are kept. `applyCategories()` reads the catalogue
+again when the event is built, keeps the exact existing names, each once, and applies the category
+limit of the event's calendar, the selected one as before; a limit or a failure shows a native
+warning and the event is still created. Sparks never creates or renames a category, the native
+review dialog is still required, and no item is saved by Sparks. Diagnostics of this step give
+counts, not names.

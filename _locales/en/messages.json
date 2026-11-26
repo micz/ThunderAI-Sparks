@@ -50,5 +50,17 @@
   "backToOptionsText": {
     "message": "Options",
     "description": ""
+  },
+  "calendar_categories_warning_title": {
+    "message": "ThunderAI Sparks — event categories",
+    "description": "Title of the native warning shown when the categories proposed for a calendar event cannot all be set."
+  },
+  "calendar_categories_limited": {
+    "message": "This calendar limits event categories. Some proposed categories could not be included. Review the event before saving.",
+    "description": "Native warning: the calendar of the new event accepts fewer categories than proposed, so some were left out."
+  },
+  "calendar_categories_unavailable": {
+    "message": "Event categories could not be applied. Review the event before saving.",
+    "description": "Native warning: setting the categories of the new event failed; the event is still created without them."
   }
 }
