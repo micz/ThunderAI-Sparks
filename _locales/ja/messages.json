@@ -1,1 +1,50 @@
-{}
+{
+    "extensionDescription": {
+        "message": "ThunderAI Sparks は、ThunderAI に高度な機能を追加するために設計された Thunderbird アドオンです。"
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "デバッグモードを有効にする"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "デバッグシステムを有効にする"
+    },
+    "prefsInfoTitle": {
+        "message": "重要なお知らせ"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks は、ThunderAI に高度な機能を追加するために設計された Thunderbird 用の実験的なアドオンです。このアドオンを使用するには、ThunderAI をインストールする必要があります。"
+    },
+    "prefsInfoDesc_2": {
+        "message": "Thunderbird アドオンページから ThunderAI を入手しましょう！"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "TranslateText": {
+        "message": "ThunderAI と ThunderAI Sparks の翻訳に協力しませんか？"
+    },
+    "TranslateLink": {
+        "message": "協力方法はこちら"
+    },
+    "prefsDonation_1": {
+        "message": "このアドオンを気に入っていただけましたか？"
+    },
+    "prefsDonation_2": {
+        "message": "ぜひ寄付をご検討ください！"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "リリースノート"
+    },
+    "backToOptionsText": {
+        "message": "オプション"
+    },
+    "calendar_categories_warning_title": {
+        "message": "ThunderAI Sparks — イベントのカテゴリ"
+    },
+    "calendar_categories_limited": {
+        "message": "このカレンダーではイベントのカテゴリ数が制限されています。提案されたカテゴリの一部を含めることができませんでした。保存する前にイベントを確認してください。"
+    },
+    "calendar_categories_unavailable": {
+        "message": "イベントのカテゴリを適用できませんでした。保存する前にイベントを確認してください。"
+    }
+}

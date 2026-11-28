@@ -1,1 +1,50 @@
-{}
+{
+    "extensionDescription": {
+        "message": "ThunderAI Sparks es un complemento de Thunderbird diseñado para añadir funciones avanzadas a ThunderAI."
+    },
+    "prefs_OptionText_do_debug": {
+        "message": "Activar modo de depuración"
+    },
+    "prefs_OptionText_do_debug_info": {
+        "message": "Activar el sistema de depuración"
+    },
+    "prefsInfoTitle": {
+        "message": "Información importante"
+    },
+    "prefsInfoDesc_1": {
+        "message": "ThunderAI Sparks es un complemento experimental para Thunderbird, diseñado para añadir funciones avanzadas a ThunderAI. Para usar este complemento necesitas instalar ThunderAI."
+    },
+    "prefsInfoDesc_2": {
+        "message": "¡Consigue ThunderAI en la página de complementos de Thunderbird!"
+    },
+    "prefsInfoDesc_3": {
+        "message": " "
+    },
+    "TranslateText": {
+        "message": "¿Quieres ayudar a traducir ThunderAI y ThunderAI Sparks?"
+    },
+    "TranslateLink": {
+        "message": "¡Descubre cómo!"
+    },
+    "prefsDonation_1": {
+        "message": "¿Te gusta este complemento?"
+    },
+    "prefsDonation_2": {
+        "message": "¡Considera hacer una donación!"
+    },
+    "prefs_OptionText_release_notes": {
+        "message": "Notas de lanzamiento"
+    },
+    "backToOptionsText": {
+        "message": "Opciones"
+    },
+    "calendar_categories_warning_title": {
+        "message": "ThunderAI Sparks — categorías del evento"
+    },
+    "calendar_categories_limited": {
+        "message": "Este calendario limita las categorías de los eventos. No se han podido incluir algunas de las categorías propuestas. Revisa el evento antes de guardarlo."
+    },
+    "calendar_categories_unavailable": {
+        "message": "No se han podido aplicar las categorías del evento. Revisa el evento antes de guardarlo."
+    }
+}

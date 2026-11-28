@@ -38,5 +38,14 @@
     },
     "backToOptionsText": {
         "message": "Optionen"
+    },
+    "calendar_categories_warning_title": {
+        "message": "ThunderAI Sparks — Terminkategorien"
+    },
+    "calendar_categories_limited": {
+        "message": "Dieser Kalender begrenzt die Kategorien von Terminen. Einige vorgeschlagene Kategorien konnten nicht übernommen werden. Überprüfen Sie den Termin vor dem Speichern."
+    },
+    "calendar_categories_unavailable": {
+        "message": "Die Kategorien des Termins konnten nicht übernommen werden. Überprüfen Sie den Termin vor dem Speichern."
     }
 }

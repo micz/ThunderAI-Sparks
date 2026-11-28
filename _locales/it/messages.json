@@ -38,5 +38,14 @@
     },
     "backToOptionsText": {
         "message": "Opzioni"
+    },
+    "calendar_categories_warning_title": {
+        "message": "ThunderAI Sparks — categorie dell'evento"
+    },
+    "calendar_categories_limited": {
+        "message": "Questo calendario limita le categorie degli eventi. Alcune categorie proposte non sono state incluse. Controlla l'evento prima di salvarlo."
+    },
+    "calendar_categories_unavailable": {
+        "message": "Non è stato possibile applicare le categorie dell'evento. Controlla l'evento prima di salvarlo."
     }
 }
