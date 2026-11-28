@@ -92,6 +92,8 @@ tests/                     Automated suite (node:test), never packaged (see test
   dom/<page>/*.dom.mjs     DOM tests in jsdom (npm ci)
   helpers/                 browser-mock, loader, DOM harness, known-issues mechanism
 package.json               Dev tooling only (jsdom + npm test scripts), never packaged
+LANG_AUTO.md               Locales the translate-locales skill translates (never packaged)
+.claude/skills/translate-locales/   Claude Code skill: SKILL.md, scripts/i18n.mjs, baseline.json
 ```
 
 See [`claude-spec/`](claude-spec/) for detailed architecture docs.
@@ -115,7 +117,12 @@ See [`claude-spec/`](claude-spec/) for detailed architecture docs.
   carry their own upstream licenses — leave those headers intact.
 - **Localization**: user-facing strings go through `_locales`; the `en` locale is
   the source of truth. Translations are contributed (often via Weblate) — don't
-  hand-edit non-`en` locales unless asked.
+  hand-edit non-`en` locales unless asked. The one exception: when the maintainer
+  explicitly asks for it, the `translate-locales` skill
+  ([`.claude/skills/translate-locales/`](.claude/skills/translate-locales/SKILL.md), ported
+  from ThunderAI) translates the locales listed in `LANG_AUTO.md`, writing them only through
+  its script (see "Automatic translation" in
+  [`claude-spec/02-architecture.md`](claude-spec/02-architecture.md)).
 - **Logging**: use `tasLogger`; verbose logs are gated behind the `do_debug`
   storage pref so they stay silent in production.
 

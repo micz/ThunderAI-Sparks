@@ -140,6 +140,29 @@ The task flow is identical with `openTaskDialog` / `task_data` /
 - The options page and release-notes page are localized via the `__MSG_*__`
   helper in `mztas-i18n.js`.
 
+## Automatic translation
+
+Locales are normally maintained on Weblate. Only when the maintainer asks for it, the
+`translate-locales` Claude Code skill (`.claude/skills/translate-locales/SKILL.md`, ported from
+ThunderAI, same design as ThunderAI's `claude-spec/06-localization.md`) has Claude translate, for
+the locales listed in `LANG_AUTO.md` (one per line, `#` lines ignored), the `en` strings those
+locales lack or translate from an older English text. Reconciling it with Weblate is the
+maintainer's job.
+
+- `scripts/i18n.mjs` (Node built-ins only) does every file operation: `init` (records
+  `baseline.json`, taking every existing translation as up to date), `status`, `extract` (work
+  files in the git-ignored `.claude/i18n-work/`), `apply` (validates `$name$`, `$1`, HTML tags and
+  non-empty text, then merges member by member, changing no other byte; `--prune` drops keys `en`
+  no longer has).
+- **Baseline** `baseline.json` (committed): per locale folder and key, the truncated sha256 of the
+  English message (and placeholders) the translation matches. A key is *missing* (absent/empty),
+  *modified* (English hash differs from the baseline) or *obsolete* (not in `en`).
+- **Sparks difference**: an English message that is only whitespace (`prefsInfoDesc_3` is `" "`)
+  counts as translated whenever the locale has a string for it, and its translation must be the
+  same whitespace.
+- `.claude/` and every `*.md` are excluded from the XPI by the packaging script
+  (`create_xpi_from_folder.bat`, outside this repository).
+
 ## Error handling
 
 - JSON extraction failures and API errors are caught and returned as
